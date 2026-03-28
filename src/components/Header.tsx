@@ -19,7 +19,7 @@ const leftNav = [
             { href: '/dyqan?kategori=unaza', label: 'Unaza' },
             { href: '/dyqan?kategori=vathe', label: 'Vathë' },
             { href: '/dyqan?kategori=gerdane', label: 'Qafore' },
-            { href: '/dyqan/rose-stardust', label: 'Rose & Stardust' },
+            { href: '/dyqan', label: 'Rose & Stardust' },
           ],
         },
         {

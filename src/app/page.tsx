@@ -77,7 +77,7 @@ export default function HomePage() {
                 Janë amuleta shpirti, krijuar për t&apos;u mbajtur me zemër — për të të kujtuar fuqinë
                 tënde si Perëndeshe apo Grua e Shenjtë që ecën ndërmjet botëve.
               </p>
-              <Link href="/dyqan/rose-stardust" className="text-[#201616] font-body text-sm border-b border-[#201616] pb-0.5 hover:text-[#b31b1b] hover:border-[#b31b1b] transition-colors">
+              <Link href="/dyqan" className="text-[#201616] font-body text-sm border-b border-[#201616] pb-0.5 hover:text-[#b31b1b] hover:border-[#b31b1b] transition-colors">
                 Zbulo Koleksionin →
               </Link>
             </div>
