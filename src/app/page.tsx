@@ -56,28 +56,30 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Rose & Stardust collection banner */}
-        <section className="flex flex-col md:flex-row min-h-[480px]">
-          {/* Image */}
-          <div className="w-full md:w-1/2 min-h-[300px] md:min-h-full overflow-hidden">
+        {/* Arritje të reja / Rose & Stardust */}
+        <section className="py-16 px-6 bg-[#fffffc]">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="font-heading text-4xl md:text-5xl text-[#201616] mb-10">Arritje të reja...</h2>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="https://priestessofthesoul.com/cdn/shop/files/Minimalist_photo_collage_handmade_jewelry_Facebook_cover_3.png?v=1763915563&width=3200"
               alt="Rose & Stardust Collection"
-              className="w-full h-full object-cover"
+              className="w-full object-cover mb-8"
             />
-          </div>
-          {/* Text panel */}
-          <div className="w-full md:w-1/2 bg-[#201616] flex items-center justify-center px-12 py-16">
-            <div className="max-w-sm text-center md:text-left">
-              <p className="text-[10px] tracking-[0.3em] uppercase text-[#fffef2]/40 mb-4 font-body">Koleksioni i Ri</p>
-              <h2 className="font-heading text-4xl md:text-5xl text-[#fffef2] mb-6 leading-tight">Rose & Stardust</h2>
-              <p className="text-[#fffef2]/60 text-sm font-body leading-relaxed mb-10">
-                Të punuara me dorë nga ari i ricikluar 14K dhe argjendi i pastër,
-                të frymëzuara nga trëndafilat e egër dhe pluhuri i yjeve të lashtë.
+            <div className="border-t border-[#201616]/10 pt-8">
+              <h3 className="font-heading text-2xl text-[#201616] mb-4">Koleksioni &quot;Rose &amp; Stardust&quot;</h3>
+              <p className="text-[#201616]/70 font-body leading-relaxed mb-2">
+                Punuar me dorë nga ari i ricikluar 14K dhe argjendi i pastër, frymëzuar nga
+                trëndafilat e egër dhe pluhuri i yjeve të lashtë, çdo aksesorë është një thirrje për
+                shpirtin tënd të lashtë.
               </p>
-              <Link href="/dyqan/rose-stardust" className="inline-block border border-[#fffef2] text-[#fffef2] px-8 py-3 text-xs tracking-[0.25em] uppercase hover:bg-[#fffef2] hover:text-[#201616] transition-colors duration-300">
-                Zbulo Koleksionin
+              <p className="text-[#201616] font-body font-bold mb-2">Këto nuk janë thjesht stoli.</p>
+              <p className="text-[#201616]/70 font-body leading-relaxed mb-6">
+                Janë amuleta shpirti, krijuar për t&apos;u mbajtur me zemër — për të të kujtuar fuqinë
+                tënde si Perëndeshe apo Grua e Shenjtë që ecën ndërmjet botëve.
+              </p>
+              <Link href="/dyqan/rose-stardust" className="text-[#201616] font-body text-sm border-b border-[#201616] pb-0.5 hover:text-[#b31b1b] hover:border-[#b31b1b] transition-colors">
+                Zbulo Koleksionin →
               </Link>
             </div>
           </div>
