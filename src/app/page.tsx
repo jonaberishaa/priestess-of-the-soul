@@ -3,7 +3,7 @@ import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import Newsletter from '@/components/Newsletter';
 import Footer from '@/components/Footer';
-import { getFeatured, getByType } from '@/data/products';
+import { getFeatured } from '@/data/products';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -28,7 +28,6 @@ function ProductCard({ product }: { product: { id: string; name: string; type: s
 
 export default function HomePage() {
   const featured = getFeatured();
-  const rings = getByType('Unaza').slice(0, 4);
 
   return (
     <>
@@ -85,23 +84,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Rings featured */}
-        <section className="py-16 px-6 bg-[#f6f5e9]">
-          <div className="max-w-[1600px] mx-auto">
-            <div className="flex items-end justify-between mb-10">
-              <div>
-                <p className="text-[10px] tracking-[0.3em] uppercase text-[#201616]/50 mb-2">Koleksioni</p>
-                <h2 className="font-heading text-4xl md:text-5xl text-[#201616]">Unaza</h2>
-              </div>
-              <Link href="/dyqan?kategori=unaza" className="text-xs tracking-widest uppercase text-[#201616] border-b border-[#201616] pb-0.5 hover:text-[#b31b1b] hover:border-[#b31b1b] transition-colors">
-                Shiko të gjitha
-              </Link>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-x-5 gap-y-10">
-              {rings.map((p) => <ProductCard key={p.id} product={p} />)}
-            </div>
-          </div>
-        </section>
 
         {/* Newsletter */}
         <Newsletter />
