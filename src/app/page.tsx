@@ -57,23 +57,29 @@ export default function HomePage() {
         </section>
 
         {/* Rose & Stardust collection banner */}
-        <section className="relative w-full overflow-hidden">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="https://priestessofthesoul.com/cdn/shop/files/Minimalist_photo_collage_handmade_jewelry_Facebook_cover_3.png?v=1763915563&width=3200"
-            alt="Rose & Stardust Collection"
-            className="w-full object-cover max-h-[500px]"
-          />
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-            <p className="text-[10px] tracking-[0.3em] uppercase text-[#201616]/60 mb-3">Koleksioni i Ri</p>
-            <h2 className="font-heading text-4xl md:text-6xl text-[#201616] mb-4">Rose & Stardust</h2>
-            <p className="text-[#201616]/70 text-sm max-w-md mb-8 font-body leading-relaxed">
-              Të punuara me dorë nga ari i ricikluar 14K dhe argjendi i pastër,
-              të frymëzuara nga trëndafilat e egër dhe pluhuri i yjeve të lashtë.
-            </p>
-            <Link href="/dyqan/rose-stardust" className="inline-block bg-[#201616] text-[#fffef2] px-8 py-3 text-xs tracking-[0.25em] uppercase hover:bg-[#b31b1b] transition-colors">
-              Zbulo Koleksionin
-            </Link>
+        <section className="flex flex-col md:flex-row min-h-[480px]">
+          {/* Image */}
+          <div className="w-full md:w-1/2 min-h-[300px] md:min-h-full overflow-hidden">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="https://priestessofthesoul.com/cdn/shop/files/Minimalist_photo_collage_handmade_jewelry_Facebook_cover_3.png?v=1763915563&width=3200"
+              alt="Rose & Stardust Collection"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          {/* Text panel */}
+          <div className="w-full md:w-1/2 bg-[#201616] flex items-center justify-center px-12 py-16">
+            <div className="max-w-sm text-center md:text-left">
+              <p className="text-[10px] tracking-[0.3em] uppercase text-[#fffef2]/40 mb-4 font-body">Koleksioni i Ri</p>
+              <h2 className="font-heading text-4xl md:text-5xl text-[#fffef2] mb-6 leading-tight">Rose & Stardust</h2>
+              <p className="text-[#fffef2]/60 text-sm font-body leading-relaxed mb-10">
+                Të punuara me dorë nga ari i ricikluar 14K dhe argjendi i pastër,
+                të frymëzuara nga trëndafilat e egër dhe pluhuri i yjeve të lashtë.
+              </p>
+              <Link href="/dyqan/rose-stardust" className="inline-block border border-[#fffef2] text-[#fffef2] px-8 py-3 text-xs tracking-[0.25em] uppercase hover:bg-[#fffef2] hover:text-[#201616] transition-colors duration-300">
+                Zbulo Koleksionin
+              </Link>
+            </div>
           </div>
         </section>
 
