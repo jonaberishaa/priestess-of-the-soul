@@ -65,7 +65,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                   className="btn-outline flex-1"
                 />
                 <a
-                  href={`https://wa.me/?text=Jam e interesuar për: ${product.name} - ${product.price}`}
+                  href={`https://wa.me/38849646439?text=Jam e interesuar për: ${product.name} - ${product.price}`}
                   target="_blank"
                   rel="noreferrer"
                   className="btn-outline flex-1 text-center"
