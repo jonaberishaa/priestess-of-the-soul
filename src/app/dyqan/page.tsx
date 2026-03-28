@@ -5,6 +5,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import WishlistButton from '@/components/WishlistButton';
 
+function discounted(price: string) {
+  const num = parseFloat(price.replace(/[^0-9.]/g, ''));
+  return `€${Math.round(num * 0.8)}`;
+}
+
 function ProductCard({ product }: { product: Product }) {
   return (
     <div className="group">
@@ -18,7 +23,10 @@ function ProductCard({ product }: { product: Product }) {
             sizes="(max-width: 768px) 50vw, 25vw"
           />
         </Link>
-        <div className="absolute top-3 right-3">
+        <span className="absolute top-2 left-2 bg-burgundy text-white text-[10px] tracking-widest uppercase px-2 py-1">
+          -20%
+        </span>
+        <div className="absolute top-2 right-2">
           <WishlistButton
             product={{ id: product.id, name: product.name, price: product.price, image: product.image }}
             className="bg-white/80 hover:bg-white p-1.5 text-stone hover:text-burgundy"
@@ -28,7 +36,10 @@ function ProductCard({ product }: { product: Product }) {
       <Link href={`/dyqan/${product.id}`} className="block">
         <p className="text-xs uppercase tracking-widest text-stone mb-1">{product.type}</p>
         <h3 className="font-heading text-lg text-brown mb-1 group-hover:text-burgundy transition-colors">{product.name}</h3>
-        <p className="text-burgundy text-sm font-body">{product.price}</p>
+        <div className="flex items-center gap-2 font-body">
+          <p className="text-sm text-burgundy">{discounted(product.price)}</p>
+          <p className="text-sm text-stone/60 line-through">{product.price}</p>
+        </div>
       </Link>
     </div>
   );
