@@ -9,7 +9,7 @@ import Link from 'next/link';
 
 function discounted(price: string) {
   const num = parseFloat(price.replace(/[^0-9.]/g, ''));
-  return `€${Math.round(num * 0.8)}`;
+  return `€${Math.round(num * 0.7)}`;
 }
 
 function ProductCard({ product }: { product: { id: string; name: string; type: string; price: string; image: string } }) {
@@ -24,7 +24,7 @@ function ProductCard({ product }: { product: { id: string; name: string; type: s
           sizes="(max-width: 768px) 50vw, 25vw"
         />
         <span className="absolute top-2 left-2 bg-[#b31b1b] text-white text-[10px] tracking-widest uppercase px-2 py-1">
-          -20%
+          -30%
         </span>
       </div>
       <p className="text-[10px] uppercase tracking-[0.2em] text-[#201616]/50 mb-1 font-body">{product.type}</p>

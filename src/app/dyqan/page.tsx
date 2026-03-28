@@ -7,7 +7,7 @@ import WishlistButton from '@/components/WishlistButton';
 
 function discounted(price: string) {
   const num = parseFloat(price.replace(/[^0-9.]/g, ''));
-  return `€${Math.round(num * 0.8)}`;
+  return `€${Math.round(num * 0.7)}`;
 }
 
 function ProductCard({ product }: { product: Product }) {
@@ -24,7 +24,7 @@ function ProductCard({ product }: { product: Product }) {
           />
         </Link>
         <span className="absolute top-2 left-2 bg-burgundy text-white text-[10px] tracking-widest uppercase px-2 py-1">
-          -20%
+          -30%
         </span>
         <div className="absolute top-2 right-2">
           <WishlistButton

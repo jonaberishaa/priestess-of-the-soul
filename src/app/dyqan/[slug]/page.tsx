@@ -50,8 +50,8 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             <p className="text-xs tracking-[0.3em] uppercase text-gold mb-3">{product.type}</p>
             <h1 className="font-heading text-4xl md:text-5xl text-brown mb-4">{product.name}</h1>
             <div className="flex items-center gap-3 mb-6">
-              <span className="bg-burgundy text-white text-[10px] tracking-widest uppercase px-2 py-1">-20%</span>
-              <p className="text-2xl text-burgundy">€{Math.round(parseFloat(product.price.replace(/[^0-9.]/g, '')) * 0.8)}</p>
+              <span className="bg-burgundy text-white text-[10px] tracking-widest uppercase px-2 py-1">-30%</span>
+              <p className="text-2xl text-burgundy">€{Math.round(parseFloat(product.price.replace(/[^0-9.]/g, '')) * 0.7)}</p>
               <p className="text-lg text-stone line-through">{product.price}</p>
             </div>
             <p className="text-stone leading-relaxed mb-8">{product.description}</p>
