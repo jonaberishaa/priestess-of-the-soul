@@ -1,17 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: NextRequest) {
   try {
     const { customer, items, total } = await req.json();
-
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-    });
 
     const itemsHtml = items
       .map(
@@ -72,8 +66,8 @@ export async function POST(req: NextRequest) {
       </div>
     `;
 
-    await transporter.sendMail({
-      from: `"Priestess of the Soul" <${process.env.SMTP_USER}>`,
+    await resend.emails.send({
+      from: 'Priestess of the Soul <onboarding@resend.dev>',
       to: 'jonaberishaa@gmail.com',
       subject: `✦ Porosi e Re — ${customer.firstName} ${customer.lastName}`,
       html,
