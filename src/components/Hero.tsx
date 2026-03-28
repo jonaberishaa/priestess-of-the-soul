@@ -13,17 +13,17 @@ export default function Hero() {
       />
 
       {/* Text overlay */}
-      <div className="relative z-10 text-center px-6 max-w-3xl mx-auto">
-        <h1 className="font-heading text-5xl md:text-7xl text-[#201616] leading-[1.05] mb-6">
+      <div className="relative z-10 text-center px-12 py-14 mx-6 max-w-2xl" style={{backgroundColor: '#8B1A1A'}}>
+        <h1 className="font-heading text-5xl md:text-6xl text-[#fffef2] leading-[1.05] mb-6">
           Finesë në çdo detaj
         </h1>
-        <p className="text-[#201616]/80 text-base md:text-lg leading-relaxed mb-10 max-w-xl mx-auto font-body">
+        <p className="text-[#fffef2]/85 text-base md:text-lg leading-relaxed mb-10 max-w-xl mx-auto font-body">
           Bizhuteri të veshura në ar, të punuara me dorë dhe me gurë natyral.
           Finesë, elegancë dhe një shkëlqim i rafinuar që jep ndjesi të vërtet luksi.
         </p>
         <Link
           href="/dyqan"
-          className="inline-block bg-[#201616] text-[#fffef2] px-10 py-4 text-xs tracking-[0.25em] uppercase hover:bg-[#b31b1b] transition-colors duration-300"
+          className="inline-block border border-[#fffef2] text-[#fffef2] px-10 py-4 text-xs tracking-[0.25em] uppercase hover:bg-[#fffef2] hover:text-[#8B1A1A] transition-colors duration-300"
         >
           Zbulo koleksionin
         </Link>
