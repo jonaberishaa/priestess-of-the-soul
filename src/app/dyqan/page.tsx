@@ -23,7 +23,7 @@ function ProductCard({ product }: { product: Product }) {
             sizes="(max-width: 768px) 50vw, 25vw"
           />
         </Link>
-        <span className="absolute top-2 left-2 bg-burgundy text-white text-[10px] tracking-widest uppercase px-2 py-1">
+        <span className="absolute top-2 left-2 bg-burgundy text-white text-xs tracking-wider uppercase px-3 py-1.5">
           -30%
         </span>
         <div className="absolute top-2 right-2">

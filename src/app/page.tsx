@@ -23,7 +23,7 @@ function ProductCard({ product }: { product: { id: string; name: string; type: s
           className="object-cover group-hover:scale-105 transition-transform duration-700"
           sizes="(max-width: 768px) 50vw, 25vw"
         />
-        <span className="absolute top-2 left-2 bg-[#b31b1b] text-white text-[10px] tracking-widest uppercase px-2 py-1">
+        <span className="absolute top-2 left-2 bg-[#b31b1b] text-white text-xs tracking-wider uppercase px-3 py-1.5">
           -30%
         </span>
       </div>
