@@ -59,7 +59,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-[#fffffc] border-b border-[#201616]/10">
-      <div className="max-w-[1600px] mx-auto px-8 h-[60px] flex items-center justify-between">
+      <div className="max-w-[1600px] mx-auto px-8 h-[80px] flex items-center justify-between">
 
         {/* Left nav - desktop */}
         <nav className="hidden md:flex items-center gap-7 flex-1">
@@ -97,9 +97,9 @@ export default function Header() {
             <Image
               src="https://priestessofthesoul.com/cdn/shop/files/ChatGPT_Image_Apr_4_2025_06_14_39_PM.png?v=1743783311&width=600"
               alt="Priestess of the Soul"
-              width={120}
-              height={48}
-              className="object-contain h-10 w-auto"
+              width={180}
+              height={72}
+              className="object-contain h-16 w-auto"
               priority
             />
           </Link>
