@@ -3,23 +3,34 @@ import Footer from '@/components/Footer';
 import { products, getByType, type Product } from '@/data/products';
 import Image from 'next/image';
 import Link from 'next/link';
+import WishlistButton from '@/components/WishlistButton';
 
 function ProductCard({ product }: { product: Product }) {
   return (
-    <Link href={`/dyqan/${product.id}`} className="group">
-      <div className="aspect-square relative bg-cream-warm border border-stone-light/20 mb-3 overflow-hidden group-hover:border-gold transition-colors duration-300">
-        <Image
-          src={product.image}
-          alt={product.name}
-          fill
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
-          sizes="(max-width: 768px) 50vw, 25vw"
-        />
+    <div className="group">
+      <div className="aspect-square relative bg-cream-warm border border-stone/10 mb-3 overflow-hidden group-hover:border-gold transition-colors duration-300">
+        <Link href={`/dyqan/${product.id}`} className="block w-full h-full">
+          <Image
+            src={product.image}
+            alt={product.name}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-500"
+            sizes="(max-width: 768px) 50vw, 25vw"
+          />
+        </Link>
+        <div className="absolute top-3 right-3">
+          <WishlistButton
+            product={{ id: product.id, name: product.name, price: product.price, image: product.image }}
+            className="bg-white/80 hover:bg-white p-1.5 text-stone hover:text-burgundy"
+          />
+        </div>
       </div>
-      <p className="text-xs uppercase tracking-widest text-stone mb-1">{product.type}</p>
-      <h3 className="font-heading text-lg text-brown mb-1 group-hover:text-burgundy transition-colors">{product.name}</h3>
-      <p className="text-burgundy text-sm font-body">{product.price}</p>
-    </Link>
+      <Link href={`/dyqan/${product.id}`} className="block">
+        <p className="text-xs uppercase tracking-widest text-stone mb-1">{product.type}</p>
+        <h3 className="font-heading text-lg text-brown mb-1 group-hover:text-burgundy transition-colors">{product.name}</h3>
+        <p className="text-burgundy text-sm font-body">{product.price}</p>
+      </Link>
+    </div>
   );
 }
 

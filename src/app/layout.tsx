@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Bodoni_Moda, Merriweather } from 'next/font/google';
 import './globals.css';
+import Providers from '@/components/Providers';
 
 const bodoniModa = Bodoni_Moda({
   subsets: ['latin'],
@@ -29,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="sq">
       <body className={`${bodoniModa.variable} ${merriweather.variable} font-body bg-cream text-brown antialiased`}>
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

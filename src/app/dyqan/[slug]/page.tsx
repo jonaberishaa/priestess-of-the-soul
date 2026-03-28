@@ -4,6 +4,8 @@ import { products } from '@/data/products';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
+import AddToCartButton from '@/components/AddToCartButton';
+import WishlistButton from '@/components/WishlistButton';
 
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.id }));
@@ -51,17 +53,22 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             <p className="text-stone leading-relaxed mb-8">{product.description}</p>
 
             <div className="flex flex-col gap-3 mb-10">
-              <button className="btn-primary text-center">
-                Shto në Shportë
-              </button>
-              <a
-                href={`https://wa.me/?text=Jam e interesuar për: ${product.name} - ${product.price}`}
-                target="_blank"
-                rel="noreferrer"
-                className="btn-outline text-center"
-              >
-                Porosit me WhatsApp
-              </a>
+              <AddToCartButton product={{ id: product.id, name: product.name, price: product.price, image: product.image }} />
+              <div className="flex gap-3">
+                <WishlistButton
+                  product={{ id: product.id, name: product.name, price: product.price, image: product.image }}
+                  showLabel
+                  className="btn-outline flex-1"
+                />
+                <a
+                  href={`https://wa.me/?text=Jam e interesuar për: ${product.name} - ${product.price}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-outline flex-1 text-center"
+                >
+                  WhatsApp
+                </a>
+              </div>
             </div>
 
             <div className="border-t border-stone-light/20 pt-6 flex flex-col gap-3 text-sm text-stone">
