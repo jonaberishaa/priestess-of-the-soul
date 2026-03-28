@@ -103,24 +103,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Sacred ornaments section */}
-        <section className="py-20 px-6 bg-[#fffffc] text-center">
-          <div className="max-w-2xl mx-auto">
-            <p className="text-[10px] tracking-[0.3em] uppercase text-[#201616]/50 mb-4">Filozofia Jonë</p>
-            <h2 className="font-heading text-4xl md:text-5xl text-[#201616] leading-tight mb-6">
-              Stoli të shenjta, të harmonizuara me shpirtin tënd
-            </h2>
-            <p className="text-[#201616]/60 leading-relaxed font-body text-sm mb-10">
-              Çdo copë është krijuar si një amuletë shpirtërore — për ata që kërkojnë
-              të rilidhur me fuqinë e tyre të brendshme. Gurët natyralë mbajnë energji.
-              Kur i veshim, bëhemi pjesë e diçkaje më të madhe.
-            </p>
-            <Link href="/dyqan" className="inline-block border border-[#201616] text-[#201616] px-10 py-3 text-xs tracking-[0.25em] uppercase hover:bg-[#201616] hover:text-[#fffef2] transition-colors">
-              Shiko Koleksionin
-            </Link>
-          </div>
-        </section>
-
         {/* Newsletter */}
         <Newsletter />
       </main>
