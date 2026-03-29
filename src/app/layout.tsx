@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Bodoni_Moda, Merriweather } from 'next/font/google';
+import { Bodoni_Moda, Merriweather, Great_Vibes } from 'next/font/google';
 import './globals.css';
 
 const bodoniModa = Bodoni_Moda({
@@ -12,6 +12,13 @@ const merriweather = Merriweather({
   subsets: ['latin'],
   weight: ['300', '400', '700'],
   variable: '--font-body',
+  display: 'swap',
+});
+
+const greatVibes = Great_Vibes({
+  subsets: ['latin'],
+  weight: ['400'],
+  variable: '--font-script',
   display: 'swap',
 });
 
@@ -28,7 +35,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="sq">
-      <body className={`${bodoniModa.variable} ${merriweather.variable} font-body bg-cream text-brown antialiased`}>
+      <body className={`${bodoniModa.variable} ${merriweather.variable} ${greatVibes.variable} font-body bg-cream text-brown antialiased`}>
         {children}
       </body>
     </html>

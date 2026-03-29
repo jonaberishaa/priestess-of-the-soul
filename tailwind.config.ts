@@ -22,6 +22,7 @@ const config: Config = {
       fontFamily: {
         heading: ['"Bodoni Moda"', 'Georgia', 'serif'],
         body: ['Merriweather', 'Georgia', 'serif'],
+        script: ['"Great Vibes"', 'cursive'],
       },
       maxWidth: {
         content: '100rem',
