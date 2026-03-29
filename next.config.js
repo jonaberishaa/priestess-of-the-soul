@@ -4,6 +4,7 @@ const nextConfig = {
     remotePatterns: [
       { protocol: 'https', hostname: 'cdn.shopify.com' },
       { protocol: 'https', hostname: 'priestessofthesoul.com' },
+      { protocol: 'https', hostname: 'img.lightshot.app' },
     ],
   },
 };

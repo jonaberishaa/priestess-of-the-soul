@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Bodoni_Moda, Merriweather, Great_Vibes } from 'next/font/google';
 import './globals.css';
+import { WishlistProvider } from '@/components/WishlistContext';
 
 const bodoniModa = Bodoni_Moda({
   subsets: ['latin'],
@@ -36,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="sq">
       <body className={`${bodoniModa.variable} ${merriweather.variable} ${greatVibes.variable} font-body bg-cream text-brown antialiased`}>
-        {children}
+        <WishlistProvider>{children}</WishlistProvider>
       </body>
     </html>
   );
