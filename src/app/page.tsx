@@ -59,25 +59,31 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Rose & Stardust collection banner */}
-        <section className="relative w-full overflow-hidden">
+        {/* New arrivals collage banner */}
+        <section className="w-full">
+          <div className="px-6 py-10 bg-[#fffffc]">
+            <h2 className="font-heading text-4xl md:text-5xl text-[#201616]">Arritje të reja...</h2>
+          </div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="https://priestessofthesoul.com/cdn/shop/files/Minimalist_photo_collage_handmade_jewelry_Facebook_cover_3.png?v=1763915563&width=3200"
-            alt="Rose & Stardust Collection"
-            className="w-full object-cover max-h-[500px]"
+            alt="Koleksioni i Ri"
+            className="w-full object-cover"
           />
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-            <p className="text-[10px] tracking-[0.3em] uppercase text-[#201616]/60 mb-3">Koleksioni i Ri</p>
-            <h2 className="font-heading text-4xl md:text-6xl text-[#201616] mb-4">Rose & Stardust</h2>
-            <p className="text-[#201616]/70 text-sm max-w-md mb-8 font-body leading-relaxed">
-              Të punuara me dorë nga ari i ricikluar 14K dhe argjendi i pastër,
-              të frymëzuara nga trëndafilat e egër dhe pluhuri i yjeve të lashtë.
-            </p>
-            <Link href="/dyqan/rose-stardust" className="inline-block bg-[#201616] text-[#fffef2] px-8 py-3 text-xs tracking-[0.25em] uppercase hover:bg-[#b31b1b] transition-colors">
-              Zbulo Koleksionin
-            </Link>
-          </div>
+        </section>
+
+        {/* Brand banner */}
+        <section className="bg-[#fffffc] py-16 px-6 text-center">
+          <p className="font-script text-6xl md:text-8xl text-[#201616] leading-none mb-2">
+            priestess of the soul
+          </p>
+          <p className="font-heading text-2xl md:text-3xl tracking-[0.2em] uppercase text-[#201616] mb-4">
+            Ethereal Adornments
+          </p>
+          <p className="text-xs tracking-[0.25em] uppercase text-[#201616]/60 mb-2">
+            925 Sterling Silver · 14K Gold Plated · Natural Gemstones
+          </p>
+          <p className="text-xs tracking-widest text-[#201616]/40">@priestessofthesoul</p>
         </section>
 
         {/* Rings featured */}
