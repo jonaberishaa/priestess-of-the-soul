@@ -3,7 +3,7 @@ import nodemailer from 'nodemailer';
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
-  const { productName, productPrice, name, email, phone, address, size } = body;
+  const { productName, productPrice, name, email, phone, address, size, message } = body;
 
   if (!name || !email || !phone || !address || !productName) {
     return NextResponse.json({ error: 'Missing fields' }, { status: 400 });
@@ -35,6 +35,7 @@ export async function POST(req: NextRequest) {
             <tr${size ? ' style="background:#f6f5e9"' : ''}><td style="padding:10px 14px; font-size:12px; text-transform:uppercase; letter-spacing:2px; color:#888;">Email</td><td style="padding:10px 14px;">${email}</td></tr>
             <tr${size ? '' : ' style="background:#f6f5e9"'}><td style="padding:10px 14px; font-size:12px; text-transform:uppercase; letter-spacing:2px; color:#888;">Telefoni</td><td style="padding:10px 14px;">${phone}</td></tr>
             <tr${size ? ' style="background:#f6f5e9"' : ''}><td style="padding:10px 14px; font-size:12px; text-transform:uppercase; letter-spacing:2px; color:#888;">Adresa</td><td style="padding:10px 14px;">${address}</td></tr>
+            ${message ? `<tr style="background:#f6f5e9"><td style="padding:10px 14px; font-size:12px; text-transform:uppercase; letter-spacing:2px; color:#888;">Mesazh Dhurate</td><td style="padding:10px 14px; font-style:italic;">${message}</td></tr>` : ''}
           </table>
           <p style="font-size:12px; color:#888; margin-top:32px;">Priestess of the Soul · priestessofthesoul.com</p>
         </div>

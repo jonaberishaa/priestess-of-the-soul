@@ -16,7 +16,23 @@ const RING_SIZES = [
   'EU 22 / US 10.5 / 62mm',
 ];
 
-type OrderForm = { name: string; email: string; phone: string; address: string; size: string };
+const GIFT_MESSAGES = [
+  'Krijuar për ty që shkel tokën si tempull dhe e jeton ditën si ceremoni.',
+  'Nuk është thjesht një stoli, por një kujtim i hyjnisë brenda teje.',
+  'Në çdo detaj ka një përkujtim – Ti ke qenë gjithmonë e shenjtë.',
+  'Për një grua që nuk pranon të jetë e zakonshme – magji që ndriçon Hyjnoren në ty.',
+  'Ti je art, rit dhe prani – kjo unazë flet për ty.',
+  'Je gjithmonë me mua, edhe kur s\'jemi afër – ky aksesor është përqafim në një formë tjetër.',
+  'Në çdo detaj, një kujtim i asaj që më bën me ndje kur të shoh.',
+  'Ti je art i gjallë – dhe ky aksesor është një pasqyrim i bukur i shpirtit tënd.',
+  'Për ty që mbart magjinë në çdo hap – kjo dhuratë është një kujtim i fuqisë tënde.',
+  'Në këtë ditë të veçantë, uroj të të kujtohet sa e bukur, e shenjtë dhe e plotë që je.',
+  'Një dhuratë e vogël, për një ditë të veçantë – uroj të ndjehesh ashtu siç je: e bukur dhe e çmuar.',
+  'Gëzuar ditëlindjen, hyjneshë – Ti je një kujtim i bukurisë së vërtetë në këtë botë.',
+  'Urime të përzemërta – elegancë për një shpirt të bukur.',
+];
+
+type OrderForm = { name: string; email: string; phone: string; address: string; size: string; message: string };
 
 export default function ProductActions({ product }: { product: Product }) {
   const isRing = product.type === 'Unaza';
@@ -24,7 +40,7 @@ export default function ProductActions({ product }: { product: Product }) {
   const wishlisted = has(product.id);
 
   const [modalOpen, setModalOpen] = useState(false);
-  const [form, setForm] = useState<OrderForm>({ name: '', email: '', phone: '', address: '', size: '' });
+  const [form, setForm] = useState<OrderForm>({ name: '', email: '', phone: '', address: '', size: '', message: '' });
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
 
   const closeModal = () => { setModalOpen(false); setStatus('idle'); };
@@ -37,7 +53,7 @@ export default function ProductActions({ product }: { product: Product }) {
       const res = await fetch('/api/order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ productName: product.name, productPrice: salePrice(product.price), ...form }),
+        body: JSON.stringify({ productName: product.name, productPrice: salePrice(product.price), ...form, message: form.message || undefined }),
       });
       setStatus(res.ok ? 'sent' : 'error');
     } catch {
@@ -65,6 +81,27 @@ export default function ProductActions({ product }: { product: Product }) {
           </div>
         </div>
       )}
+
+      {/* Gift message */}
+      <div className="mb-6">
+        <p className="text-[10px] tracking-widest uppercase text-[#201616]/50 mb-3">Mesazh Dhurate (opsional)</p>
+        <div className="relative">
+          <select
+            value={form.message}
+            onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
+            className="w-full border border-[#201616]/20 bg-[#fffef2] px-4 py-2.5 text-sm text-[#201616] focus:outline-none focus:border-[#201616] font-body appearance-none pr-8"
+          >
+            <option value="">— Zgjidh mesazhin —</option>
+            {GIFT_MESSAGES.map((msg) => (
+              <option key={msg} value={msg}>{msg}</option>
+            ))}
+          </select>
+          <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#201616]/40 text-xs">▾</span>
+        </div>
+        {form.message && (
+          <p className="mt-2 text-xs text-[#201616]/60 font-body italic leading-relaxed">"{form.message}"</p>
+        )}
+      </div>
 
       {/* Buttons */}
       <div className="flex flex-col gap-3 mb-10">
@@ -110,6 +147,7 @@ export default function ProductActions({ product }: { product: Product }) {
                       <p className="text-[#201616]/40 text-xs line-through">{product.price}</p>
                     </div>
                     {isRing && form.size && <p className="text-[#201616]/50 text-xs mt-1">Madhësia: {form.size}</p>}
+                    {form.message && <p className="text-[#201616]/50 text-xs mt-1 italic">"{form.message}"</p>}
                   </div>
                   <button onClick={closeModal} className="text-[#201616]/30 hover:text-[#201616] text-xl leading-none mt-1">✕</button>
                 </div>
