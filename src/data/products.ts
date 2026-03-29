@@ -384,6 +384,27 @@ export const products: Product[] = [
     meaning: 'qartesi',
     sizes: ['EU 12 / US 6 / 52mm', 'EU 14 / US 6.5 / 54mm', 'EU 17 / US 8 / 57mm'],
   },
+  {
+    id: 'ring-of-the-red-priestess',
+    name: 'Ring of the Red Priestess',
+    type: 'Unaza',
+    price: '€65',
+    image: 'https://priestessofthesoul.com/cdn/shop/files/36.jpg?v=1755269458',
+    description: 'Granat gjeometrik — "zjarri i brendshëm, pasioni dhe forca e jetës".',
+    meaning: 'shendet',
+    sizes: ['EU 17 / US 8 / 57mm'],
+  },
+  {
+    id: 'lunar-priestess',
+    name: 'Lunar Priestess',
+    type: 'Unaza',
+    price: '€68',
+    image: 'https://priestessofthesoul.com/cdn/shop/files/35.jpg?v=1755270317',
+    description: 'Guri i hënës natyral në formë pike me gjysmëhëna ari — "intuita, ciklet dhe rilindja".',
+    stone: 'guri-henes',
+    meaning: 'qartesi',
+    sizes: ['EU 17 / US 8 / 57mm'],
+  },
 
   // GERDANE (Necklaces)
   {
