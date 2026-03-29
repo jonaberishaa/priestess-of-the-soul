@@ -1,6 +1,6 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { products, getByType, type Product } from '@/data/products';
+import { products, getByType, salePrice, type Product } from '@/data/products';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -15,10 +15,14 @@ function ProductCard({ product }: { product: Product }) {
           className="object-cover group-hover:scale-105 transition-transform duration-500"
           sizes="(max-width: 768px) 50vw, 25vw"
         />
+        <span className="absolute top-2 left-2 bg-[#b31b1b] text-[#fffef2] text-[10px] font-bold tracking-widest uppercase px-2 py-1">−20%</span>
       </div>
       <p className="text-xs uppercase tracking-widest text-stone mb-1">{product.type}</p>
       <h3 className="font-heading text-lg text-brown mb-1 group-hover:text-burgundy transition-colors">{product.name}</h3>
-      <p className="text-burgundy text-sm font-body">{product.price}</p>
+      <div className="flex items-center gap-2">
+        <p className="text-sm font-bold text-[#b31b1b] font-body">{salePrice(product.price)}</p>
+        <p className="text-xs text-stone/60 line-through font-body">{product.price}</p>
+      </div>
     </Link>
   );
 }

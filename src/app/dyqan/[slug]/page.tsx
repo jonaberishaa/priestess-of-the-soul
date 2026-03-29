@@ -3,7 +3,7 @@
 import { use, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { products } from '@/data/products';
+import { products, salePrice } from '@/data/products';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -79,7 +79,12 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
           <div className="flex flex-col justify-center">
             <p className="text-xs tracking-[0.3em] uppercase text-gold mb-3">{product.type}</p>
             <h1 className="font-heading text-4xl md:text-5xl text-brown mb-4">{product.name}</h1>
-            <p className="text-2xl text-burgundy mb-6">{product.price}</p>
+            <div className="flex items-center gap-3 mb-2">
+              <p className="text-3xl font-bold text-[#b31b1b]">{salePrice(product.price)}</p>
+              <p className="text-xl text-stone/50 line-through">{product.price}</p>
+              <span className="bg-[#b31b1b] text-[#fffef2] text-[10px] font-bold tracking-widest uppercase px-2 py-1">−20%</span>
+            </div>
+            <p className="text-xs text-[#201616]/50 font-body mb-4">✦ Dërgesa Falas</p>
             <p className="text-stone leading-relaxed mb-8">{product.description}</p>
 
             {isRing && (
@@ -157,7 +162,10 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                   <div>
                     <p className="text-[10px] tracking-widest uppercase text-[#201616]/40 mb-1">Porosit</p>
                     <h2 className="font-heading text-2xl text-brown">{product.name}</h2>
-                    <p className="text-burgundy text-sm mt-1">{product.price}</p>
+                    <div className="flex items-center gap-2 mt-1">
+                      <p className="text-[#b31b1b] text-sm font-bold">{salePrice(product.price)}</p>
+                      <p className="text-stone/50 text-xs line-through">{product.price}</p>
+                    </div>
                     {isRing && form.size && <p className="text-[#201616]/50 text-xs mt-1">Madhësia: {form.size}</p>}
                   </div>
                   <button onClick={closeModal} className="text-[#201616]/30 hover:text-[#201616] text-xl leading-none mt-1">✕</button>

@@ -3,7 +3,7 @@ import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import Newsletter from '@/components/Newsletter';
 import Footer from '@/components/Footer';
-import { getFeatured, getByType } from '@/data/products';
+import { getFeatured, getByType, salePrice } from '@/data/products';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -19,12 +19,15 @@ function ProductCard({ product }: { product: { id: string; name: string; type: s
           sizes="(max-width: 768px) 50vw, 25vw"
         />
         <span className="absolute top-2 left-2 bg-[#b31b1b] text-[#fffef2] text-[10px] font-bold tracking-widest uppercase px-2 py-1">
-          −30%
+          −20%
         </span>
       </div>
       <p className="text-[10px] uppercase tracking-[0.2em] text-[#201616]/50 mb-1 font-body">{product.type}</p>
       <h3 className="font-heading text-base text-[#201616] mb-1 group-hover:text-[#b31b1b] transition-colors">{product.name}</h3>
-      <p className="text-sm text-[#201616]/70 font-body">{product.price}</p>
+      <div className="flex items-center gap-2">
+        <p className="text-sm font-bold text-[#b31b1b] font-body">{salePrice(product.price)}</p>
+        <p className="text-xs text-[#201616]/40 line-through font-body">{product.price}</p>
+      </div>
     </Link>
   );
 }
