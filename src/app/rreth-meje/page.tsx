@@ -19,7 +19,7 @@ export default function AboutPage() {
           {/* Photo */}
           <div className="aspect-[3/4] relative overflow-hidden sticky top-24">
             <Image
-              src="/images/founder.jpg"
+              src="/images/priestess.png"
               alt="Founder of Priestess of the Soul"
               fill
               className="object-cover object-top"
