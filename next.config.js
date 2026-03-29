@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    optimizePackageImports: ['nodemailer'],
+  },
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: 'cdn.shopify.com' },
