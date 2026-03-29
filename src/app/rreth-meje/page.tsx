@@ -19,7 +19,7 @@ export default function AboutPage() {
           {/* Photo */}
           <div className="aspect-[3/4] relative overflow-hidden sticky top-24">
             <Image
-              src="https://img.lightshot.app/pXrqheKiSHCMc3z32aT7CA.png"
+              src="https://img.lightshot.app/7lm5HcArSvm-rm7GkWu9iw.png"
               alt="Founder of Priestess of the Soul"
               fill
               className="object-cover object-top"
