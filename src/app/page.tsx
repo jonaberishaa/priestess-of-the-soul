@@ -72,20 +72,6 @@ export default function HomePage() {
           />
         </section>
 
-        {/* Brand banner */}
-        <section className="bg-[#fffffc] py-16 px-6 text-center">
-          <p className="font-script text-6xl md:text-8xl text-[#201616] leading-none mb-2">
-            priestess of the soul
-          </p>
-          <p className="font-heading text-2xl md:text-3xl tracking-[0.2em] uppercase text-[#201616] mb-4">
-            Ethereal Adornments
-          </p>
-          <p className="text-xs tracking-[0.25em] uppercase text-[#201616]/60 mb-2">
-            925 Sterling Silver · 14K Gold Plated · Natural Gemstones
-          </p>
-          <p className="text-xs tracking-widest text-[#201616]/40">@priestessofthesoul</p>
-        </section>
-
         {/* Rings featured */}
         <section className="py-16 px-6 bg-[#f6f5e9]">
           <div className="max-w-[1600px] mx-auto">
