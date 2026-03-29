@@ -39,6 +39,7 @@ export type Product = {
   description: string;
   stone?: StoneSlug;
   meaning?: MeaningSlug;
+  sizes?: string[];
 };
 
 export const products: Product[] = [
@@ -51,6 +52,7 @@ export const products: Product[] = [
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/28.jpg?v=1767785610',
     description: 'Reflektim i qiejve serene mbi ujëra të pastër. Argjend 925 me veshje ar 18K.',
     meaning: 'qartesi',
+    sizes: ['EU 14 / US 6.5 / 54mm'],
   },
   {
     id: 'golden-crown-of-light',
@@ -61,6 +63,7 @@ export const products: Product[] = [
     description: 'Pesë gurë kuarc kubik në formë markize — "drita e brendshme dhe fuqia hyjnore".',
     stone: 'kuarc-i-bardhe',
     meaning: 'qartesi',
+    sizes: ['EU 17 / US 8 / 57mm'],
   },
   {
     id: 'royal-stardust',
@@ -71,6 +74,7 @@ export const products: Product[] = [
     description: 'Kristal aurora — "femërorja hyjnore dhe fuqia kozmike".',
     stone: 'kuarc-i-bardhe',
     meaning: 'manifestim',
+    sizes: ['EU 12 / US 6 / 52mm'],
   },
   {
     id: 'lavender-bloom',
@@ -81,6 +85,7 @@ export const products: Product[] = [
     description: 'Ametist lavandë natyral — "zgjimi i dashurisë së pastër".',
     stone: 'ametist',
     meaning: 'dashuri',
+    sizes: ['EU 17 / US 8 / 57mm'],
   },
   {
     id: 'cosmic-shield',
@@ -91,6 +96,7 @@ export const products: Product[] = [
     description: '"Unë mbroj, unë fsheh, unë fuqizoj." Mbrojtje dhe tokëzim.',
     stone: 'obsidian-i-zi',
     meaning: 'shendet',
+    sizes: ['EU 14 / US 6.5 / 54mm'],
   },
   {
     id: 'flame-of-isis',
@@ -100,6 +106,7 @@ export const products: Product[] = [
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/26.jpg?v=1755975124',
     description: 'Karneol natyral oval — "guximi dhe energia vitale" e perëndeshës Isis.',
     meaning: 'shendet',
+    sizes: ['EU 14 / US 6.5 / 54mm'],
   },
   {
     id: 'celestial-empress',
@@ -110,6 +117,7 @@ export const products: Product[] = [
     description: 'Opal natyral me shumë ngjyra — "drita e shpirtit dhe dashuria e pastër".',
     stone: 'opal',
     meaning: 'dashuri',
+    sizes: ['EU 17 / US 8 / 57mm', 'EU 14 / US 6.5 / 54mm'],
   },
   {
     id: 'mystic-veil',
@@ -119,6 +127,7 @@ export const products: Product[] = [
     image: 'https://priestessofthesoul.com/cdn/shop/files/30.2.jpg?v=1755973624',
     description: 'Labrador kaboshon — "veli ndërmjet dritës dhe errësirës", mbrojtje mistike.',
     meaning: 'qartesi',
+    sizes: ['EU 14 / US 6.5 / 54mm', 'EU 17 / US 8 / 57mm'],
   },
   {
     id: 'royal-spell',
@@ -129,6 +138,7 @@ export const products: Product[] = [
     description: 'Ametist natyral oval — "qartësia mendore dhe paqja e brendshme".',
     stone: 'ametist',
     meaning: 'qartesi',
+    sizes: ['EU 12 / US 6 / 52mm'],
   },
   {
     id: 'aqua-soul',
@@ -138,6 +148,7 @@ export const products: Product[] = [
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/24.2.jpg?v=1755962381',
     description: 'Kalcedoni blu oval — "shprehja autentike dhe energjia e ujit".',
     meaning: 'qartesi',
+    sizes: ['EU 17 / US 8 / 57mm', 'EU 14 / US 6.5 / 54mm'],
   },
   {
     id: 'moon-halo',
@@ -148,6 +159,7 @@ export const products: Product[] = [
     description: 'Opal natyral katror me ndryshime ngjyrash — "kreativiteti dhe drita e brendshme".',
     stone: 'opal',
     meaning: 'qartesi',
+    sizes: ['EU 14 / US 6.5 / 54mm', 'EU 17 / US 8 / 57mm'],
   },
   {
     id: 'aurora-crown',
@@ -157,6 +169,7 @@ export const products: Product[] = [
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/22.2.jpg?v=1755962105',
     description: 'Labrador me flash ylberi — "drita e fshehur" dhe zgjimi shpirtëror.',
     meaning: 'qartesi',
+    sizes: ['EU 17 / US 8 / 57mm', 'EU 14 / US 6.5 / 54mm', 'EU 12 / US 6 / 52mm'],
   },
   {
     id: 'sky-halo',
@@ -167,6 +180,7 @@ export const products: Product[] = [
     description: 'Topaz blu natyral gjeometrik — "paqja dhe qartësia mendore".',
     stone: 'topaz',
     meaning: 'qartesi',
+    sizes: ['EU 12 / US 6 / 52mm'],
   },
   {
     id: 'blue-portal',
@@ -176,6 +190,7 @@ export const products: Product[] = [
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/20.jpg?v=1755961722',
     description: 'Lapis Lazuli indigo i thellë oval — "urtësia dhe e vërteta hyjnore".',
     meaning: 'qartesi',
+    sizes: ['EU 12 / US 6 / 52mm', 'EU 14 / US 6.5 / 54mm'],
   },
   {
     id: 'temple-of-light',
@@ -186,6 +201,7 @@ export const products: Product[] = [
     description: 'Kuarc i bardhë drejtkëndor — "drita dhe qartësia" me detaje kristali.',
     stone: 'kuarc-i-bardhe',
     meaning: 'qartesi',
+    sizes: ['EU 17 / US 8 / 57mm', 'EU 14 / US 6.5 / 54mm', 'EU 12 / US 6 / 52mm'],
   },
   {
     id: 'lilac-dream',
@@ -196,6 +212,7 @@ export const products: Product[] = [
     description: 'Ametist lavandë natyral — "paqja dhe dashuria hyjnore" me elegancë romantike.',
     stone: 'ametist',
     meaning: 'dashuri',
+    sizes: ['EU 17 / US 8 / 57mm'],
   },
   {
     id: 'ruby-of-hathor',
@@ -205,6 +222,7 @@ export const products: Product[] = [
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/17.jpg?v=1755961043',
     description: 'Rubin sintetik në formë petali — nder për perëndeshën Hathor, "pasioni i zemrës".',
     meaning: 'dashuri',
+    sizes: ['EU 12 / US 6 / 52mm'],
   },
   {
     id: 'temple-of-passion',
@@ -214,6 +232,7 @@ export const products: Product[] = [
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/15.jpg?v=1755960433',
     description: 'Rubin sintetik në formë zemre — "energjia e gjallë e zemrës dhe dashuria transformuese".',
     meaning: 'dashuri',
+    sizes: ['EU 12 / US 6 / 52mm'],
   },
   {
     id: 'midnight-sky',
@@ -223,6 +242,7 @@ export const products: Product[] = [
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/14.jpg?v=1755960240',
     description: 'Gur i rërës blu — "paqja dhe qëllimi" me efekt shkëlqimi galaktik.',
     meaning: 'qartesi',
+    sizes: ['EU 12 / US 6 / 52mm'],
   },
   {
     id: 'sacred-blossom',
@@ -233,6 +253,7 @@ export const products: Product[] = [
     description: 'Ametist rozë delikat — "lulëzimi i brendshëm" dhe mbrojtja shpirtërore.',
     stone: 'ametist',
     meaning: 'dashuri',
+    sizes: ['EU 14 / US 6.5 / 54mm', 'EU 12 / US 6 / 52mm'],
   },
   {
     id: 'ishtars-rose',
@@ -243,6 +264,7 @@ export const products: Product[] = [
     description: 'Ametist rozë markize — "ekuilibri i ndjenjës dhe forcës", nder për perëndeshën.',
     stone: 'ametist',
     meaning: 'dashuri',
+    sizes: ['EU 12 / US 6 / 52mm', 'EU 14 / US 6.5 / 54mm'],
   },
   {
     id: 'crown-of-grace',
@@ -253,6 +275,7 @@ export const products: Product[] = [
     description: 'Kristal i bardhë — "qartësia dhe udhëzimi i dritës së brendshme" me detaje gjethe.',
     stone: 'kuarc-i-bardhe',
     meaning: 'qartesi',
+    sizes: ['EU 14 / US 6.5 / 54mm', 'EU 17 / US 8 / 57mm'],
   },
   {
     id: 'crystal-dawn',
@@ -263,6 +286,7 @@ export const products: Product[] = [
     description: 'Kristal transparent oval — "zgjimi dhe pastrimi shpirtëror" me akcente ylli.',
     stone: 'kuarc-i-bardhe',
     meaning: 'qartesi',
+    sizes: ['EU 17 / US 8 / 57mm', 'EU 14 / US 6.5 / 54mm'],
   },
   {
     id: 'opaline-soul',
@@ -273,6 +297,7 @@ export const products: Product[] = [
     description: 'Opal natyral oval — "kreativiteti dhe lidhja me dritën e brendshme".',
     stone: 'opal',
     meaning: 'manifestim',
+    sizes: ['EU 12 / US 6 / 52mm'],
   },
   {
     id: 'emerald-dream',
@@ -282,6 +307,7 @@ export const products: Product[] = [
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/8.jpg?v=1755946346',
     description: 'Agat myshku në formë pike — "paqja dhe lidhja me natyrën" me energji të tokëzuar.',
     meaning: 'shendet',
+    sizes: ['EU 14 / US 6.5 / 54mm'],
   },
   {
     id: 'celestial-ocean',
@@ -292,6 +318,7 @@ export const products: Product[] = [
     description: 'Topaz blu oval — "paqja dhe urtësia hyjnore" me kristale rreth si yje.',
     stone: 'topaz',
     meaning: 'qartesi',
+    sizes: ['EU 14 / US 6.5 / 54mm', 'EU 17 / US 8 / 57mm'],
   },
   {
     id: 'crown-of-lapis',
@@ -301,6 +328,7 @@ export const products: Product[] = [
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/6.2.jpg?v=1755626315',
     description: 'Lapis Lazuli oval — "kurora qiellore dhe drita e brendshme" me stil regal.',
     meaning: 'qartesi',
+    sizes: ['EU 12 / US 6 / 52mm'],
   },
   {
     id: 'divine-drop',
@@ -311,6 +339,7 @@ export const products: Product[] = [
     description: 'Ametist në formë pike — "esenca qiellore" me kristale rrethues dhe veshje ari.',
     stone: 'ametist',
     meaning: 'manifestim',
+    sizes: ['EU 14 / US 6.5 / 54mm', 'EU 17 / US 8 / 57mm'],
   },
   {
     id: 'solar-empress',
@@ -321,6 +350,7 @@ export const products: Product[] = [
     description: 'Zirkon topaz të artë — "fuqia e brendshme dhe drita rrezëtuese".',
     stone: 'topaz',
     meaning: 'manifestim',
+    sizes: ['EU 17 / US 8 / 57mm', 'EU 14 / US 6.5 / 54mm'],
   },
   {
     id: 'celestial-crown',
@@ -330,6 +360,7 @@ export const products: Product[] = [
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/3.jpg?v=1755271685',
     description: 'Dizajn kurorë me shumë gurë — elegancë qiellore dhe energji femërore hyjnore.',
     meaning: 'manifestim',
+    sizes: ['EU 12 / US 6 / 52mm'],
   },
   {
     id: 'sacred-bloom',
@@ -340,6 +371,7 @@ export const products: Product[] = [
     description: 'Ametist oval me detaje të rafinuara — "shpirti lulëzues dhe eleganca e përjetshme".',
     stone: 'ametist',
     meaning: 'dashuri',
+    sizes: ['EU 14 / US 6.5 / 54mm', 'EU 12 / US 6 / 52mm'],
   },
   {
     id: 'pearl-of-selene',
@@ -350,6 +382,7 @@ export const products: Product[] = [
     description: 'I frymëzuar nga perëndesha e hënës — "hiri lunar dhe butësia femërore hyjnore".',
     stone: 'guri-henes',
     meaning: 'qartesi',
+    sizes: ['EU 12 / US 6 / 52mm', 'EU 14 / US 6.5 / 54mm', 'EU 17 / US 8 / 57mm'],
   },
 
   // GERDANE (Necklaces)

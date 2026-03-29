@@ -5,16 +5,6 @@ import { salePrice } from '@/data/products';
 import { useWishlist } from '@/components/WishlistContext';
 import type { Product } from '@/data/products';
 
-const RING_SIZES = [
-  'EU 10 / US 5 / 50mm',
-  'EU 12 / US 6 / 52mm',
-  'EU 14 / US 6.5 / 54mm',
-  'EU 16 / US 7.5 / 56mm',
-  'EU 17 / US 8 / 57mm',
-  'EU 18 / US 8.5 / 58mm',
-  'EU 20 / US 9.5 / 60mm',
-  'EU 22 / US 10.5 / 62mm',
-];
 
 const GIFT_MESSAGES = [
   'Krijuar për ty që shkel tokën si tempull dhe e jeton ditën si ceremoni.',
@@ -72,7 +62,7 @@ export default function ProductActions({ product }: { product: Product }) {
         <div className="mb-6">
           <p className="text-[10px] tracking-widest uppercase text-[#201616]/50 mb-3">Madhësia e Unazës</p>
           <div className="flex flex-wrap gap-2">
-            {RING_SIZES.map((s) => (
+            {(product.sizes ?? []).map((s) => (
               <button key={s} onClick={() => setForm((f) => ({ ...f, size: s }))}
                 className={`px-3 py-1.5 text-xs border transition-colors ${form.size === s ? 'bg-[#201616] text-[#fffef2] border-[#201616]' : 'border-[#201616]/30 text-[#201616] hover:border-[#201616]'}`}>
                 {s}
@@ -105,7 +95,16 @@ export default function ProductActions({ product }: { product: Product }) {
 
       {/* Buttons */}
       <div className="flex flex-col gap-3 mb-10">
-        <button onClick={() => setModalOpen(true)} className="btn-primary text-center w-full">
+        <button
+          onClick={() => {
+            if (isRing && !form.size) {
+              alert('Ju lutem zgjidhni madhësinë e unazës para se të porosisni.');
+              return;
+            }
+            setModalOpen(true);
+          }}
+          className="btn-primary text-center w-full"
+        >
           Porosit Tani
         </button>
         <div className="grid grid-cols-2 gap-3">
