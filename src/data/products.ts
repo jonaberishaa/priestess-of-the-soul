@@ -1,3 +1,35 @@
+export type StoneSlug =
+  | 'ametist'
+  | 'kuarc-i-bardhe'
+  | 'kuarc-roze'
+  | 'obsidian-i-zi'
+  | 'turmaline-e-zeze'
+  | 'citrine'
+  | 'guri-henes'
+  | 'opal'
+  | 'topaz';
+
+export type MeaningSlug = 'dashuri' | 'qartesi' | 'shendet' | 'manifestim';
+
+export const stoneLabels: Record<StoneSlug, string> = {
+  'ametist': 'Ametist',
+  'kuarc-i-bardhe': 'Kuarc i Bardhë',
+  'kuarc-roze': 'Kuarc Rozë',
+  'obsidian-i-zi': 'Obsidian i Zi',
+  'turmaline-e-zeze': 'Turmalinë e Zezë',
+  'citrine': 'Citrinë',
+  'guri-henes': 'Guri Hënës',
+  'opal': 'Opal',
+  'topaz': 'Topaz',
+};
+
+export const meaningLabels: Record<MeaningSlug, string> = {
+  'dashuri': 'Dashni & Zemër',
+  'qartesi': 'Qartësi & Intuitë',
+  'shendet': 'Shëndet & Energji',
+  'manifestim': 'Manifestim & Bollëk',
+};
+
 export type Product = {
   id: string;
   name: string;
@@ -5,6 +37,8 @@ export type Product = {
   price: string;
   image: string;
   description: string;
+  stone?: StoneSlug;
+  meaning?: MeaningSlug;
 };
 
 export const products: Product[] = [
@@ -16,6 +50,7 @@ export const products: Product[] = [
     price: '€57',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/28.jpg?v=1767785610',
     description: 'Reflektim i qiejve serene mbi ujëra të pastër. Argjend 925 me veshje ar 18K.',
+    meaning: 'qartesi',
   },
   {
     id: 'golden-crown-of-light',
@@ -24,6 +59,8 @@ export const products: Product[] = [
     price: '€57',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/33.jpg?v=1756031438',
     description: 'Pesë gurë kuarc kubik në formë markize — "drita e brendshme dhe fuqia hyjnore".',
+    stone: 'kuarc-i-bardhe',
+    meaning: 'qartesi',
   },
   {
     id: 'royal-stardust',
@@ -32,6 +69,8 @@ export const products: Product[] = [
     price: '€57',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/32.jpg?v=1756031266',
     description: 'Kristal aurora — "femërorja hyjnore dhe fuqia kozmike".',
+    stone: 'kuarc-i-bardhe',
+    meaning: 'manifestim',
   },
   {
     id: 'lavender-bloom',
@@ -40,6 +79,8 @@ export const products: Product[] = [
     price: '€57',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/31_5cbd399c-1ac2-46a9-a878-17bc335f863c.jpg?v=1756031041',
     description: 'Ametist lavandë natyral — "zgjimi i dashurisë së pastër".',
+    stone: 'ametist',
+    meaning: 'dashuri',
   },
   {
     id: 'cosmic-shield',
@@ -48,6 +89,8 @@ export const products: Product[] = [
     price: '€57',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/27.2.jpg?v=1755975174',
     description: '"Unë mbroj, unë fsheh, unë fuqizoj." Mbrojtje dhe tokëzim.',
+    stone: 'obsidian-i-zi',
+    meaning: 'shendet',
   },
   {
     id: 'flame-of-isis',
@@ -56,6 +99,7 @@ export const products: Product[] = [
     price: '€57',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/26.jpg?v=1755975124',
     description: 'Karneol natyral oval — "guximi dhe energia vitale" e perëndeshës Isis.',
+    meaning: 'shendet',
   },
   {
     id: 'celestial-empress',
@@ -64,6 +108,8 @@ export const products: Product[] = [
     price: '€57',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/25.2.jpg?v=1755974844',
     description: 'Opal natyral me shumë ngjyra — "drita e shpirtit dhe dashuria e pastër".',
+    stone: 'opal',
+    meaning: 'dashuri',
   },
   {
     id: 'mystic-veil',
@@ -72,6 +118,7 @@ export const products: Product[] = [
     price: '€57',
     image: 'https://priestessofthesoul.com/cdn/shop/files/30.2.jpg?v=1755973624',
     description: 'Labrador kaboshon — "veli ndërmjet dritës dhe errësirës", mbrojtje mistike.',
+    meaning: 'qartesi',
   },
   {
     id: 'royal-spell',
@@ -80,6 +127,8 @@ export const products: Product[] = [
     price: '€68',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/29.jpg?v=1755973318',
     description: 'Ametist natyral oval — "qartësia mendore dhe paqja e brendshme".',
+    stone: 'ametist',
+    meaning: 'qartesi',
   },
   {
     id: 'aqua-soul',
@@ -88,6 +137,7 @@ export const products: Product[] = [
     price: '€55',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/24.2.jpg?v=1755962381',
     description: 'Kalcedoni blu oval — "shprehja autentike dhe energjia e ujit".',
+    meaning: 'qartesi',
   },
   {
     id: 'moon-halo',
@@ -96,6 +146,8 @@ export const products: Product[] = [
     price: '€55',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/23.jpg?v=1755962246',
     description: 'Opal natyral katror me ndryshime ngjyrash — "kreativiteti dhe drita e brendshme".',
+    stone: 'opal',
+    meaning: 'qartesi',
   },
   {
     id: 'aurora-crown',
@@ -104,6 +156,7 @@ export const products: Product[] = [
     price: '€68',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/22.2.jpg?v=1755962105',
     description: 'Labrador me flash ylberi — "drita e fshehur" dhe zgjimi shpirtëror.',
+    meaning: 'qartesi',
   },
   {
     id: 'sky-halo',
@@ -112,6 +165,8 @@ export const products: Product[] = [
     price: '€55',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/21.jpg?v=1755961872',
     description: 'Topaz blu natyral gjeometrik — "paqja dhe qartësia mendore".',
+    stone: 'topaz',
+    meaning: 'qartesi',
   },
   {
     id: 'blue-portal',
@@ -120,6 +175,7 @@ export const products: Product[] = [
     price: '€55',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/20.jpg?v=1755961722',
     description: 'Lapis Lazuli indigo i thellë oval — "urtësia dhe e vërteta hyjnore".',
+    meaning: 'qartesi',
   },
   {
     id: 'temple-of-light',
@@ -128,6 +184,8 @@ export const products: Product[] = [
     price: '€57',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/19.jpg?v=1755961582',
     description: 'Kuarc i bardhë drejtkëndor — "drita dhe qartësia" me detaje kristali.',
+    stone: 'kuarc-i-bardhe',
+    meaning: 'qartesi',
   },
   {
     id: 'lilac-dream',
@@ -136,6 +194,8 @@ export const products: Product[] = [
     price: '€55',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/18.jpg?v=1755961397',
     description: 'Ametist lavandë natyral — "paqja dhe dashuria hyjnore" me elegancë romantike.',
+    stone: 'ametist',
+    meaning: 'dashuri',
   },
   {
     id: 'ruby-of-hathor',
@@ -144,6 +204,7 @@ export const products: Product[] = [
     price: '€68',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/17.jpg?v=1755961043',
     description: 'Rubin sintetik në formë petali — nder për perëndeshën Hathor, "pasioni i zemrës".',
+    meaning: 'dashuri',
   },
   {
     id: 'temple-of-passion',
@@ -152,6 +213,7 @@ export const products: Product[] = [
     price: '€57',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/15.jpg?v=1755960433',
     description: 'Rubin sintetik në formë zemre — "energjia e gjallë e zemrës dhe dashuria transformuese".',
+    meaning: 'dashuri',
   },
   {
     id: 'midnight-sky',
@@ -160,6 +222,7 @@ export const products: Product[] = [
     price: '€57',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/14.jpg?v=1755960240',
     description: 'Gur i rërës blu — "paqja dhe qëllimi" me efekt shkëlqimi galaktik.',
+    meaning: 'qartesi',
   },
   {
     id: 'sacred-blossom',
@@ -168,6 +231,8 @@ export const products: Product[] = [
     price: '€55',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/13.jpg?v=1755959894',
     description: 'Ametist rozë delikat — "lulëzimi i brendshëm" dhe mbrojtja shpirtërore.',
+    stone: 'ametist',
+    meaning: 'dashuri',
   },
   {
     id: 'ishtars-rose',
@@ -176,6 +241,8 @@ export const products: Product[] = [
     price: '€57',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/12.jpg?v=1755959629',
     description: 'Ametist rozë markize — "ekuilibri i ndjenjës dhe forcës", nder për perëndeshën.',
+    stone: 'ametist',
+    meaning: 'dashuri',
   },
   {
     id: 'crown-of-grace',
@@ -184,6 +251,8 @@ export const products: Product[] = [
     price: '€57',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/11.jpg?v=1755959341',
     description: 'Kristal i bardhë — "qartësia dhe udhëzimi i dritës së brendshme" me detaje gjethe.',
+    stone: 'kuarc-i-bardhe',
+    meaning: 'qartesi',
   },
   {
     id: 'crystal-dawn',
@@ -192,6 +261,8 @@ export const products: Product[] = [
     price: '€77',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/10.jpg?v=1755959019',
     description: 'Kristal transparent oval — "zgjimi dhe pastrimi shpirtëror" me akcente ylli.',
+    stone: 'kuarc-i-bardhe',
+    meaning: 'qartesi',
   },
   {
     id: 'opaline-soul',
@@ -200,6 +271,8 @@ export const products: Product[] = [
     price: '€55',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/9.jpg?v=1755948588',
     description: 'Opal natyral oval — "kreativiteti dhe lidhja me dritën e brendshme".',
+    stone: 'opal',
+    meaning: 'manifestim',
   },
   {
     id: 'emerald-dream',
@@ -208,6 +281,7 @@ export const products: Product[] = [
     price: '€57',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/8.jpg?v=1755946346',
     description: 'Agat myshku në formë pike — "paqja dhe lidhja me natyrën" me energji të tokëzuar.',
+    meaning: 'shendet',
   },
   {
     id: 'celestial-ocean',
@@ -216,6 +290,8 @@ export const products: Product[] = [
     price: '€57',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/7.2.jpg?v=1755626779',
     description: 'Topaz blu oval — "paqja dhe urtësia hyjnore" me kristale rreth si yje.',
+    stone: 'topaz',
+    meaning: 'qartesi',
   },
   {
     id: 'crown-of-lapis',
@@ -224,6 +300,7 @@ export const products: Product[] = [
     price: '€55',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/6.2.jpg?v=1755626315',
     description: 'Lapis Lazuli oval — "kurora qiellore dhe drita e brendshme" me stil regal.',
+    meaning: 'qartesi',
   },
   {
     id: 'divine-drop',
@@ -232,6 +309,8 @@ export const products: Product[] = [
     price: '€57',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/5.jpg?v=1755626280',
     description: 'Ametist në formë pike — "esenca qiellore" me kristale rrethues dhe veshje ari.',
+    stone: 'ametist',
+    meaning: 'manifestim',
   },
   {
     id: 'solar-empress',
@@ -240,6 +319,8 @@ export const products: Product[] = [
     price: '€57',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/4.jpg?v=1755273286',
     description: 'Zirkon topaz të artë — "fuqia e brendshme dhe drita rrezëtuese".',
+    stone: 'topaz',
+    meaning: 'manifestim',
   },
   {
     id: 'celestial-crown',
@@ -248,6 +329,7 @@ export const products: Product[] = [
     price: '€77',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/3.jpg?v=1755271685',
     description: 'Dizajn kurorë me shumë gurë — elegancë qiellore dhe energji femërore hyjnore.',
+    meaning: 'manifestim',
   },
   {
     id: 'sacred-bloom',
@@ -256,6 +338,8 @@ export const products: Product[] = [
     price: '€57',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/2.1.jpg?v=1755271486',
     description: 'Ametist oval me detaje të rafinuara — "shpirti lulëzues dhe eleganca e përjetshme".',
+    stone: 'ametist',
+    meaning: 'dashuri',
   },
   {
     id: 'pearl-of-selene',
@@ -264,6 +348,8 @@ export const products: Product[] = [
     price: '€57',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/1.jpg',
     description: 'I frymëzuar nga perëndesha e hënës — "hiri lunar dhe butësia femërore hyjnore".',
+    stone: 'guri-henes',
+    meaning: 'qartesi',
   },
 
   // GERDANE (Necklaces)
@@ -274,6 +360,8 @@ export const products: Product[] = [
     price: '€55',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/11_246ef43a-dbf5-48b4-ad23-2341bb5e37d8.jpg?v=1756034142',
     description: 'Turmalin i zi — "mbrojtje dhe tokëzim", argjend 925 me veshje ari 14K.',
+    stone: 'turmaline-e-zeze',
+    meaning: 'shendet',
   },
   {
     id: 'mystic-guardian-necklace',
@@ -282,6 +370,7 @@ export const products: Product[] = [
     price: '€55',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/10_7ec78fea-7e7b-47df-911b-edeae6897aba.jpg?v=1756033809',
     description: 'Labrador gjeometrik — "magjia dhe intuita" me gropim argjendi.',
+    meaning: 'qartesi',
   },
   {
     id: 'ocean-drops-necklace',
@@ -290,6 +379,8 @@ export const products: Product[] = [
     price: '€55',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/9_85418e73-c159-44d9-8fec-db8831c14beb.jpg?v=1756033710',
     description: 'Kuarc natyral — "qartësia, forca dhe paqja" me gropim gjeometrik.',
+    stone: 'kuarc-i-bardhe',
+    meaning: 'qartesi',
   },
   {
     id: 'heart-of-venus-necklace',
@@ -298,6 +389,7 @@ export const products: Product[] = [
     price: '€44',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/8_f0dacccc-d3b6-4edb-a8e7-cff91303d718.jpg?v=1756033532',
     description: 'Diamant karbon i lartë gjeometrik — "dashuria e përjetshme dhe pastërtia shpirtërore".',
+    meaning: 'dashuri',
   },
   {
     id: 'flame-of-isis-necklace',
@@ -306,6 +398,7 @@ export const products: Product[] = [
     price: '€55',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/7_c694dff6-276f-49d0-af8f-bc5a2635d8fd.jpg?v=1756033358',
     description: 'Granat i kuq — "pasioni dhe forca e jetës" e lidhur me energjinë e perëndeshës Isis.',
+    meaning: 'shendet',
   },
   {
     id: 'divine-leaf-glow-necklace',
@@ -314,6 +407,8 @@ export const products: Product[] = [
     price: '€55',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/6_ac204cff-249f-441f-9ef9-c995221536dd.jpg?v=1756033133',
     description: 'Kuarc rozë gjeometrik — "dashuria e pastër dhe hyjnore" me veshje ari.',
+    stone: 'kuarc-roze',
+    meaning: 'dashuri',
   },
   {
     id: 'temple-of-light-necklace',
@@ -322,6 +417,8 @@ export const products: Product[] = [
     price: '€55',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/5_6d8c12cf-37d0-48f6-b39d-c7a10c6816c6.jpg?v=1756032822',
     description: 'Kuarc rozë — "energjia e zemrës dhe drita e brendshme" me gropim argjendi.',
+    stone: 'kuarc-roze',
+    meaning: 'dashuri',
   },
 
   // VATHË (Earrings)
@@ -332,6 +429,7 @@ export const products: Product[] = [
     price: '€55',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/4_1d50125a-95c3-4fb8-8779-8213b5cf14c6.jpg?v=1756032570',
     description: 'Vathë Lapis Lazuli — "urtësia e lashtë dhe drita hyjnore" me veshje ari.',
+    meaning: 'qartesi',
   },
   {
     id: 'divine-leaf-glow',
@@ -340,6 +438,8 @@ export const products: Product[] = [
     price: '€44',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/3_6965ebfe-ccb2-48a8-bea3-e85a08440f09.jpg?v=1756032381',
     description: 'Vathë Kuarc Rozë — "dashuria e pastër" me gropim gjeometrik në argjend të artë.',
+    stone: 'kuarc-roze',
+    meaning: 'dashuri',
   },
   {
     id: 'ocean-drops',
@@ -348,6 +448,8 @@ export const products: Product[] = [
     price: '€55',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/1.2_2915e298-9c52-4409-9fff-138de0a263bf.jpg?v=1756032100',
     description: 'Vathë kuarc natyral — "qartësia dhe paqja" me stil gjeometrik dhe gropim.',
+    stone: 'kuarc-i-bardhe',
+    meaning: 'qartesi',
   },
 ];
 
@@ -355,6 +457,12 @@ export const getFeatured = () => products.slice(0, 8);
 
 export const getByType = (type: Product['type']) =>
   products.filter((p) => p.type === type);
+
+export const getByStone = (stone: StoneSlug) =>
+  products.filter((p) => p.stone === stone);
+
+export const getByMeaning = (meaning: MeaningSlug) =>
+  products.filter((p) => p.meaning === meaning);
 
 export function salePrice(price: string): string {
   const num = parseFloat(price.replace('€', ''));
