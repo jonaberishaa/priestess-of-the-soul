@@ -355,3 +355,8 @@ export const getFeatured = () => products.slice(0, 8);
 
 export const getByType = (type: Product['type']) =>
   products.filter((p) => p.type === type);
+
+export function salePrice(price: string): string {
+  const num = parseFloat(price.replace('€', ''));
+  return `€${Math.round(num * 0.8)}`;
+}
