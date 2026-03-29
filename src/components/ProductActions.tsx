@@ -5,16 +5,6 @@ import { salePrice } from '@/data/products';
 import { useWishlist } from '@/components/WishlistContext';
 import type { Product } from '@/data/products';
 
-const RING_SIZES = [
-  'EU 10 / US 5 / 50mm',
-  'EU 12 / US 6 / 52mm',
-  'EU 14 / US 6.5 / 54mm',
-  'EU 16 / US 7.5 / 56mm',
-  'EU 17 / US 8 / 57mm',
-  'EU 18 / US 8.5 / 58mm',
-  'EU 20 / US 9.5 / 60mm',
-  'EU 22 / US 10.5 / 62mm',
-];
 
 const GIFT_MESSAGES = [
   'Krijuar për ty që shkel tokën si tempull dhe e jeton ditën si ceremoni.',
@@ -36,18 +26,19 @@ type OrderForm = { name: string; email: string; phone: string; address: string; 
 
 export default function ProductActions({ product }: { product: Product }) {
   const isRing = product.type === 'Unaza';
+  const productSizes = isRing ? (product.sizes || []) : [];
   const { toggle, has } = useWishlist();
   const wishlisted = has(product.id);
 
   const [modalOpen, setModalOpen] = useState(false);
-  const [form, setForm] = useState<OrderForm>({ name: '', email: '', phone: '', address: '', size: '', message: '' });
+  const [form, setForm] = useState<OrderForm>({ name: '', email: '', phone: '', address: '', size: productSizes.length === 1 ? productSizes[0] : '', message: '' });
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
 
   const closeModal = () => { setModalOpen(false); setStatus('idle'); };
 
   const handleOrder = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (isRing && !form.size) { alert('Ju lutem zgjidhni madhësinë e unazës.'); return; }
+    if (isRing && productSizes.length > 0 && !form.size) { alert('Ju lutem zgjidhni madhësinë e unazës.'); return; }
     setStatus('sending');
     try {
       const res = await fetch('/api/order', {
@@ -68,11 +59,11 @@ export default function ProductActions({ product }: { product: Product }) {
   return (
     <>
       {/* Ring size picker */}
-      {isRing && (
+      {isRing && productSizes.length > 0 && (
         <div className="mb-6">
           <p className="text-[10px] tracking-widest uppercase text-[#201616]/50 mb-3">Madhësia e Unazës</p>
           <div className="flex flex-wrap gap-2">
-            {RING_SIZES.map((s) => (
+            {productSizes.map((s) => (
               <button key={s} onClick={() => setForm((f) => ({ ...f, size: s }))}
                 className={`px-3 py-1.5 text-xs border transition-colors ${form.size === s ? 'bg-[#201616] text-[#fffef2] border-[#201616]' : 'border-[#201616]/30 text-[#201616] hover:border-[#201616]'}`}>
                 {s}
@@ -152,7 +143,7 @@ export default function ProductActions({ product }: { product: Product }) {
                   <button onClick={closeModal} className="text-[#201616]/30 hover:text-[#201616] text-xl leading-none mt-1">✕</button>
                 </div>
                 <form onSubmit={handleOrder} className="flex flex-col gap-4">
-                  {isRing && !form.size && (
+                  {isRing && productSizes.length > 0 && !form.size && (
                     <p className="text-xs text-[#b31b1b] font-body">⚠ Zgjidhni madhësinë e unazës para se të porosisni.</p>
                   )}
                   {([
