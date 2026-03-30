@@ -359,7 +359,7 @@ export const products: Product[] = [
     type: 'Gerdane',
     price: '€55',
     image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/11_246ef43a-dbf5-48b4-ad23-2341bb5e37d8.jpg?v=1756034142',
-    description: 'Turmalin i zi — "mbrojtje dhe tokëzim", argjend 925 me veshje ari 14K.',
+    description: 'Turmalin i zi — "mbrojtje dhe tokëzim", argjend 925 me veshje ari 18K.',
     stone: 'turmaline-e-zeze',
     meaning: 'shendet',
   },

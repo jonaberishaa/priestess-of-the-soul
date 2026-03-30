@@ -27,7 +27,7 @@ const greatVibes = Great_Vibes({
 export const metadata: Metadata = {
   title: 'Priestess of the Soul | Bizhuteri me Gur të Çmuar',
   description:
-    'Bizhuteri artizanale me gurë të çmuar natyralë dhe ar të vërtetë 14K. Çdo copë është unike dhe e bërë me dashuri.',
+    'Bizhuteri artizanale me gurë të çmuar natyralë dhe ar të vërtetë 18K. Çdo copë është unike dhe e bërë me dashuri.',
 };
 
 export default function RootLayout({
