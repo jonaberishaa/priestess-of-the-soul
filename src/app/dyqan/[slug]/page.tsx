@@ -260,7 +260,7 @@ export default function DyqanSlugPage({ params }: { params: { slug: string } }) 
             )}
 
             <div className="border-t border-stone-light/20 pt-6 flex flex-col gap-3 text-sm text-stone">
-              <p>✦ Argjend 925 me veshje ar 14K–18K</p>
+              <p>✦ Argjend 925 me veshje ar 18K</p>
               <p>✦ Gurë natyralë të çmuar</p>
               <p>✦ Çdo copë artizanale dhe unike</p>
               <p>✦ Dërgesë brenda 3–5 ditëve pune</p>

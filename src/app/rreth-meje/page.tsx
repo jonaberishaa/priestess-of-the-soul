@@ -38,7 +38,7 @@ export default function AboutPage() {
                 e vërtetë, gurët natyralë dhe energjinë që mbajmë pranë.
               </p>
               <p>
-                Çdo bizhuteri në koleksionin tonë krijohet me dorë nga artizanë të talentuar, me ar 14K
+                Çdo bizhuteri në koleksionin tonë krijohet me dorë nga artizanë të talentuar, me ar 18K
                 të vërtetë dhe gurë të çmuar natyralë të zgjedhur me kujdes nga burime etike.
               </p>
               <p>
@@ -53,7 +53,7 @@ export default function AboutPage() {
 
             <div className="mt-10 grid grid-cols-3 gap-6 text-center">
               {[
-                { value: '100%', label: 'Ar i Vërtetë 14K' },
+                { value: '100%', label: 'Ar i Vërtetë 18K' },
                 { value: 'Artizanal', label: 'Çdo copë me dorë' },
                 { value: 'Natyral', label: 'Gurë të çmuar' },
               ].map((stat) => (

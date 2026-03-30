@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="md:col-span-2">
           <h3 className="font-heading text-2xl mb-4">Priestess of the Soul</h3>
           <p className="text-sm text-[#fffef2]/60 leading-relaxed max-w-sm font-body">
-            Bizhuteri artizanale me gurë të çmuar natyralë dhe ar 14K të vërtetë.
+            Bizhuteri artizanale me gurë të çmuar natyralë dhe ar 18K të vërtetë.
             Çdo copë është unike, e bërë me dashuri dhe intension.
           </p>
           <div className="flex gap-4 mt-6">
@@ -64,7 +64,7 @@ export default function Footer() {
 
       <div className="border-t border-[#fffef2]/10 px-8 py-5 max-w-[1600px] mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
         <p className="text-xs text-[#fffef2]/30 font-body">© {new Date().getFullYear()}, Priestess of the Soul</p>
-        <p className="text-xs text-[#fffef2]/30 font-body">Bizhuteri artizanale • Gurë natyralë • Ar 14K</p>
+        <p className="text-xs text-[#fffef2]/30 font-body">Bizhuteri artizanale • Gurë natyralë • Ar 18K</p>
       </div>
     </footer>
   );

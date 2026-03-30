@@ -68,7 +68,7 @@ export default function TermsPage() {
             <section>
               <h2 className="font-heading text-2xl text-[#201616] mb-3">Kujdesi për Bizhuteritë</h2>
               <p>
-                Bizhuteritë tona janë të bëra me argjend 925 dhe ar 14K. Për të ruajtur shkëlqimin:
+                Bizhuteritë tona janë të bëra me argjend 925 dhe ar 18K. Për të ruajtur shkëlqimin:
               </p>
               <ul className="flex flex-col gap-2 mt-3 pl-0 list-none">
                 {[
