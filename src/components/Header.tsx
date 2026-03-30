@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import SearchModal from '@/components/SearchModal';
 import { useWishlist } from '@/components/WishlistContext';
+import { useCart } from '@/components/CartContext';
 
 const leftNav = [
   {
@@ -19,7 +20,6 @@ const leftNav = [
             { href: '/dyqan?kategori=unaza', label: 'Unaza' },
             { href: '/dyqan?kategori=vathe', label: 'Vathë' },
             { href: '/dyqan?kategori=gerdane', label: 'Qafore' },
-            { href: '/dyqan/rose-stardust', label: 'Rose & Stardust' },
           ],
         },
         {
@@ -28,8 +28,8 @@ const leftNav = [
             { href: '/dyqan/ametist', label: 'Ametist' },
             { href: '/dyqan/kuarc-i-bardhe', label: 'Kuarc i Bardhë' },
             { href: '/dyqan/kuarc-roze', label: 'Kuarc Rozë' },
-            { href: '/dyqan/obsidian', label: 'Obsidian i Zi' },
-            { href: '/dyqan/turmaline', label: 'Turmalinë e Zezë' },
+            { href: '/dyqan/obsidian-i-zi', label: 'Obsidian i Zi' },
+            { href: '/dyqan/turmaline-e-zeze', label: 'Turmalinë e Zezë' },
             { href: '/dyqan/citrine', label: 'Citrinë' },
             { href: '/dyqan/guri-henes', label: 'Guri Hënës' },
             { href: '/dyqan/opal', label: 'Opal' },
@@ -60,6 +60,7 @@ export default function Header() {
   const [shopOpen, setShopOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const { items: wishlistItems } = useWishlist();
+  const { count: cartCount } = useCart();
 
   return (
     <>
@@ -128,6 +129,16 @@ export default function Header() {
                   </span>
                 )}
               </Link>
+              <Link href="/checkout" aria-label="Shporta" className="relative text-[#201616] hover:text-[#b31b1b] transition-colors">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                </svg>
+                {cartCount > 0 && (
+                  <span className="absolute -top-1.5 -right-1.5 bg-[#b31b1b] text-[#fffef2] text-[9px] w-4 h-4 flex items-center justify-center">
+                    {cartCount}
+                  </span>
+                )}
+              </Link>
             </div>
           </nav>
 
@@ -145,6 +156,16 @@ export default function Header() {
               {wishlistItems.length > 0 && (
                 <span className="absolute -top-1.5 -right-1.5 bg-[#b31b1b] text-[#fffef2] text-[9px] w-4 h-4 flex items-center justify-center">
                   {wishlistItems.length}
+                </span>
+              )}
+            </Link>
+            <Link href="/checkout" className="relative text-[#201616]">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+              </svg>
+              {cartCount > 0 && (
+                <span className="absolute -top-1.5 -right-1.5 bg-[#b31b1b] text-[#fffef2] text-[9px] w-4 h-4 flex items-center justify-center">
+                  {cartCount}
                 </span>
               )}
             </Link>

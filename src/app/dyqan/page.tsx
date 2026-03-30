@@ -1,10 +1,11 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { products, getByType, salePrice, type Product } from '@/data/products';
+import { readJSON } from '@/lib/db';
 import Image from 'next/image';
 import Link from 'next/link';
 
-function ProductCard({ product }: { product: Product }) {
+function ProductCard({ product, inStock }: { product: Product; inStock: boolean }) {
   return (
     <Link href={`/dyqan/${product.id}`} className="group">
       <div className="aspect-square relative bg-cream-warm border border-stone-light/20 mb-3 overflow-hidden group-hover:border-gold transition-colors duration-300">
@@ -12,17 +13,25 @@ function ProductCard({ product }: { product: Product }) {
           src={product.image}
           alt={product.name}
           fill
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
+          className={`object-cover group-hover:scale-105 transition-transform duration-500 ${!inStock ? 'opacity-50' : ''}`}
           sizes="(max-width: 768px) 50vw, 25vw"
         />
-        <span className="absolute top-2 left-2 bg-[#b31b1b] text-[#fffef2] text-[10px] font-bold tracking-widest uppercase px-2 py-1">−20%</span>
+        {inStock ? (
+          <span className="absolute top-2 left-2 bg-[#b31b1b] text-[#fffef2] text-[10px] font-bold tracking-widest uppercase px-2 py-1">−20%</span>
+        ) : (
+          <span className="absolute top-2 left-2 bg-[#201616]/70 text-[#fffef2] text-[10px] font-bold tracking-widest uppercase px-2 py-1">Pa Stok</span>
+        )}
       </div>
       <p className="text-xs uppercase tracking-widest text-stone mb-1">{product.type}</p>
       <h3 className="font-heading text-lg text-brown mb-1 group-hover:text-burgundy transition-colors">{product.name}</h3>
-      <div className="flex items-center gap-2">
-        <p className="text-sm font-bold text-[#b31b1b] font-body">{salePrice(product.price)}</p>
-        <p className="text-xs text-stone/60 line-through font-body">{product.price}</p>
-      </div>
+      {inStock ? (
+        <div className="flex items-center gap-2">
+          <p className="text-sm font-bold text-[#b31b1b] font-body">{salePrice(product.price)}</p>
+          <p className="text-xs text-stone/60 line-through font-body">{product.price}</p>
+        </div>
+      ) : (
+        <p className="text-xs text-stone/50 font-body">I Pasiguruar</p>
+      )}
     </Link>
   );
 }
@@ -33,8 +42,9 @@ export default function ShopPage({
   searchParams?: { kategori?: string };
 }) {
   const kategori = searchParams?.kategori;
+  const inventory = readJSON<Record<string, number>>('inventory.json', {});
 
-  const filtered =
+  const allFiltered =
     kategori === 'unaza'
       ? getByType('Unaza')
       : kategori === 'gerdane'
@@ -43,11 +53,15 @@ export default function ShopPage({
       ? getByType('Vathë')
       : products;
 
+  // Separate in-stock and out-of-stock
+  const inStockProducts = allFiltered.filter((p) => (inventory[p.id] ?? 10) > 0);
+  const outOfStockProducts = allFiltered.filter((p) => (inventory[p.id] ?? 10) === 0);
+
   const filters = [
-    { label: 'Të gjitha', value: undefined, count: products.length },
-    { label: 'Unaza', value: 'unaza', count: getByType('Unaza').length },
-    { label: 'Gerdane', value: 'gerdane', count: getByType('Gerdane').length },
-    { label: 'Vathë', value: 'vathe', count: getByType('Vathë').length },
+    { label: 'Të gjitha', value: undefined, count: products.filter((p) => (inventory[p.id] ?? 10) > 0).length },
+    { label: 'Unaza', value: 'unaza', count: getByType('Unaza').filter((p) => (inventory[p.id] ?? 10) > 0).length },
+    { label: 'Gerdane', value: 'gerdane', count: getByType('Gerdane').filter((p) => (inventory[p.id] ?? 10) > 0).length },
+    { label: 'Vathë', value: 'vathe', count: getByType('Vathë').filter((p) => (inventory[p.id] ?? 10) > 0).length },
   ];
 
   return (
@@ -58,7 +72,7 @@ export default function ShopPage({
         <div className="bg-cream-warm border-b border-stone-light/20 py-16 px-6 text-center">
           <p className="text-xs tracking-[0.3em] uppercase text-gold mb-3">Koleksioni</p>
           <h1 className="font-heading text-5xl text-brown">Të gjitha Bizhuteritë</h1>
-          <p className="text-stone text-sm mt-3">{products.length} produkte</p>
+          <p className="text-stone text-sm mt-3">{inStockProducts.length} produkte në stok</p>
         </div>
 
         <div className="max-w-content mx-auto px-6 py-12">
@@ -82,12 +96,28 @@ export default function ShopPage({
             })}
           </div>
 
-          {/* Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {filtered.map((p) => (
-              <ProductCard key={p.id} product={p} />
-            ))}
-          </div>
+          {/* In-stock grid */}
+          {inStockProducts.length > 0 && (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-16">
+              {inStockProducts.map((p) => (
+                <ProductCard key={p.id} product={p} inStock={true} />
+              ))}
+            </div>
+          )}
+
+          {/* Out of stock section */}
+          {outOfStockProducts.length > 0 && (
+            <div>
+              <h2 className="text-xs tracking-[0.3em] uppercase text-stone/50 mb-6 border-t border-stone-light/20 pt-8">
+                Produktet e Pasiguruara
+              </h2>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {outOfStockProducts.map((p) => (
+                  <ProductCard key={p.id} product={p} inStock={false} />
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </main>
       <Footer />

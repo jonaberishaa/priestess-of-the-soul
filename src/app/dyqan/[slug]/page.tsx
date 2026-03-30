@@ -11,6 +11,7 @@ import {
   type StoneSlug,
   type MeaningSlug,
 } from '@/data/products';
+import { readJSON } from '@/lib/db';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -25,7 +26,7 @@ export function generateStaticParams() {
   return [...productParams, ...stoneParams, ...meaningParams];
 }
 
-function ProductCard({ product }: { product: (typeof products)[0] }) {
+function ProductCard({ product, inStock }: { product: (typeof products)[0]; inStock: boolean }) {
   return (
     <Link href={`/dyqan/${product.id}`} className="group">
       <div className="aspect-square relative bg-cream-warm border border-stone-light/20 mb-3 overflow-hidden group-hover:border-gold transition-colors duration-300">
@@ -33,23 +34,32 @@ function ProductCard({ product }: { product: (typeof products)[0] }) {
           src={product.image}
           alt={product.name}
           fill
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
+          className={`object-cover group-hover:scale-105 transition-transform duration-500 ${!inStock ? 'opacity-50' : ''}`}
           sizes="(max-width: 768px) 50vw, 25vw"
         />
-        <span className="absolute top-2 left-2 bg-[#b31b1b] text-[#fffef2] text-[10px] font-bold tracking-widest uppercase px-2 py-1">−20%</span>
+        {inStock ? (
+          <span className="absolute top-2 left-2 bg-[#b31b1b] text-[#fffef2] text-[10px] font-bold tracking-widest uppercase px-2 py-1">−20%</span>
+        ) : (
+          <span className="absolute top-2 left-2 bg-[#201616]/70 text-[#fffef2] text-[10px] font-bold tracking-widest uppercase px-2 py-1">Pa Stok</span>
+        )}
       </div>
       <p className="text-xs uppercase tracking-widest text-stone mb-1">{product.type}</p>
       <h3 className="font-heading text-lg text-brown mb-1 group-hover:text-burgundy transition-colors">{product.name}</h3>
-      <div className="flex items-center gap-2">
-        <p className="text-sm font-bold text-[#b31b1b] font-body">{salePrice(product.price)}</p>
-        <p className="text-xs text-stone/60 line-through font-body">{product.price}</p>
-      </div>
+      {inStock ? (
+        <div className="flex items-center gap-2">
+          <p className="text-sm font-bold text-[#b31b1b] font-body">{salePrice(product.price)}</p>
+          <p className="text-xs text-stone/60 line-through font-body">{product.price}</p>
+        </div>
+      ) : (
+        <p className="text-xs text-stone/50 font-body">I Pasiguruar</p>
+      )}
     </Link>
   );
 }
 
 export default function DyqanSlugPage({ params }: { params: { slug: string } }) {
   const { slug } = params;
+  const inventory = readJSON<Record<string, number>>('inventory.json', {});
 
   // Stone category page
   if (stoneSlugs.includes(slug as StoneSlug)) {
@@ -64,7 +74,7 @@ export default function DyqanSlugPage({ params }: { params: { slug: string } }) 
           <div className="bg-cream-warm border-b border-stone-light/20 py-16 px-6 text-center">
             <p className="text-xs tracking-[0.3em] uppercase text-gold mb-3">Sipas Gurëve</p>
             <h1 className="font-heading text-5xl text-brown">{label}</h1>
-            <p className="text-stone text-sm mt-3">{filtered.length} produkte</p>
+            <p className="text-stone text-sm mt-3">{filtered.filter((p) => (inventory[p.id] ?? 10) > 0).length} produkte</p>
           </div>
           <div className="max-w-content mx-auto px-6 py-12">
             <div className="flex flex-wrap gap-3 mb-10">
@@ -85,7 +95,7 @@ export default function DyqanSlugPage({ params }: { params: { slug: string } }) 
             {filtered.length > 0 ? (
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {filtered.map((p) => (
-                  <ProductCard key={p.id} product={p} />
+                  <ProductCard key={p.id} product={p} inStock={(inventory[p.id] ?? 10) > 0} />
                 ))}
               </div>
             ) : (
@@ -111,7 +121,7 @@ export default function DyqanSlugPage({ params }: { params: { slug: string } }) 
           <div className="bg-cream-warm border-b border-stone-light/20 py-16 px-6 text-center">
             <p className="text-xs tracking-[0.3em] uppercase text-gold mb-3">Sipas Kuptimit</p>
             <h1 className="font-heading text-5xl text-brown">{label}</h1>
-            <p className="text-stone text-sm mt-3">{filtered.length} produkte</p>
+            <p className="text-stone text-sm mt-3">{filtered.filter((p) => (inventory[p.id] ?? 10) > 0).length} produkte</p>
           </div>
           <div className="max-w-content mx-auto px-6 py-12">
             <div className="flex flex-wrap gap-3 mb-10">
@@ -132,7 +142,7 @@ export default function DyqanSlugPage({ params }: { params: { slug: string } }) 
             {filtered.length > 0 ? (
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {filtered.map((p) => (
-                  <ProductCard key={p.id} product={p} />
+                  <ProductCard key={p.id} product={p} inStock={(inventory[p.id] ?? 10) > 0} />
                 ))}
               </div>
             ) : (
@@ -149,9 +159,26 @@ export default function DyqanSlugPage({ params }: { params: { slug: string } }) 
   const product = products.find((p) => p.id === slug);
   if (!product) notFound();
 
-  const related = products
-    .filter((p) => p.type === product.type && p.id !== product.id)
-    .slice(0, 4);
+  const inStock = (inventory[product.id] ?? 10) > 0;
+  const stock = inventory[product.id] ?? 10;
+
+  // Smart related products: same stone > same meaning > same type
+  const related = (() => {
+    const exclude = (p: (typeof products)[0]) => p.id !== product.id && (inventory[p.id] ?? 10) > 0;
+    const byStoneMeaning = products.filter(
+      (p) => exclude(p) && p.stone === product.stone && p.meaning === product.meaning
+    );
+    const byStone = products.filter(
+      (p) => exclude(p) && p.stone === product.stone && !byStoneMeaning.includes(p)
+    );
+    const byMeaning = products.filter(
+      (p) => exclude(p) && p.meaning === product.meaning && !byStoneMeaning.includes(p) && !byStone.includes(p)
+    );
+    const byType = products.filter(
+      (p) => exclude(p) && p.type === product.type && !byStoneMeaning.includes(p) && !byStone.includes(p) && !byMeaning.includes(p)
+    );
+    return [...byStoneMeaning, ...byStone, ...byMeaning, ...byType].slice(0, 4);
+  })();
 
   return (
     <>
@@ -169,22 +196,68 @@ export default function DyqanSlugPage({ params }: { params: { slug: string } }) 
         {/* Product */}
         <div className="max-w-content mx-auto px-6 py-10 grid grid-cols-1 lg:grid-cols-2 gap-16">
           <div className="aspect-square relative bg-cream-warm border border-stone-light/20 overflow-hidden">
-            <Image src={product.image} alt={product.name} fill className="object-cover" priority />
+            <Image src={product.image} alt={product.name} fill className={`object-cover ${!inStock ? 'opacity-60' : ''}`} priority />
+            {!inStock && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="bg-[#201616]/80 text-[#fffef2] text-sm font-bold tracking-widest uppercase px-6 py-3">Pa Stok</span>
+              </div>
+            )}
           </div>
 
           <div className="flex flex-col justify-center">
             <p className="text-xs tracking-[0.3em] uppercase text-gold mb-3">{product.type}</p>
             <h1 className="font-heading text-4xl md:text-5xl text-brown mb-4">{product.name}</h1>
-            <div className="flex items-center gap-3 mb-2">
-              <p className="text-3xl font-bold text-[#b31b1b]">{salePrice(product.price)}</p>
-              <p className="text-xl text-stone/50 line-through">{product.price}</p>
-              <span className="bg-[#b31b1b] text-[#fffef2] text-[10px] font-bold tracking-widest uppercase px-2 py-1">−20%</span>
-            </div>
-            <p className="text-xs text-[#201616]/50 font-body mb-6">✦ Dërgesa Falas</p>
+
+            {inStock ? (
+              <>
+                <div className="flex items-center gap-3 mb-2">
+                  <p className="text-3xl font-bold text-[#b31b1b]">{salePrice(product.price)}</p>
+                  <p className="text-xl text-stone/50 line-through">{product.price}</p>
+                  <span className="bg-[#b31b1b] text-[#fffef2] text-[10px] font-bold tracking-widest uppercase px-2 py-1">−20%</span>
+                </div>
+                <p className="text-xs text-[#201616]/50 font-body mb-2">✦ Dërgesa Falas</p>
+                {stock <= 3 && (
+                  <p className="text-xs text-[#b31b1b] font-body mb-2 font-bold">⚠ Vetëm {stock} të mbetura!</p>
+                )}
+              </>
+            ) : (
+              <div className="mb-4">
+                <p className="text-lg text-stone/60 font-body">Momentalisht i pasiguruar</p>
+                <p className="text-xs text-stone/40 font-body mt-1">Na kontaktoni në WhatsApp për disponueshmëri.</p>
+              </div>
+            )}
+
             <p className="text-stone leading-relaxed mb-8">{product.description}</p>
 
-            {/* Interactive: ring sizes, order, wishlist, WhatsApp */}
-            <ProductActions product={product} />
+            {/* Stone & Meaning tags */}
+            <div className="flex flex-wrap gap-2 mb-6">
+              {product.stone && (
+                <Link href={`/dyqan/${product.stone}`} className="text-[10px] tracking-widest uppercase border border-gold/40 text-gold px-3 py-1 hover:bg-gold hover:text-cream transition-colors">
+                  {stoneLabels[product.stone]}
+                </Link>
+              )}
+              {product.meaning && (
+                <Link href={`/dyqan/${product.meaning}`} className="text-[10px] tracking-widest uppercase border border-stone/30 text-stone px-3 py-1 hover:bg-stone hover:text-cream transition-colors">
+                  {meaningLabels[product.meaning]}
+                </Link>
+              )}
+            </div>
+
+            {/* Interactive: ring sizes, add to cart, wishlist, WhatsApp */}
+            {inStock ? (
+              <ProductActions product={product} />
+            ) : (
+              <div className="mb-10">
+                <a
+                  href={`https://wa.me/38349646439?text=${encodeURIComponent(`Përshëndetje! Jam e interesuar për: ${product.name} — A është disponueshëm?`)}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center justify-center gap-2 border border-[#25d366] text-[#25d366] px-6 py-3 text-xs tracking-[0.25em] uppercase hover:bg-[#25d366] hover:text-white transition-colors w-full"
+                >
+                  Na Pyesni në WhatsApp
+                </a>
+              </div>
+            )}
 
             <div className="border-t border-stone-light/20 pt-6 flex flex-col gap-3 text-sm text-stone">
               <p>✦ Argjend 925 me veshje ar 14K–18K</p>
@@ -195,25 +268,46 @@ export default function DyqanSlugPage({ params }: { params: { slug: string } }) 
           </div>
         </div>
 
-        {/* Related */}
+        {/* Related products */}
         {related.length > 0 && (
           <section className="bg-cream-warm py-16 px-6">
             <div className="max-w-content mx-auto">
-              <h2 className="font-heading text-3xl text-brown mb-8">Mund të të Pëlqejnë</h2>
+              <p className="text-xs tracking-[0.3em] uppercase text-gold mb-2 text-center">Bazuar në preferencat tuaja</p>
+              <h2 className="font-heading text-3xl text-brown mb-8 text-center">Mund të të Pëlqejnë</h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 {related.map((p) => (
-                  <Link key={p.id} href={`/dyqan/${p.id}`} className="group">
-                    <div className="aspect-square relative bg-cream border border-stone-light/20 mb-3 overflow-hidden group-hover:border-gold transition-colors">
-                      <Image src={p.image} alt={p.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="25vw" />
-                    </div>
-                    <h3 className="font-heading text-base text-brown group-hover:text-burgundy transition-colors">{p.name}</h3>
-                    <p className="text-burgundy text-sm mt-1">{salePrice(p.price)}</p>
-                  </Link>
+                  <ProductCard key={p.id} product={p} inStock={(inventory[p.id] ?? 10) > 0} />
                 ))}
               </div>
             </div>
           </section>
         )}
+
+        {/* Complete the look - same meaning different type */}
+        {(() => {
+          const completeLook = products
+            .filter((p) =>
+              p.id !== product.id &&
+              p.type !== product.type &&
+              p.meaning === product.meaning &&
+              (inventory[p.id] ?? 10) > 0
+            )
+            .slice(0, 4);
+          if (completeLook.length < 2) return null;
+          return (
+            <section className="bg-cream py-16 px-6">
+              <div className="max-w-content mx-auto">
+                <p className="text-xs tracking-[0.3em] uppercase text-gold mb-2 text-center">Kombino Stilin</p>
+                <h2 className="font-heading text-3xl text-brown mb-8 text-center">Plotëso Lookun</h2>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                  {completeLook.map((p) => (
+                    <ProductCard key={p.id} product={p} inStock={true} />
+                  ))}
+                </div>
+              </div>
+            </section>
+          );
+        })()}
       </main>
       <Footer />
     </>

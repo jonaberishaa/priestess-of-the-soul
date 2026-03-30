@@ -3,12 +3,14 @@
 import { useState } from 'react';
 import { salePrice } from '@/data/products';
 import { useWishlist } from '@/components/WishlistContext';
+import { useCart } from '@/components/CartContext';
 import type { Product } from '@/data/products';
+import Link from 'next/link';
 
 const RING_SIZES = [
   'EU 10 / US 5 / 50mm',
   'EU 12 / US 6 / 52mm',
-  'EU 14 / US 6.5 / 54mm',
+  'EU 14 / US 7 / 54mm',
   'EU 16 / US 7.5 / 56mm',
   'EU 17 / US 8 / 57mm',
   'EU 18 / US 8.5 / 58mm',
@@ -32,37 +34,28 @@ const GIFT_MESSAGES = [
   'Urime të përzemërta – elegancë për një shpirt të bukur.',
 ];
 
-type OrderForm = { name: string; email: string; phone: string; address: string; size: string; message: string };
-
 export default function ProductActions({ product }: { product: Product }) {
   const isRing = product.type === 'Unaza';
   const { toggle, has } = useWishlist();
+  const { add } = useCart();
   const wishlisted = has(product.id);
 
-  const [modalOpen, setModalOpen] = useState(false);
-  const [form, setForm] = useState<OrderForm>({ name: '', email: '', phone: '', address: '', size: '', message: '' });
-  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  const [selectedSize, setSelectedSize] = useState('');
+  const [selectedMessage, setSelectedMessage] = useState('');
+  const [addedToCart, setAddedToCart] = useState(false);
 
-  const closeModal = () => { setModalOpen(false); setStatus('idle'); };
-
-  const handleOrder = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (isRing && !form.size) { alert('Ju lutem zgjidhni madhësinë e unazës.'); return; }
-    setStatus('sending');
-    try {
-      const res = await fetch('/api/order', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ productName: product.name, productPrice: salePrice(product.price), ...form, message: form.message || undefined }),
-      });
-      setStatus(res.ok ? 'sent' : 'error');
-    } catch {
-      setStatus('error');
+  const handleAddToCart = () => {
+    if (isRing && !selectedSize) {
+      alert('Ju lutem zgjidhni madhësinë e unazës.');
+      return;
     }
+    add(product, selectedSize || undefined, selectedMessage || undefined);
+    setAddedToCart(true);
+    setTimeout(() => setAddedToCart(false), 2500);
   };
 
   const waText = encodeURIComponent(
-    `Përshëndetje! Jam e interesuar për: ${product.name} (${salePrice(product.price)})${isRing && form.size ? ` — Madhësia: ${form.size}` : ''}`
+    `Përshëndetje! Jam e interesuar për: ${product.name} (${salePrice(product.price)})${isRing && selectedSize ? ` — Madhësia: ${selectedSize}` : ''}`
   );
 
   return (
@@ -73,8 +66,8 @@ export default function ProductActions({ product }: { product: Product }) {
           <p className="text-[10px] tracking-widest uppercase text-[#201616]/50 mb-3">Madhësia e Unazës</p>
           <div className="flex flex-wrap gap-2">
             {RING_SIZES.map((s) => (
-              <button key={s} onClick={() => setForm((f) => ({ ...f, size: s }))}
-                className={`px-3 py-1.5 text-xs border transition-colors ${form.size === s ? 'bg-[#201616] text-[#fffef2] border-[#201616]' : 'border-[#201616]/30 text-[#201616] hover:border-[#201616]'}`}>
+              <button key={s} onClick={() => setSelectedSize(s)}
+                className={`px-3 py-1.5 text-xs border transition-colors ${selectedSize === s ? 'bg-[#201616] text-[#fffef2] border-[#201616]' : 'border-[#201616]/30 text-[#201616] hover:border-[#201616]'}`}>
                 {s}
               </button>
             ))}
@@ -87,8 +80,8 @@ export default function ProductActions({ product }: { product: Product }) {
         <p className="text-[10px] tracking-widest uppercase text-[#201616]/50 mb-3">Mesazh Dhurate (opsional)</p>
         <div className="relative">
           <select
-            value={form.message}
-            onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
+            value={selectedMessage}
+            onChange={(e) => setSelectedMessage(e.target.value)}
             className="w-full border border-[#201616]/20 bg-[#fffef2] px-4 py-2.5 text-sm text-[#201616] focus:outline-none focus:border-[#201616] font-body appearance-none pr-8"
           >
             <option value="">— Zgjidh mesazhin —</option>
@@ -98,23 +91,33 @@ export default function ProductActions({ product }: { product: Product }) {
           </select>
           <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#201616]/40 text-xs">▾</span>
         </div>
-        {form.message && (
-          <p className="mt-2 text-xs text-[#201616]/60 font-body italic leading-relaxed">"{form.message}"</p>
+        {selectedMessage && (
+          <p className="mt-2 text-xs text-[#201616]/60 font-body italic leading-relaxed">"{selectedMessage}"</p>
         )}
       </div>
 
       {/* Buttons */}
       <div className="flex flex-col gap-3 mb-10">
-        <button onClick={() => setModalOpen(true)} className="btn-primary text-center w-full">
-          Porosit Tani
+        <button
+          onClick={handleAddToCart}
+          className={`btn-primary text-center w-full transition-all ${addedToCart ? 'bg-green-700 border-green-700' : ''}`}
+        >
+          {addedToCart ? '✓ U Shtua në Shportë!' : 'Shto në Shportë'}
         </button>
+
+        {addedToCart && (
+          <Link href="/checkout" className="text-center w-full border border-[#201616] text-[#201616] px-6 py-3 text-xs tracking-[0.25em] uppercase hover:bg-[#201616] hover:text-[#fffef2] transition-colors">
+            Shko te Checkout →
+          </Link>
+        )}
+
         <div className="grid grid-cols-2 gap-3">
           <button onClick={() => toggle(product.id)}
             className={`flex items-center justify-center gap-2 border px-4 py-3 text-xs tracking-[0.25em] uppercase transition-colors ${wishlisted ? 'bg-[#b31b1b]/10 border-[#b31b1b] text-[#b31b1b]' : 'border-[#201616]/30 text-[#201616] hover:border-[#b31b1b] hover:text-[#b31b1b]'}`}>
             <svg className="w-4 h-4" fill={wishlisted ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
             </svg>
-            {wishlisted ? 'Në Wishlist' : 'Shto në Wishlist'}
+            {wishlisted ? 'Në Wishlist' : 'Wishlist'}
           </button>
           <a href={`https://wa.me/38349646439?text=${waText}`} target="_blank" rel="noreferrer"
             className="flex items-center justify-center gap-2 border border-[#201616]/30 text-[#201616] px-4 py-3 text-xs tracking-[0.25em] uppercase hover:border-[#25d366] hover:text-[#25d366] transition-colors">
@@ -125,59 +128,6 @@ export default function ProductActions({ product }: { product: Product }) {
           </a>
         </div>
       </div>
-
-      {/* Order modal */}
-      {modalOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#201616]/50" onClick={closeModal}>
-          <div className="bg-[#fffffc] w-full max-w-md p-8 overflow-y-auto max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
-            {status === 'sent' ? (
-              <div className="text-center py-8">
-                <p className="font-heading text-3xl text-[#201616] mb-3">Faleminderit!</p>
-                <p className="text-[#201616]/60 text-sm font-body mb-6">Porosia juaj u dërgua. Do t&apos;ju kontaktojmë së shpejti.</p>
-                <button onClick={closeModal} className="btn-primary">Mbyll</button>
-              </div>
-            ) : (
-              <>
-                <div className="flex items-start justify-between mb-6">
-                  <div>
-                    <p className="text-[10px] tracking-widest uppercase text-[#201616]/40 mb-1">Porosit</p>
-                    <h2 className="font-heading text-2xl text-[#201616]">{product.name}</h2>
-                    <div className="flex items-center gap-2 mt-1">
-                      <p className="text-[#b31b1b] text-sm font-bold">{salePrice(product.price)}</p>
-                      <p className="text-[#201616]/40 text-xs line-through">{product.price}</p>
-                    </div>
-                    {isRing && form.size && <p className="text-[#201616]/50 text-xs mt-1">Madhësia: {form.size}</p>}
-                    {form.message && <p className="text-[#201616]/50 text-xs mt-1 italic">"{form.message}"</p>}
-                  </div>
-                  <button onClick={closeModal} className="text-[#201616]/30 hover:text-[#201616] text-xl leading-none mt-1">✕</button>
-                </div>
-                <form onSubmit={handleOrder} className="flex flex-col gap-4">
-                  {isRing && !form.size && (
-                    <p className="text-xs text-[#b31b1b] font-body">⚠ Zgjidhni madhësinë e unazës para se të porosisni.</p>
-                  )}
-                  {([
-                    { key: 'name', label: 'Emri dhe Mbiemri', type: 'text' },
-                    { key: 'email', label: 'Email', type: 'email' },
-                    { key: 'phone', label: 'Numri i Telefonit', type: 'tel' },
-                    { key: 'address', label: 'Adresa e Dorëzimit', type: 'text' },
-                  ] as const).map(({ key, label, type }) => (
-                    <div key={key}>
-                      <label className="block text-[10px] tracking-widest uppercase text-[#201616]/50 mb-1.5 font-body">{label}</label>
-                      <input type={type} required value={form[key]}
-                        onChange={(e) => setForm((f) => ({ ...f, [key]: e.target.value }))}
-                        className="w-full border border-[#201616]/20 bg-transparent px-4 py-2.5 text-sm text-[#201616] focus:outline-none focus:border-[#201616] font-body" />
-                    </div>
-                  ))}
-                  <button type="submit" disabled={status === 'sending'} className="btn-primary text-center mt-2 disabled:opacity-50">
-                    {status === 'sending' ? 'Duke dërguar...' : 'Konfirmo Porosinë'}
-                  </button>
-                  {status === 'error' && <p className="text-[#b31b1b] text-xs text-center font-body">Diçka shkoi keq. Provo me WhatsApp.</p>}
-                </form>
-              </>
-            )}
-          </div>
-        </div>
-      )}
     </>
   );
 }

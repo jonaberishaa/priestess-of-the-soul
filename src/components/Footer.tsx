@@ -34,7 +34,7 @@ export default function Footer() {
               { label: 'Unaza', href: '/dyqan?kategori=unaza' },
               { label: 'Vathë', href: '/dyqan?kategori=vathe' },
               { label: 'Qafore', href: '/dyqan?kategori=gerdane' },
-              { label: 'Rose & Stardust', href: '/dyqan/rose-stardust' },
+              { label: 'Më të shiturat', href: '/dyqan/bestsellers' },
             ].map((item) => (
               <li key={item.href}>
                 <Link href={item.href} className="text-sm text-[#fffef2]/60 hover:text-[#fffef2] transition-colors font-body">{item.label}</Link>
