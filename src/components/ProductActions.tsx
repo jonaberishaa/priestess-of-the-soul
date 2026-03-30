@@ -1,22 +1,12 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { salePrice } from '@/data/products';
 import { useWishlist } from '@/components/WishlistContext';
 import { useCart } from '@/components/CartContext';
 import type { Product } from '@/data/products';
-import Link from 'next/link';
-
-const RING_SIZES = [
-  'EU 10 / US 5 / 50mm',
-  'EU 12 / US 6 / 52mm',
-  'EU 14 / US 7 / 54mm',
-  'EU 16 / US 7.5 / 56mm',
-  'EU 17 / US 8 / 57mm',
-  'EU 18 / US 8.5 / 58mm',
-  'EU 20 / US 9.5 / 60mm',
-  'EU 22 / US 10.5 / 62mm',
-];
+import { PRODUCT_SIZES } from '@/data/ring-sizes';
 
 const GIFT_MESSAGES = [
   'Krijuar për ty që shkel tokën si tempull dhe e jeton ditën si ceremoni.',
@@ -35,14 +25,14 @@ const GIFT_MESSAGES = [
 ];
 
 const SIZE_CHART = [
-  { eu: 'EU 10', us: 'US 5',   mm: '50mm', diameter: '15.9mm' },
-  { eu: 'EU 12', us: 'US 6',   mm: '52mm', diameter: '16.6mm' },
-  { eu: 'EU 14', us: 'US 7',   mm: '54mm', diameter: '17.2mm' },
-  { eu: 'EU 16', us: 'US 7.5', mm: '56mm', diameter: '17.8mm' },
-  { eu: 'EU 17', us: 'US 8',   mm: '57mm', diameter: '18.2mm' },
-  { eu: 'EU 18', us: 'US 8.5', mm: '58mm', diameter: '18.5mm' },
-  { eu: 'EU 20', us: 'US 9.5', mm: '60mm', diameter: '19.1mm' },
-  { eu: 'EU 22', us: 'US 10.5',mm: '62mm', diameter: '19.7mm' },
+  { eu: 'EU 10', us: 'US 5',    mm: '50mm', diameter: '15.9mm' },
+  { eu: 'EU 12', us: 'US 6',    mm: '52mm', diameter: '16.6mm' },
+  { eu: 'EU 14', us: 'US 6.5',  mm: '54mm', diameter: '17.2mm' },
+  { eu: 'EU 16', us: 'US 7.5',  mm: '56mm', diameter: '17.8mm' },
+  { eu: 'EU 17', us: 'US 8',    mm: '57mm', diameter: '18.2mm' },
+  { eu: 'EU 18', us: 'US 8.5',  mm: '58mm', diameter: '18.5mm' },
+  { eu: 'EU 20', us: 'US 9.5',  mm: '60mm', diameter: '19.1mm' },
+  { eu: 'EU 22', us: 'US 10.5', mm: '62mm', diameter: '19.7mm' },
 ];
 
 function RingSizerModal({ onClose }: { onClose: () => void }) {
@@ -305,7 +295,11 @@ export default function ProductActions({ product }: { product: Product }) {
   const isRing = product.type === 'Unaza';
   const { toggle, has } = useWishlist();
   const { add } = useCart();
+  const router = useRouter();
   const wishlisted = has(product.id);
+
+  // Madhësitë e disponueshme vetëm për këtë produkt
+  const availableSizes = PRODUCT_SIZES[product.id] ?? [];
 
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedMessage, setSelectedMessage] = useState('');
@@ -319,7 +313,10 @@ export default function ProductActions({ product }: { product: Product }) {
     }
     add(product, selectedSize || undefined, selectedMessage || undefined);
     setAddedToCart(true);
-    setTimeout(() => setAddedToCart(false), 2500);
+  };
+
+  const handleGoToCheckout = () => {
+    router.push('/checkout');
   };
 
   const waText = encodeURIComponent(
@@ -346,12 +343,14 @@ export default function ProductActions({ product }: { product: Product }) {
             </button>
           </div>
           <div className="flex flex-wrap gap-2">
-            {RING_SIZES.map((s) => (
+            {availableSizes.length > 0 ? availableSizes.map((s) => (
               <button key={s} onClick={() => setSelectedSize(s)}
                 className={`px-3 py-1.5 text-xs border transition-colors ${selectedSize === s ? 'bg-[#201616] text-[#fffef2] border-[#201616]' : 'border-[#201616]/30 text-[#201616] hover:border-[#201616]'}`}>
                 {s}
               </button>
-            ))}
+            )) : (
+              <p className="text-xs text-[#201616]/40 font-body italic">Na kontaktoni për madhësinë e disponueshme.</p>
+            )}
           </div>
           {!selectedSize && (
             <button
@@ -395,9 +394,12 @@ export default function ProductActions({ product }: { product: Product }) {
         </button>
 
         {addedToCart && (
-          <Link href="/checkout" className="text-center w-full border border-[#201616] text-[#201616] px-6 py-3 text-xs tracking-[0.25em] uppercase hover:bg-[#201616] hover:text-[#fffef2] transition-colors">
+          <button
+            onClick={handleGoToCheckout}
+            className="text-center w-full border border-[#201616] text-[#201616] px-6 py-3 text-xs tracking-[0.25em] uppercase hover:bg-[#201616] hover:text-[#fffef2] transition-colors"
+          >
             Shko te Checkout →
-          </Link>
+          </button>
         )}
 
         <div className="grid grid-cols-2 gap-3">
