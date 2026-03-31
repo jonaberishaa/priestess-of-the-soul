@@ -101,7 +101,7 @@ export default function HomePage() {
               Stoli të shenjta, të harmonizuara me shpirtin tënd
             </h2>
             <p className="text-[#201616]/60 leading-relaxed font-body text-sm mb-10">
-              Çdo copë është krijuar si një amuletë shpirtërore — për ata që kërkojnë
+              Çdo copë është krijuar si një amuletë shpirtërore - për ata që kërkojnë
               të rilidhur me fuqinë e tyre të brendshme. Gurët natyralë mbajnë energji.
               Kur i veshim, bëhemi pjesë e diçkaje më të madhe.
             </p>

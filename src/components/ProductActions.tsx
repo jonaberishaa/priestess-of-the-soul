@@ -98,7 +98,7 @@ function RingSizerModal({ onClose }: { onClose: () => void }) {
                   <h3 className="font-heading text-lg text-[#201616]">iPhone (iOS)</h3>
                 </div>
                 <div className="bg-[#f5f0e8] px-4 py-3 mb-3">
-                  <p className="text-xs font-bold text-[#201616] tracking-wider uppercase mb-0.5">Ring Sizer — by Setworks</p>
+                  <p className="text-xs font-bold text-[#201616] tracking-wider uppercase mb-0.5">Ring Sizer - by Setworks</p>
                   <p className="text-xs text-[#201616]/50 font-body">App Store · Falas</p>
                 </div>
                 <ol className="flex flex-col gap-2">
@@ -106,9 +106,9 @@ function RingSizerModal({ onClose }: { onClose: () => void }) {
                     'Hap App Store → kërko "Ring Sizer Setworks"',
                     'Shkarko dhe hap aplikacionin',
                     'Zgjidh "Measure Finger" nga ekrani kryesor',
-                    'Vendos gishtin (gishtin unazor — zakonisht gishti 4) mbi ekranin e telefonit',
+                    'Vendos gishtin (gishtin unazor - zakonisht gishti 4) mbi ekranin e telefonit',
                     'Lëviz vizat e verdha derisa të përshtaten saktësisht me anët e gishtin',
-                    'Aplikacioni do të shfaqë madhësinë EU — shëno numrin dhe kthehu të porosisësh!',
+                    'Aplikacioni do të shfaqë madhësinë EU - shëno numrin dhe kthehu të porosisësh!',
                   ].map((step, i) => (
                     <li key={i} className="flex gap-3 items-start text-sm font-body text-[#201616]/80">
                       <span className="w-5 h-5 rounded-full bg-[#201616] text-[#fffef2] text-[10px] flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -127,7 +127,7 @@ function RingSizerModal({ onClose }: { onClose: () => void }) {
                   <h3 className="font-heading text-lg text-[#201616]">Android</h3>
                 </div>
                 <div className="bg-[#f5f0e8] px-4 py-3 mb-3">
-                  <p className="text-xs font-bold text-[#201616] tracking-wider uppercase mb-0.5">Ring Sizer — by Setworks</p>
+                  <p className="text-xs font-bold text-[#201616] tracking-wider uppercase mb-0.5">Ring Sizer - by Setworks</p>
                   <p className="text-xs text-[#201616]/50 font-body">Google Play · Falas</p>
                 </div>
                 <ol className="flex flex-col gap-2">
@@ -150,7 +150,7 @@ function RingSizerModal({ onClose }: { onClose: () => void }) {
               </div>
 
               <div className="bg-[#f5f0e8] px-4 py-3 text-xs font-body text-[#201616]/60 leading-relaxed">
-                💡 <strong className="text-[#201616]">Këshillë:</strong> Mat gishtin në mbrëmje — gishtat ënjten pak gjatë ditës nga nxehtësia, kështu madhësia do të jetë më e saktë.
+                💡 <strong className="text-[#201616]">Këshillë:</strong> Mat gishtin në mbrëmje - gishtat ënjten pak gjatë ditës nga nxehtësia, kështu madhësia do të jetë më e saktë.
               </div>
             </div>
           )}
@@ -167,7 +167,7 @@ function RingSizerModal({ onClose }: { onClose: () => void }) {
                 <ol className="flex flex-col gap-3">
                   {[
                     { step: 'Merr një copë letre të ngushtë (rreth 5mm e gjerë) ose një spango të hollë.', tip: null },
-                    { step: 'Mbështille rreth gishtin ku do të vendosësh unazën — kaloje pak mbi nyje pasi unaza duhet t\'i kalojë.', tip: 'Mos e shtrëngoni shumë — duhet të jetë komode.' },
+                    { step: 'Mbështille rreth gishtin ku do të vendosësh unazën - kaloje pak mbi nyje pasi unaza duhet t\'i kalojë.', tip: 'Mos e shtrëngoni shumë - duhet të jetë komode.' },
                     { step: 'Shëno me laps pikën ku skajet takohen (për letrën) ose shëno me thumb-nail ku mbaron (për spangon).', tip: null },
                     { step: 'Shtri letrën/spangon në vizore dhe mat gjatësinë në milimetra (mm).', tip: null },
                     { step: 'Gjej madhësinë EU në tabelën më poshtë duke krahasuar gjatësinë e spangos me kolumnën "Perimetri".', tip: null },
@@ -213,7 +213,7 @@ function RingSizerModal({ onClose }: { onClose: () => void }) {
               </div>
 
               <div className="bg-[#f5f0e8] px-4 py-3 text-xs font-body text-[#201616]/60 leading-relaxed">
-                💡 <strong className="text-[#201616]">Nëse je mes dy madhësive</strong> — zgjidh madhësinë më të madhe për rehati.
+                💡 <strong className="text-[#201616]">Nëse je mes dy madhësive</strong> - zgjidh madhësinë më të madhe për rehati.
               </div>
             </div>
           )}
@@ -231,8 +231,8 @@ function RingSizerModal({ onClose }: { onClose: () => void }) {
                   {[
                     { step: 'Vendos unazën mbi një fletë letre të bardhë.', tip: null },
                     { step: 'Vizato me laps saktësisht sipas brendësisë së unazës (rrethit të brendshëm).', tip: 'Mbaje lapsin pingul me letrën për saktësi.' },
-                    { step: 'Mat diametrin e rrethit — nga njëra anë e brendshme tek tjetra (jo anët e jashtme).', tip: null },
-                    { step: 'Ky numër në mm është diametri — gjeje madhësinë EU në tabelën më poshtë.', tip: null },
+                    { step: 'Mat diametrin e rrethit - nga njëra anë e brendshme tek tjetra (jo anët e jashtme).', tip: null },
+                    { step: 'Ky numër në mm është diametri - gjeje madhësinë EU në tabelën më poshtë.', tip: null },
                   ].map((item, i) => (
                     <li key={i} className="flex gap-3 items-start">
                       <span className="w-5 h-5 rounded-full bg-[#201616] text-[#fffef2] text-[10px] flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -251,7 +251,7 @@ function RingSizerModal({ onClose }: { onClose: () => void }) {
 
               {/* Size chart by diameter */}
               <div>
-                <p className="text-[10px] tracking-[0.3em] uppercase text-[#201616]/40 mb-2">Tabela e Madhësive — Sipas Diametrit</p>
+                <p className="text-[10px] tracking-[0.3em] uppercase text-[#201616]/40 mb-2">Tabela e Madhësive - Sipas Diametrit</p>
                 <table className="w-full text-xs font-body border-collapse">
                   <thead>
                     <tr className="bg-[#201616] text-[#fffef2]">
@@ -273,7 +273,7 @@ function RingSizerModal({ onClose }: { onClose: () => void }) {
               </div>
 
               <div className="bg-[#f5f0e8] px-4 py-3 text-xs font-body text-[#201616]/60 leading-relaxed">
-                💡 <strong className="text-[#201616]">Kujdes:</strong> Mat diametrin e brendshëm të unazës — jo të jashtmin. Ndryshimi mund të jetë 1–2mm dhe ndikon në madhësinë finale.
+                💡 <strong className="text-[#201616]">Kujdes:</strong> Mat diametrin e brendshëm të unazës - jo të jashtmin. Ndryshimi mund të jetë 1–2mm dhe ndikon në madhësinë finale.
               </div>
             </div>
           )}
@@ -315,7 +315,7 @@ export default function ProductActions({ product }: { product: Product }) {
   };
 
   const waText = encodeURIComponent(
-    `Përshëndetje! Jam e interesuar për: ${product.name} (${salePrice(product.price)})${isRing && selectedSize ? ` — Madhësia: ${selectedSize}` : ''}`
+    `Përshëndetje! Jam e interesuar për: ${product.name} (${salePrice(product.price)})${isRing && selectedSize ? ` - Madhësia: ${selectedSize}` : ''}`
   );
 
   return (
@@ -367,7 +367,7 @@ export default function ProductActions({ product }: { product: Product }) {
             onChange={(e) => setSelectedMessage(e.target.value)}
             className="w-full border border-[#201616]/20 bg-[#fffef2] px-4 py-2.5 text-sm text-[#201616] focus:outline-none focus:border-[#201616] font-body appearance-none pr-8"
           >
-            <option value="">— Zgjidh mesazhin —</option>
+            <option value="">- Zgjidh mesazhin -</option>
             {GIFT_MESSAGES.map((msg) => (
               <option key={msg} value={msg}>{msg}</option>
             ))}

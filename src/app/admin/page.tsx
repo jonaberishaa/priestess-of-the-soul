@@ -157,7 +157,7 @@ export default function AdminPage() {
                     {order.items.map((item, i) => (
                       <p key={i} className="text-sm font-body text-[#201616]/80">
                         {item.quantity}× <strong>{item.productName}</strong>
-                        {item.size ? ` — ${item.size}` : ''} — {item.salePrice}
+                        {item.size ? ` - ${item.size}` : ''} - {item.salePrice}
                       </p>
                     ))}
                   </div>

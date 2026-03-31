@@ -34,7 +34,7 @@ export default function AboutPage() {
             <h2 className="font-heading text-4xl text-brown mb-6">Priestess of the Soul</h2>
             <div className="flex flex-col gap-5 text-stone leading-relaxed">
               <p>
-                Jam themeluese e Priestess of the Soul — një brand i krijuar nga dashuria për bukurinë
+                Jam themeluese e Priestess of the Soul - një brand i krijuar nga dashuria për bukurinë
                 e vërtetë, gurët natyralë dhe energjinë që mbajmë pranë.
               </p>
               <p>
@@ -46,7 +46,7 @@ export default function AboutPage() {
                 si mbajmë pranë gjërat që na bëjnë të ndihemi ne vetë.
               </p>
               <p>
-                Priestess of the Soul lindi nga besimi se secili gur natyral mbart energji unike — dhe kur
+                Priestess of the Soul lindi nga besimi se secili gur natyral mbart energji unike - dhe kur
                 kombinohet me artin e duarve të artizanëve tanë, krijohet diçka vërtet e veçantë.
               </p>
             </div>

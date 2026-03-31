@@ -90,7 +90,7 @@ export async function POST(req: NextRequest) {
     writeJSON('inventory.json', inventory);
   } catch (err) {
     console.error('DB write error:', err);
-    // Continue even if file write fails — email is more important
+    // Continue even if file write fails - email is more important
   }
 
   // Build items HTML rows
@@ -116,7 +116,7 @@ export async function POST(req: NextRequest) {
   const storeEmailHtml = `
     <div style="font-family:Georgia,serif;max-width:640px;margin:0 auto;padding:32px;color:#201616;">
       <h2 style="font-size:22px;margin-bottom:4px;border-bottom:2px solid #b31b1b;padding-bottom:12px;">
-        🛍️ Porosi e Re — Priestess of the Soul
+        🛍️ Porosi e Re - Priestess of the Soul
       </h2>
       <p style="font-size:12px;color:#888;margin-top:4px;">Konfirmimi #${orderId} · ${new Date(createdAt).toLocaleString('sq-AL')}</p>
 
@@ -237,7 +237,7 @@ export async function POST(req: NextRequest) {
         body: JSON.stringify({
           from: 'Priestess of the Soul <onboarding@resend.dev>',
           to: ['jonaberishaa@gmail.com'],
-          subject: `🛍️ Porosi e Re #${orderId} — ${fullName} — ${total}`,
+          subject: `🛍️ Porosi e Re #${orderId} - ${fullName} - ${total}`,
           html: storeEmailHtml,
         }),
       }),
@@ -255,7 +255,7 @@ export async function POST(req: NextRequest) {
           body: JSON.stringify({
             from: 'Priestess of the Soul <onboarding@resend.dev>',
             to: [contact],
-            subject: `Konfirmimi i Porosisë #${orderId} — Priestess of the Soul`,
+            subject: `Konfirmimi i Porosisë #${orderId} - Priestess of the Soul`,
             html: customerEmailHtml,
           }),
         })

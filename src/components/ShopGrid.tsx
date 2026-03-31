@@ -115,7 +115,7 @@ function ProductCard({ product, inStock }: { product: Product; inStock: boolean 
               </span>
             )}
 
-            {/* Quick Add overlay — desktop hover */}
+            {/* Quick Add overlay - desktop hover */}
             {inStock && (
               <button
                 onClick={handleQuickAdd}

@@ -26,7 +26,7 @@ export default function TermsPage() {
               <h2 className="font-heading text-2xl text-[#201616] mb-3">Produktet</h2>
               <p>
                 Të gjitha produktet tona janë artizanale dhe të bëra me dorë. Secila copë është unike
-                dhe mund të ketë variacione të vogla në ngjyrë, formë ose teksturë — kjo është pjesë e
+                dhe mund të ketë variacione të vogla në ngjyrë, formë ose teksturë - kjo është pjesë e
                 natyrës dhe bukurisë së punës artizanale me gurë natyralë.
               </p>
               <p className="mt-3">
