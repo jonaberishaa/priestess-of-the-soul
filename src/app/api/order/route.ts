@@ -181,46 +181,75 @@ export async function POST(req: NextRequest) {
 
   // Customer confirmation email
   const customerEmailHtml = `
-    <div style="font-family:Georgia,serif;max-width:640px;margin:0 auto;padding:32px;color:#201616;">
-      <h2 style="font-size:22px;margin-bottom:4px;">Faleminderit, ${firstName || fullName}!</h2>
-      <p style="font-size:12px;color:#888;margin-top:4px;">Konfirmimi #${orderId}</p>
+    <div style="font-family:Georgia,serif;max-width:640px;margin:0 auto;padding:32px;color:#201616;background:#f6f5e9;">
 
-      <div style="background:#f9f9f7;border:1px solid #eee;border-radius:6px;padding:20px;margin:20px 0;">
-        <h3 style="font-size:15px;margin:0 0 12px 0;">Porosia juaj është konfirmuar ✓</h3>
-        <p style="font-size:13px;line-height:1.7;margin:0;color:#444;">
-          Pakot procesohen brenda 3 ditëve.<br/>
-          Pagesa kryhet me para në dorë (Cash on Delivery) te korrieri.<br/>
-          Pakon duhet ta hapni dhe ta kontrolloni para korrierit.<br/><br/>
-          Faleminderit që keni zgjedhur Priestess of the Soul! 🌹❤️
-        </p>
+      <!-- Header -->
+      <div style="text-align:center;padding:32px 0 24px;">
+        <div style="display:inline-block;border:2px solid #b31b1b;width:48px;height:48px;line-height:44px;font-size:22px;color:#b31b1b;margin-bottom:16px;">✓</div>
+        <p style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#999;margin:0 0 6px;">Konfirmimi #${orderId}</p>
+        <h1 style="font-size:28px;margin:0 0 8px;">Faleminderit, ${firstName || fullName}!</h1>
+        <p style="font-size:13px;color:#888;margin:0;">Porosia juaj u mor me sukses. Do të kontaktoheni së shpejti.</p>
       </div>
 
-      <table style="width:100%;border-collapse:collapse;margin:20px 0;border:1px solid #eee;">
-        <thead>
-          <tr style="background:#f6f5e9;">
-            <th style="padding:10px 16px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#888;" colspan="2">Produkti</th>
-            <th style="padding:10px 16px;text-align:right;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#888;">Çmimi</th>
-          </tr>
-        </thead>
-        <tbody>${itemsHtml}</tbody>
-      </table>
-
-      <div style="text-align:right;font-size:16px;font-weight:bold;margin:12px 0;">
-        Totali: ${total}
-        <span style="font-size:12px;color:#22c55e;font-weight:normal;display:block;">Kursim: −${savings}</span>
+      <!-- Products -->
+      <div style="background:#fffffc;border:1px solid #e5e0d5;padding:24px;margin-bottom:16px;">
+        <p style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#999;margin:0 0 16px;">Produktet</p>
+        <table style="width:100%;border-collapse:collapse;">
+          <thead>
+            <tr style="background:#f6f5e9;">
+              <th style="padding:8px 12px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:2px;color:#999;" colspan="2">Produkti</th>
+              <th style="padding:8px 12px;text-align:right;font-size:10px;text-transform:uppercase;letter-spacing:2px;color:#999;">Çmimi</th>
+            </tr>
+          </thead>
+          <tbody>${itemsHtml}</tbody>
+        </table>
+        <div style="text-align:right;margin-top:16px;padding-top:12px;border-top:1px solid #eee;">
+          <span style="font-size:14px;font-weight:bold;">Totali: ${total}</span><br/>
+          <span style="font-size:12px;color:#888;">Kursim: ${savings}</span>
+        </div>
       </div>
 
-      <div style="margin:20px 0;padding:16px;background:#f6f5e9;border-radius:6px;">
-        <h3 style="font-size:13px;margin:0 0 8px 0;text-transform:uppercase;letter-spacing:2px;color:#888;">Adresa e dërgimit</h3>
-        <p style="font-size:13px;margin:0;line-height:1.6;">
+      <!-- Address -->
+      <div style="background:#fffffc;border:1px solid #e5e0d5;padding:24px;margin-bottom:16px;">
+        <p style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#999;margin:0 0 12px;">Adresa e Dërgimit</p>
+        <p style="font-size:13px;margin:0;line-height:1.8;color:#201616;">
           ${fullName}<br/>
-          ${address}${postalCode ? '<br/>' + postalCode : ''} ${city}<br/>
+          ${address}${postalCode ? ', ' + postalCode : ''} ${city}<br/>
           ${country}<br/>
           ${phone}
         </p>
+        <p style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#999;margin:16px 0 4px;">Pagesa</p>
+        <p style="font-size:13px;margin:0;color:#201616;">Cash on Delivery (COD) · ${total}</p>
       </div>
 
-      <p style="font-size:12px;color:#888;margin-top:32px;border-top:1px solid #eee;padding-top:16px;">
+      <!-- Rules -->
+      <div style="background:#fffffc;border:1px solid #e5e0d5;padding:24px;margin-bottom:16px;">
+        <p style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#999;margin:0 0 4px;">Para Dorëzimit</p>
+        <h2 style="font-size:18px;margin:0 0 20px;color:#201616;">Porosia juaj është konfirmuar</h2>
+        <table style="width:100%;border-collapse:collapse;">
+          ${[
+            'Pakot procesohen brenda 3 ditëve.',
+            'Pagesa kryhet me para në dorë (COD) drejtpërdrejt te korrieri.',
+            'Hape dhe kontrollo pakon para se të largohet korrieri.',
+            'Dëmtimet raportohen menjëherë. Pas largimit të korrierit nuk pranohen.',
+            'Nuk pranohen ndrrrime apo kthime, përveç rastit kur produkti është i dëmtuar nga fabrika.',
+            'Kostot e postës paguhen nga klienti në rast kthimi për defekt fabrike.',
+          ].map((rule, i) => `
+            <tr>
+              <td style="padding:8px 12px 8px 0;vertical-align:top;width:28px;">
+                <span style="display:inline-block;width:22px;height:22px;border:1px solid #b31b1b;color:#b31b1b;font-size:10px;font-weight:bold;text-align:center;line-height:22px;">${i + 1}</span>
+              </td>
+              <td style="padding:8px 0;font-size:13px;color:#555;line-height:1.6;">${rule}</td>
+            </tr>
+          `).join('')}
+        </table>
+        <p style="font-size:12px;color:#999;margin:16px 0 0;padding-top:16px;border-top:1px solid #eee;font-style:italic;">
+          Faleminderit që keni zgjedhur Priestess of the Soul! 🌹
+        </p>
+      </div>
+
+      <!-- Footer -->
+      <p style="font-size:11px;color:#aaa;text-align:center;margin-top:24px;">
         Priestess of the Soul · priestessofthesoul.com
       </p>
     </div>
