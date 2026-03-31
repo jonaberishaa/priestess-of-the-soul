@@ -33,7 +33,7 @@ const EMPTY_FORM: Form = {
 
 export default function CheckoutPage() {
   const router = useRouter();
-  const { items, total, savings, count, clear } = useCart();
+  const { items, total, savings, count, clear, remove } = useCart();
   const [form, setForm] = useState<Form>(EMPTY_FORM);
   const [status, setStatus] = useState<'idle' | 'sending' | 'error'>('idle');
 
@@ -304,8 +304,15 @@ export default function CheckoutPage() {
                       <span className="text-[10px] text-[#201616]/50 font-body">20% OFF (−€{(parseFloat(item.product.price.replace('€','')) * 0.2 * item.quantity).toFixed(2).replace('.00','')})</span>
                     </div>
                   </div>
-                  <div className="text-right">
+                  <div className="flex flex-col items-end gap-1">
                     <p className="text-sm font-bold text-[#201616] font-body">{salePrice(item.product.price)}</p>
+                    <button
+                      onClick={() => remove(item.product.id, item.size)}
+                      className="text-[#201616]/25 hover:text-[#b31b1b] transition-colors text-xs font-body"
+                      title="Hiq nga shporta"
+                    >
+                      ✕ Hiq
+                    </button>
                   </div>
                 </div>
               ))}
