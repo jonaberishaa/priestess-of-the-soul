@@ -44,8 +44,8 @@ export default function OrderConfirmationPage({
     'Pagesa kryhet me para në dorë (COD) drejtpërdrejt te korrieri.',
     'Hape dhe kontrollo pakon para se të largohet korrieri.',
     'Dëmtimet raportohen menjëherë — pas largimit të korrierit nuk pranohen.',
-    'Ndrrimi pranohet vetëm një herë brenda 7 ditëve, me artikull të papërdorur në paketimin origjinal.',
-    'Kostot e postës dhe kthimit paguhen nga klienti.',
+    'Nuk pranohen ndrrrime apo kthime — përveç rastit kur produkti është i dëmtuar nga fabrika.',
+    'Kostot e postës paguhen nga klienti në rast kthimi për defekt fabrike.',
   ];
 
   return (
