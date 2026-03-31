@@ -35,7 +35,14 @@ export default function CheckoutPage() {
   const router = useRouter();
   const { items, total, savings, count, clear, remove } = useCart();
   const [form, setForm] = useState<Form>(EMPTY_FORM);
+  const [phonePrefix, setPhonePrefix] = useState('+383');
   const [status, setStatus] = useState<'idle' | 'sending' | 'error'>('idle');
+
+  const COUNTRY_PREFIXES: Record<string, string> = {
+    Kosovo: '+383',
+    Albania: '+355',
+    'North Macedonia': '+389',
+  };
 
   const set = (k: keyof Form, v: string) =>
     setForm((f) => ({ ...f, [k]: v }));
@@ -61,7 +68,7 @@ export default function CheckoutPage() {
           postalCode: form.postalCode,
           city: form.city,
           country: form.country,
-          phone: form.phone,
+          phone: `${phonePrefix}${form.phone}`,
           items: items.map((i) => ({
             productId: i.product.id,
             productName: i.product.name,
@@ -83,7 +90,7 @@ export default function CheckoutPage() {
         const data = await res.json();
         clear();
         router.push(
-          `/order-confirmation?orderId=${data.orderId}&firstName=${encodeURIComponent(form.firstName)}&email=${encodeURIComponent(form.email)}&address=${encodeURIComponent(form.address)}&city=${encodeURIComponent(form.city)}&country=${encodeURIComponent(form.country)}&postal=${encodeURIComponent(form.postalCode)}&phone=${encodeURIComponent(form.phone)}&total=${encodeURIComponent(total)}&lastName=${encodeURIComponent(form.lastName)}`
+          `/order-confirmation?orderId=${data.orderId}&firstName=${encodeURIComponent(form.firstName)}&email=${encodeURIComponent(form.email)}&address=${encodeURIComponent(form.address)}&city=${encodeURIComponent(form.city)}&country=${encodeURIComponent(form.country)}&postal=${encodeURIComponent(form.postalCode)}&phone=${encodeURIComponent(`${phonePrefix}${form.phone}`)}&total=${encodeURIComponent(total)}&lastName=${encodeURIComponent(form.lastName)}`
         );
       } else {
         setStatus('error');
@@ -149,7 +156,10 @@ export default function CheckoutPage() {
               {/* Country */}
               <select
                 value={form.country}
-                onChange={(e) => set('country', e.target.value)}
+                onChange={(e) => {
+                  set('country', e.target.value);
+                  setPhonePrefix(COUNTRY_PREFIXES[e.target.value] ?? '+383');
+                }}
                 className="w-full border border-gray-300 rounded px-4 py-3 text-sm text-[#201616] focus:outline-none focus:border-[#201616] font-body bg-[#f8f9fa]"
               >
                 <option value="Kosovo">Kosovo</option>
@@ -215,14 +225,25 @@ export default function CheckoutPage() {
               </div>
 
               {/* Phone */}
-              <input
-                type="tel"
-                required
-                placeholder="Telefoni"
-                value={form.phone}
-                onChange={(e) => set('phone', e.target.value)}
-                className="w-full border border-gray-300 rounded px-4 py-3 text-sm text-[#201616] focus:outline-none focus:border-[#201616] font-body bg-[#f8f9fa]"
-              />
+              <div className="flex gap-0">
+                <select
+                  value={phonePrefix}
+                  onChange={(e) => setPhonePrefix(e.target.value)}
+                  className="border border-gray-300 rounded-l px-3 py-3 text-sm text-[#201616] focus:outline-none focus:border-[#201616] font-body bg-[#f8f9fa] border-r-0"
+                >
+                  <option value="+383">🇽🇰 +383</option>
+                  <option value="+355">🇦🇱 +355</option>
+                  <option value="+389">🇲🇰 +389</option>
+                </select>
+                <input
+                  type="tel"
+                  required
+                  placeholder="Numri i telefonit"
+                  value={form.phone}
+                  onChange={(e) => set('phone', e.target.value)}
+                  className="flex-1 border border-gray-300 rounded-r px-4 py-3 text-sm text-[#201616] focus:outline-none focus:border-[#201616] font-body bg-[#f8f9fa]"
+                />
+              </div>
             </div>
           </section>
 
