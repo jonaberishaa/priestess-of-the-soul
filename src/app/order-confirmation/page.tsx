@@ -43,8 +43,8 @@ export default function OrderConfirmationPage({
     'Pakot procesohen brenda 3 ditëve.',
     'Pagesa kryhet me para në dorë (COD) drejtpërdrejt te korrieri.',
     'Hape dhe kontrollo pakon para se të largohet korrieri.',
-    'Dëmtimet raportohen menjëherë — pas largimit të korrierit nuk pranohen.',
-    'Nuk pranohen ndrrrime apo kthime — përveç rastit kur produkti është i dëmtuar nga fabrika.',
+    'Dëmtimet raportohen menjëherë. Pas largimit të korrierit nuk pranohen.',
+    'Nuk pranohen ndrrrime apo kthime, përveç rastit kur produkti është i dëmtuar nga fabrika.',
     'Kostot e postës paguhen nga klienti në rast kthimi për defekt fabrike.',
   ];
 
