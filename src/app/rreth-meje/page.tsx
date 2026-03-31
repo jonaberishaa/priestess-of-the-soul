@@ -40,7 +40,7 @@ export default function AboutPage() {
                 në jetë. Sepse stolia e vërtetë nuk është vetëm ajo që sheh syri, por ajo që ndjek shpirti.
               </p>
               <p>
-                Çdo unazë, çdo gerdane, çdo vathë në koleksionin tonë është krijuar me duart e artizanëve
+                Çdo unazë, çdo qafore, çdo vathë në koleksionin tonë është krijuar me duart e artizanëve
                 të talentuar, me ar 18K të vërtetë dhe gurë natyralë të zgjedhur me dashuri e kujdes.
                 Asnjë copë nuk është si tjetra - sikurse asnjë prej nesh nuk është si tjetri.
               </p>
