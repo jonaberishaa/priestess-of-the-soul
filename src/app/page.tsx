@@ -120,7 +120,7 @@ export default function HomePage() {
           </div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://priestessofthesoul.com/cdn/shop/files/Minimalist_photo_collage_handmade_jewelry_Facebook_cover_3.png?v=1763915563&width=3200"
+            src="https://nnmqu1-tb.myshopify.com/cdn/shop/files/Minimalist_photo_collage_handmade_jewelry_Facebook_cover_3.png?v=1763915563&width=3200"
             alt="Koleksioni i Ri"
             className="w-full object-cover"
           />

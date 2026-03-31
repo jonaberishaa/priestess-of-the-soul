@@ -116,7 +116,7 @@ export const products: Product[] = [
     name: 'Mystic Veil',
     type: 'Unaza',
     price: '€57',
-    image: 'https://priestessofthesoul.com/cdn/shop/files/30.2.jpg?v=1755973624',
+    image: 'https://cdn.shopify.com/s/files/1/0743/3430/6542/files/30.2.jpg?v=1755973624',
     description: 'Labrador kaboshon - "veli ndërmjet dritës dhe errësirës", mbrojtje mistike.',
     meaning: 'qartesi',
   },

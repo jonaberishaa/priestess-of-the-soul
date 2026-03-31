@@ -100,7 +100,7 @@ export default function Header() {
           <div className="flex-1 flex justify-center md:flex-none">
             <Link href="/" className="block">
               <Image
-                src="https://priestessofthesoul.com/cdn/shop/files/ChatGPT_Image_Apr_4_2025_06_14_39_PM.png?v=1743783311&width=600"
+                src="https://nnmqu1-tb.myshopify.com/cdn/shop/files/ChatGPT_Image_Apr_4_2025_06_14_39_PM.png?v=1743783311&width=600"
                 alt="Priestess of the Soul"
                 width={120}
                 height={48}
