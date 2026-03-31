@@ -155,11 +155,6 @@ export default function CheckoutPage() {
                 <option value="Kosovo">Kosovo</option>
                 <option value="Albania">Albania</option>
                 <option value="North Macedonia">North Macedonia</option>
-                <option value="Serbia">Serbia</option>
-                <option value="Germany">Germany</option>
-                <option value="Switzerland">Switzerland</option>
-                <option value="Austria">Austria</option>
-                <option value="Other">Tjetër</option>
               </select>
 
               {/* Name row */}
