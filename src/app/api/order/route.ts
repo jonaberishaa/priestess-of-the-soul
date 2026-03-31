@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import nodemailer from 'nodemailer';
 import { readJSON, writeJSON } from '@/lib/db';
 
 type OrderItem = {
@@ -226,45 +227,27 @@ export async function POST(req: NextRequest) {
   `;
 
   try {
-    const emailPromises = [
-      // Email to store owner
-      fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          from: 'Priestess of the Soul <onboarding@resend.dev>',
-          to: ['jonaberishaa@gmail.com'],
-          subject: `🛍️ Porosi e Re #${orderId} - ${fullName} - ${total}`,
-          html: storeEmailHtml,
-        }),
-      }),
-    ];
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
+    });
 
-    // Send confirmation to customer if email provided
+    // Email to store owner
+    await transporter.sendMail({
+      from: `"Priestess of the Soul" <${process.env.SMTP_USER}>`,
+      to: 'jonaberishaa@gmail.com',
+      subject: `🛍️ Porosi e Re #${orderId} - ${fullName} - ${total}`,
+      html: storeEmailHtml,
+    });
+
+    // Confirmation email to customer if they provided an email
     if (contact && contact.includes('@')) {
-      emailPromises.push(
-        fetch('https://api.resend.com/emails', {
-          method: 'POST',
-          headers: {
-            Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            from: 'Priestess of the Soul <onboarding@resend.dev>',
-            to: [contact],
-            subject: `Konfirmimi i Porosisë #${orderId} - Priestess of the Soul`,
-            html: customerEmailHtml,
-          }),
-        })
-      );
-    }
-
-    const results = await Promise.allSettled(emailPromises);
-    for (const r of results) {
-      if (r.status === 'rejected') console.error('Email error:', r.reason);
+      transporter.sendMail({
+        from: `"Priestess of the Soul" <${process.env.SMTP_USER}>`,
+        to: contact,
+        subject: `Konfirmimi i Porosisë #${orderId} - Priestess of the Soul`,
+        html: customerEmailHtml,
+      }).catch((err) => console.error('Customer email error:', err));
     }
 
     return NextResponse.json({ success: true, orderId });
