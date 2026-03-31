@@ -12,18 +12,15 @@ export default function Hero() {
         aria-hidden="true"
       />
 
-      {/* Dark scrim — ensures white text is readable over any background photo */}
-      <div className="absolute inset-0 bg-[#201616]/55" />
-
       {/* Red gradient overlay */}
-      <div className="absolute inset-0" style={{background: 'radial-gradient(ellipse at center, rgba(179,27,27,0.35) 0%, rgba(179,27,27,0.15) 50%, transparent 80%)'}} />
+      <div className="absolute inset-0" style={{background: 'radial-gradient(ellipse at center, rgba(179,27,27,0.55) 0%, rgba(179,27,27,0.35) 40%, rgba(179,27,27,0.1) 70%, transparent 100%)'}} />
 
       {/* Text overlay */}
       <div className="relative z-10 text-center px-6 max-w-3xl mx-auto">
         <h1 className="font-heading text-5xl md:text-7xl text-[#fffef2] leading-[1.05] mb-6 drop-shadow-lg">
           Finesë në çdo detaj
         </h1>
-        <p className="text-[#fffef2] text-base md:text-lg leading-relaxed mb-10 max-w-xl mx-auto font-body drop-shadow-lg">
+        <p className="text-[#fffef2]/90 text-base md:text-lg leading-relaxed mb-10 max-w-xl mx-auto font-body drop-shadow">
           Bizhuteri të veshura në ar, të punuara me dorë dhe me gurë natyral.
           Finesë, elegancë dhe një shkëlqim i rafinuar që jep ndjesi të vërtet luksi.
         </p>
