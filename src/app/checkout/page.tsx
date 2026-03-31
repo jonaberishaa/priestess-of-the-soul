@@ -172,7 +172,8 @@ export default function CheckoutPage() {
                 <div className="relative">
                   <input
                     type="text"
-                    placeholder="Emri (opsional)"
+                    required
+                    placeholder="Emri"
                     value={form.firstName}
                     onChange={(e) => set('firstName', e.target.value)}
                     className="w-full border border-gray-300 rounded px-4 py-3 text-sm text-[#201616] focus:outline-none focus:border-[#201616] font-body bg-[#f8f9fa]"
@@ -199,7 +200,8 @@ export default function CheckoutPage() {
               />
               <input
                 type="text"
-                placeholder="Apartament, suite, etj. (opsional)"
+                required
+                placeholder="Apartamenti / Kati"
                 value={form.apartment}
                 onChange={(e) => set('apartment', e.target.value)}
                 className="w-full border border-gray-300 rounded px-4 py-3 text-sm text-[#201616] focus:outline-none focus:border-[#201616] font-body bg-[#f8f9fa]"
@@ -209,7 +211,8 @@ export default function CheckoutPage() {
               <div className="grid grid-cols-2 gap-3">
                 <input
                   type="text"
-                  placeholder="Kodi Postar (opsional)"
+                  required
+                  placeholder="Kodi Postar"
                   value={form.postalCode}
                   onChange={(e) => set('postalCode', e.target.value)}
                   className="w-full border border-gray-300 rounded px-4 py-3 text-sm text-[#201616] focus:outline-none focus:border-[#201616] font-body bg-[#f8f9fa]"
