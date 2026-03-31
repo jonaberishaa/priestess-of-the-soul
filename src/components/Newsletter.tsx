@@ -5,11 +5,28 @@ import { useState } from 'react';
 export default function Newsletter() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: connect to newsletter service
-    setSubmitted(true);
+    setLoading(true);
+    setError('');
+
+    try {
+      const res = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
+      if (!res.ok) throw new Error('failed');
+      setSubmitted(true);
+    } catch {
+      setError('Diçka shkoi keq. Provo përsëri.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -32,11 +49,12 @@ export default function Newsletter() {
               placeholder="Email-i yt"
               className="flex-1 bg-transparent border border-cream/30 text-cream placeholder:text-cream/40 px-5 py-3 text-sm focus:outline-none focus:border-gold"
             />
-            <button type="submit" className="btn-primary whitespace-nowrap">
-              Abonohu
+            <button type="submit" disabled={loading} className="btn-primary whitespace-nowrap disabled:opacity-60">
+              {loading ? 'Duke dërguar...' : 'Abonohu'}
             </button>
           </form>
         )}
+        {error && <p className="text-red-400 text-sm mt-3">{error}</p>}
       </div>
     </section>
   );
