@@ -44,7 +44,21 @@ function ProductCard({ product, inStock }: { product: (typeof products)[0]; inSt
         )}
       </div>
       <p className="text-xs uppercase tracking-widest text-stone mb-1">{product.type}</p>
-      <h3 className="font-heading text-lg text-brown mb-1 group-hover:text-burgundy transition-colors">{product.name}</h3>
+      <h3 className="font-heading text-lg text-brown mb-1 group-hover:text-burgundy transition-colors leading-tight">{product.name}</h3>
+      {(product.stone || product.meaning) && (
+        <div className="flex flex-wrap gap-1 mb-1.5">
+          {product.stone && (
+            <span className="text-[9px] tracking-wider uppercase bg-[#f5f0e8] text-[#97845B] px-2 py-0.5 font-body">
+              {stoneLabels[product.stone]}
+            </span>
+          )}
+          {product.meaning && (
+            <span className="text-[9px] tracking-wider uppercase bg-[#f0f0ee] text-[#8C8070] px-2 py-0.5 font-body">
+              {meaningLabels[product.meaning]}
+            </span>
+          )}
+        </div>
+      )}
       {inStock ? (
         <div className="flex items-center gap-2">
           <p className="text-sm font-bold text-[#b31b1b] font-body">{salePrice(product.price)}</p>

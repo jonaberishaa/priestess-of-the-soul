@@ -307,7 +307,7 @@ export default function CheckoutPage() {
                   <div className="flex flex-col items-end gap-1">
                     <p className="text-sm font-bold text-[#201616] font-body">{salePrice(item.product.price)}</p>
                     <button
-                      onClick={() => remove(item.product.id)}
+                      onClick={() => remove(item.product.id, item.size)}
                       className="text-[#201616]/25 hover:text-[#b31b1b] transition-colors text-xs font-body"
                       title="Hiq nga shporta"
                     >

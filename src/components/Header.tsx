@@ -6,6 +6,7 @@ import Image from 'next/image';
 import SearchModal from '@/components/SearchModal';
 import { useWishlist } from '@/components/WishlistContext';
 import { useCart } from '@/components/CartContext';
+import CartDrawer from '@/components/CartDrawer';
 
 const leftNav = [
   {
@@ -60,10 +61,11 @@ export default function Header() {
   const [shopOpen, setShopOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const { items: wishlistItems } = useWishlist();
-  const { count: cartCount } = useCart();
+  const { count: cartCount, openDrawer } = useCart();
 
   return (
     <>
+      <CartDrawer />
       <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} />
       <header className="sticky top-0 z-50 bg-[#fffffc] border-b border-[#201616]/10">
         <div className="max-w-[1600px] mx-auto px-8 h-[60px] flex items-center justify-between">
@@ -129,7 +131,7 @@ export default function Header() {
                   </span>
                 )}
               </Link>
-              <Link href="/checkout" aria-label="Shporta" className="relative text-[#201616] hover:text-[#b31b1b] transition-colors">
+              <button onClick={openDrawer} aria-label="Shporta" className="relative text-[#201616] hover:text-[#b31b1b] transition-colors">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                 </svg>
@@ -138,7 +140,7 @@ export default function Header() {
                     {cartCount}
                   </span>
                 )}
-              </Link>
+              </button>
             </div>
           </nav>
 
@@ -159,7 +161,7 @@ export default function Header() {
                 </span>
               )}
             </Link>
-            <Link href="/checkout" className="relative text-[#201616]">
+            <button onClick={openDrawer} className="relative text-[#201616]">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
               </svg>
@@ -168,7 +170,7 @@ export default function Header() {
                   {cartCount}
                 </span>
               )}
-            </Link>
+            </button>
             <button onClick={() => setMobileOpen(!mobileOpen)} aria-label="Menu" className="text-[#201616]">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {mobileOpen

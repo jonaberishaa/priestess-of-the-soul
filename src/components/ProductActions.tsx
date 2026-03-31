@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { salePrice } from '@/data/products';
 import { useWishlist } from '@/components/WishlistContext';
 import { useCart } from '@/components/CartContext';
@@ -294,8 +293,7 @@ function RingSizerModal({ onClose }: { onClose: () => void }) {
 export default function ProductActions({ product }: { product: Product }) {
   const isRing = product.type === 'Unaza';
   const { toggle, has } = useWishlist();
-  const { add } = useCart();
-  const router = useRouter();
+  const { add, openDrawer } = useCart();
   const wishlisted = has(product.id);
 
   // Madhësitë e disponueshme vetëm për këtë produkt
@@ -313,10 +311,7 @@ export default function ProductActions({ product }: { product: Product }) {
     }
     add(product, selectedSize || undefined, selectedMessage || undefined);
     setAddedToCart(true);
-  };
-
-  const handleGoToCheckout = () => {
-    router.push('/checkout');
+    openDrawer();
   };
 
   const waText = encodeURIComponent(
@@ -392,15 +387,6 @@ export default function ProductActions({ product }: { product: Product }) {
         >
           {addedToCart ? '✓ U Shtua në Shportë!' : 'Shto në Shportë'}
         </button>
-
-        {addedToCart && (
-          <button
-            onClick={handleGoToCheckout}
-            className="text-center w-full border border-[#201616] text-[#201616] px-6 py-3 text-xs tracking-[0.25em] uppercase hover:bg-[#201616] hover:text-[#fffef2] transition-colors"
-          >
-            Shko te Checkout →
-          </button>
-        )}
 
         <div className="grid grid-cols-2 gap-3">
           <button onClick={() => toggle(product.id)}
