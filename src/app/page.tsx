@@ -1,4 +1,51 @@
+import type { Metadata } from 'next';
 import AnnouncementBar from '@/components/AnnouncementBar';
+
+export const metadata: Metadata = {
+  title: 'Bizhuteri Luksi me Ar 18K | Unaza, Vathë, Qafore - Kosovë',
+  description:
+    'Dyqani nr.1 i bizhuterive luksi në Kosovë. Unaza, vathë, qafore dhe byzylykë me ar 18K dhe gurë natyralë. Porosi online me dërgim falas. Çdo copë e punuar me dorë.',
+  alternates: { canonical: 'https://www.priestessofthesoul.com' },
+  openGraph: {
+    title: 'Priestess of the Soul | Bizhuteri Luksi Kosovë',
+    description: 'Unaza, vathë, qafore me ar 18K dhe gurë natyralë. Dërgim në Kosovë, Shqipëri dhe Maqedoni.',
+    url: 'https://www.priestessofthesoul.com',
+  },
+};
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'JewelryStore',
+  name: 'Priestess of the Soul',
+  url: 'https://www.priestessofthesoul.com',
+  logo: 'https://www.priestessofthesoul.com/logo.png',
+  description: 'Bizhuteri luksi me ar 18K dhe gurë natyralë të çmuar. Unaza, vathë, qafore dhe byzylykë të punuar me dorë.',
+  image: 'https://www.priestessofthesoul.com/og-image.jpg',
+  priceRange: '€€',
+  currenciesAccepted: 'EUR',
+  paymentAccepted: 'Cash on Delivery',
+  areaServed: ['Kosovo', 'Albania', 'North Macedonia'],
+  address: {
+    '@type': 'PostalAddress',
+    addressCountry: 'XK',
+    addressRegion: 'Prishtinë',
+  },
+  sameAs: [
+    'https://www.instagram.com/priestessofthesoul',
+    'https://www.tiktok.com/@priestessofthesoul',
+  ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Koleksioni i Bizhuterive',
+    itemListElement: [
+      { '@type': 'OfferCatalog', name: 'Unaza me Ar 18K' },
+      { '@type': 'OfferCatalog', name: 'Vathë me Ar 18K' },
+      { '@type': 'OfferCatalog', name: 'Qafore me Ar 18K' },
+      { '@type': 'OfferCatalog', name: 'Byzylykë me Ar 18K' },
+    ],
+  },
+};
+
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import Newsletter from '@/components/Newsletter';
@@ -38,6 +85,10 @@ export default function HomePage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <AnnouncementBar />
       <Header />
       <main>
@@ -69,7 +120,7 @@ export default function HomePage() {
           </div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://priestessofthesoul.com/cdn/shop/files/Minimalist_photo_collage_handmade_jewelry_Facebook_cover_3.png?v=1763915563&width=3200"
+            src="https://nnmqu1-tb.myshopify.com/cdn/shop/files/Minimalist_photo_collage_handmade_jewelry_Facebook_cover_3.png?v=1763915563&width=3200"
             alt="Koleksioni i Ri"
             className="w-full object-cover"
           />

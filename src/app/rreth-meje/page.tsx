@@ -1,4 +1,12 @@
+import type { Metadata } from 'next';
 import Header from '@/components/Header';
+
+export const metadata: Metadata = {
+  title: 'Rreth Nesh | Historia e Priestess of the Soul',
+  description:
+    'Priestess of the Soul - brand shqiptar i bizhuterive luksi. Çdo stoli e krijuar me dashuri, ar 18K të vërtetë dhe gurë natyralë të zgjedhur me kujdes.',
+  alternates: { canonical: 'https://www.priestessofthesoul.com/rreth-meje' },
+};
 import Footer from '@/components/Footer';
 import Newsletter from '@/components/Newsletter';
 import Image from 'next/image';
@@ -40,7 +48,7 @@ export default function AboutPage() {
                 në jetë. Sepse stolia e vërtetë nuk është vetëm ajo që sheh syri, por ajo që ndjek shpirti.
               </p>
               <p>
-                Çdo unazë, çdo gerdane, çdo vathë në koleksionin tonë është krijuar me duart e artizanëve
+                Çdo unazë, çdo qafore, çdo vathë në koleksionin tonë është krijuar me duart e artizanëve
                 të talentuar, me ar 18K të vërtetë dhe gurë natyralë të zgjedhur me dashuri e kujdes.
                 Asnjë copë nuk është si tjetra - sikurse asnjë prej nesh nuk është si tjetri.
               </p>

@@ -6,7 +6,7 @@ export default function Hero() {
       {/* Background image */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="https://priestessofthesoul.com/cdn/shop/files/dedeca12-ab54-4f96-a3fa-1b7445719733.png?v=1764243814&width=3840"
+        src="https://nnmqu1-tb.myshopify.com/cdn/shop/files/dedeca12-ab54-4f96-a3fa-1b7445719733.png?v=1764243814&width=3840"
         alt=""
         className="absolute inset-0 w-full h-full object-cover object-center"
         aria-hidden="true"

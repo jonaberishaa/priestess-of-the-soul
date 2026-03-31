@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ProductActions from '@/components/ProductActions';
@@ -18,6 +19,24 @@ import Link from 'next/link';
 
 const stoneSlugs = Object.keys(stoneLabels) as StoneSlug[];
 const meaningSlugs = Object.keys(meaningLabels) as MeaningSlug[];
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const product = products.find((p) => p.id === params.slug);
+  if (!product) return {};
+  const sale = salePrice(product.price);
+  return {
+    title: `${product.name} | Bizhuteri me Ar 18K`,
+    description: `${product.name} - ${product.description?.slice(0, 140) ?? `${product.type} me ar 18K dhe gurë natyralë. Porosi online me dërgim në Kosovë, Shqipëri dhe Maqedoni.`}`,
+    keywords: [product.name, product.type, 'bizhuteri Kosovë', 'ar 18K', 'gurë natyralë'],
+    alternates: { canonical: `https://www.priestessofthesoul.com/dyqan/${product.id}` },
+    openGraph: {
+      title: `${product.name} - ${sale}`,
+      description: `${product.type} me ar 18K. Porosi online - dërgim në Kosovë.`,
+      url: `https://www.priestessofthesoul.com/dyqan/${product.id}`,
+      images: [{ url: product.image, alt: product.name }],
+    },
+  };
+}
 
 export function generateStaticParams() {
   const productParams = products.map((p) => ({ slug: p.id }));
