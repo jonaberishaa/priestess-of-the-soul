@@ -31,31 +31,42 @@ export default function AboutPage() {
           {/* Text */}
           <div className="py-4">
             <p className="text-xs tracking-[0.3em] uppercase text-[#b31b1b] mb-3">Themeluese</p>
-            <h2 className="font-heading text-4xl text-brown mb-6">Priestess of the Soul</h2>
-            <div className="flex flex-col gap-5 text-stone leading-relaxed">
+            <h2 className="font-heading text-4xl text-brown mb-2">Jona Berisha</h2>
+            <p className="font-script text-2xl text-gold mb-8">Priestess of the Soul</p>
+
+            <div className="flex flex-col gap-6 text-stone leading-[1.9]">
               <p>
-                Jam themeluese e Priestess of the Soul - një brand i krijuar nga dashuria për bukurinë
-                e vërtetë, gurët natyralë dhe energjinë që mbajmë pranë.
+                Priestess of the Soul lindi nga një ndjesi e thellë - se stolia e vërtetë nuk është
+                vetëm ajo që sheh syri, por ajo që ndjek shpirti.
               </p>
               <p>
-                Çdo bizhuteri në koleksionin tonë krijohet me dorë nga artizanë të talentuar, me ar 18K
-                të vërtetë dhe gurë të çmuar natyralë të zgjedhur me kujdes nga burime etike.
+                Çdo unazë, çdo gerdane, çdo vathë në koleksionin tonë është krijuar me duart e artizanëve
+                të talentuar, me ar 18K të vërtetë dhe gurë natyralë të zgjedhur me dashuri e kujdes.
+                Asnjë copë nuk është si tjetra - sepse as ti nuk je si askush tjetër.
               </p>
               <p>
-                Besoj se bizhuteritë janë më shumë se stoli. Janë mbresa, faza jete, dashuri. Janë mënyra
-                si mbajmë pranë gjërat që na bëjnë të ndihemi ne vetë.
+                Besoj se gratë e fuqishme meritojnë stoli që flasin për to kur ato heshtin.
+                Gurët natyralë mbajnë histori, energji, qetësi - dhe kur i vendos pranë zemrës,
+                të kujtojnë kush je me të vërtetë.
               </p>
-              <p>
-                Priestess of the Soul lindi nga besimi se secili gur natyral mbart energji unike - dhe kur
-                kombinohet me artin e duarve të artizanëve tanë, krijohet diçka vërtet e veçantë.
+              <p className="italic text-[#201616]/50">
+                "Ky brand është dashuria ime e bërë objekt - dhe shpresoj ta ndješ atë sa herë
+                që e vesh."
               </p>
             </div>
 
-            <div className="mt-10 grid grid-cols-3 gap-6 text-center">
+            {/* Divider */}
+            <div className="flex items-center gap-4 my-8">
+              <div className="flex-1 h-px bg-stone-light/30" />
+              <span className="text-gold text-xs tracking-[0.4em] uppercase">Filozofia</span>
+              <div className="flex-1 h-px bg-stone-light/30" />
+            </div>
+
+            <div className="grid grid-cols-3 gap-6 text-center">
               {[
-                { value: '100%', label: 'Ar i Vërtetë 18K' },
-                { value: 'Artizanal', label: 'Çdo copë me dorë' },
-                { value: 'Natyral', label: 'Gurë të çmuar' },
+                { value: '18K', label: 'Ar i Vërtetë' },
+                { value: '✦', label: 'Çdo copë me dorë' },
+                { value: '100%', label: 'Gurë Natyralë' },
               ].map((stat) => (
                 <div key={stat.label} className="border border-stone-light/30 p-4">
                   <p className="font-heading text-2xl text-burgundy mb-1">{stat.value}</p>

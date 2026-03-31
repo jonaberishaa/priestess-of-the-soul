@@ -40,7 +40,13 @@ const STATUS_LABELS: Record<string, string> = {
   cancelled: 'Anuluar',
 };
 
+const ADMIN_USER = 'adminjona';
+const ADMIN_PASS = '1231038392';
+
 export default function AdminPage() {
+  const [authed, setAuthed] = useState(false);
+  const [loginForm, setLoginForm] = useState({ username: '', password: '' });
+  const [loginError, setLoginError] = useState(false);
   const [tab, setTab] = useState<'orders' | 'inventory'>('orders');
   const [orders, setOrders] = useState<Order[]>([]);
   const [inventory, setInventory] = useState<Record<string, number>>({});
@@ -76,6 +82,57 @@ export default function AdminPage() {
     });
     setInventory((prev) => ({ ...prev, [productId]: stock }));
   };
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (loginForm.username === ADMIN_USER && loginForm.password === ADMIN_PASS) {
+      setAuthed(true);
+      setLoginError(false);
+    } else {
+      setLoginError(true);
+    }
+  };
+
+  if (!authed) {
+    return (
+      <div className="min-h-screen bg-[#201616] flex items-center justify-center px-4">
+        <div className="bg-[#fffef2] p-10 w-full max-w-sm">
+          <h1 className="font-heading text-2xl text-[#201616] mb-1 text-center">Admin Panel</h1>
+          <p className="text-xs text-[#201616]/40 font-body text-center mb-8 tracking-widest uppercase">Priestess of the Soul</p>
+          <form onSubmit={handleLogin} className="flex flex-col gap-5">
+            <div>
+              <label className="block text-[10px] tracking-widest uppercase text-[#201616]/50 mb-2 font-body">Përdoruesi</label>
+              <input
+                type="text"
+                required
+                autoComplete="username"
+                value={loginForm.username}
+                onChange={(e) => setLoginForm({ ...loginForm, username: e.target.value })}
+                className="w-full border border-[#201616]/20 bg-transparent px-4 py-3 text-[#201616] text-sm focus:outline-none focus:border-[#201616] font-body"
+              />
+            </div>
+            <div>
+              <label className="block text-[10px] tracking-widest uppercase text-[#201616]/50 mb-2 font-body">Fjalëkalimi</label>
+              <input
+                type="password"
+                required
+                autoComplete="current-password"
+                value={loginForm.password}
+                onChange={(e) => setLoginForm({ ...loginForm, password: e.target.value })}
+                className="w-full border border-[#201616]/20 bg-transparent px-4 py-3 text-[#201616] text-sm focus:outline-none focus:border-[#201616] font-body"
+              />
+            </div>
+            {loginError && (
+              <p className="text-[#b31b1b] text-xs font-body text-center">Të dhëna të gabuara. Provo përsëri.</p>
+            )}
+            <button type="submit" className="bg-[#201616] text-[#fffef2] px-6 py-3 text-xs tracking-[0.25em] uppercase font-body hover:bg-[#b31b1b] transition-colors">
+              Hyr
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  }
 
   if (loading) {
     return (
