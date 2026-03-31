@@ -28,7 +28,7 @@ export default function Hero() {
           href="/dyqan"
           className="inline-block bg-[#fffef2] text-[#201616] px-10 py-4 text-xs tracking-[0.25em] uppercase hover:bg-[#b31b1b] hover:text-[#fffef2] transition-colors duration-300"
         >
-          Zbulo koleksionin
+          Shiko koleksionin
         </Link>
       </div>
     </section>

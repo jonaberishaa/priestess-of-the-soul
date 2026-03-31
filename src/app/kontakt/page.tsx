@@ -34,8 +34,8 @@ export default function ContactPage() {
           <p className="text-xs tracking-[0.3em] uppercase text-gold mb-3">Jemi Këtu Për Ty</p>
           <h1 className="font-heading text-5xl text-brown">Na Kontakto</h1>
           <p className="text-stone text-sm mt-4 max-w-md mx-auto leading-relaxed">
-            Çdo pyetje, çdo dëshirë, çdo dyshim - ne i dëgjojmë me kujdes.
-            Shkruaje lirshëm dhe do të të kthehemi sa më shpejt.
+            Çdo pyetje, çdo dëshirë, çdo dyshim - e dëgjojmë me kujdes.
+            Shkruaje lirshëm dhe do të përgjigjemi sa më shpejt.
           </p>
         </div>
 
@@ -128,7 +128,7 @@ export default function ContactPage() {
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-6">
                 {([
-                  { key: 'name', label: 'Emri Juaj', type: 'text', placeholder: 'p.sh. Jona' },
+                  { key: 'name', label: 'Emri Juaj', type: 'text', placeholder: 'p.sh. Helena' },
                   { key: 'email', label: 'Adresa Email', type: 'email', placeholder: 'p.sh. email@gmail.com' },
                 ] as const).map(({ key, label, type, placeholder }) => (
                   <div key={key}>

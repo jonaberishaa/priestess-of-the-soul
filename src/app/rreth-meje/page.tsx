@@ -36,22 +36,21 @@ export default function AboutPage() {
 
             <div className="flex flex-col gap-6 text-stone leading-[1.9]">
               <p>
-                Priestess of the Soul lindi nga një ndjesi e thellë - se stolia e vërtetë nuk është
-                vetëm ajo që sheh syri, por ajo që ndjek shpirti.
+                Priestess of the Soul lindi nga një ndjesi e thellë - nga dashuria për gjërat e bukura
+                në jetë. Sepse stolia e vërtetë nuk është vetëm ajo që sheh syri, por ajo që ndjek shpirti.
               </p>
               <p>
                 Çdo unazë, çdo gerdane, çdo vathë në koleksionin tonë është krijuar me duart e artizanëve
                 të talentuar, me ar 18K të vërtetë dhe gurë natyralë të zgjedhur me dashuri e kujdes.
-                Asnjë copë nuk është si tjetra - sepse as ti nuk je si askush tjetër.
+                Asnjë copë nuk është si tjetra - sikurse asnjë prej nesh nuk është si tjetri.
               </p>
               <p>
                 Besoj se gratë e fuqishme meritojnë stoli që flasin për to kur ato heshtin.
-                Gurët natyralë mbajnë histori, energji, qetësi - dhe kur i vendos pranë zemrës,
-                të kujtojnë kush je me të vërtetë.
+                Gurët natyralë mbajnë histori dhe energji - secili me kuptim të thellë e të veçantë.
+                Kur i mban pranë zemrës, të kujtojnë kush je me të vërtetë.
               </p>
               <p className="italic text-[#201616]/50">
-                "Ky brand është dashuria ime e bërë objekt - dhe shpresoj ta ndješ atë sa herë
-                që e vesh."
+                "Ky brand është dashuri kthyer në krijim - dhe shpresoj ta ndješ atë sa herë që e vesh."
               </p>
             </div>
 
