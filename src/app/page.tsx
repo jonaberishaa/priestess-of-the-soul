@@ -113,6 +113,37 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* Customer reviews */}
+        <section className="py-16 px-6 bg-[#fffffc]">
+          <div className="max-w-[1600px] mx-auto">
+            <div className="text-center mb-12">
+              <p className="text-[10px] tracking-[0.3em] uppercase text-[#201616]/50 mb-2">Çfarë Thonë Klientet</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {[
+                { name: 'Albana K.', location: 'Prishtinë', rating: 5, text: 'Unaza arriti brenda 2 ditëve dhe ishte edhe më e bukur se në foto. Paketimi ishte si dhuratë luksi. E rekomandoj shumë!' },
+                { name: 'Fjolla B.', location: 'Shkup', rating: 5, text: 'Shërbimi i klientit ishte i shkëlqyer. Unaza ishte e dorës së parë, elegante dhe e punuar me shumë kujdes. Faleminderit!' },
+                { name: 'Valentina R.', location: 'Prizren', rating: 5, text: 'Koleksioni "Celestial Empress" është thjesht magjik. Do të kthehem patjetër për më shumë bizhuteri. Cilësi 10/10!' },
+              ].map((review) => (
+                <div key={review.name} className="bg-[#f6f5e9] p-6 flex flex-col gap-3">
+                  <div className="flex gap-0.5">
+                    {Array.from({ length: review.rating }).map((_, i) => (
+                      <svg key={i} className="w-4 h-4 text-[#b31b1b]" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <p className="text-sm text-[#201616]/80 leading-relaxed font-body italic">&ldquo;{review.text}&rdquo;</p>
+                  <div className="mt-auto pt-3 border-t border-[#201616]/10">
+                    <p className="text-xs font-bold text-[#201616] tracking-wide">{review.name}</p>
+                    <p className="text-[10px] text-[#201616]/50 uppercase tracking-widest">{review.location}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* New arrivals */}
         <section className="py-16 px-6 bg-[#f6f5e9]">
           <div className="max-w-[1600px] mx-auto">
