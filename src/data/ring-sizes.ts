@@ -1,4 +1,4 @@
-// Madhësitë e disponueshme për çdo unazë — nga spreadsheet-i i produkteve
+// Madhësitë e disponueshme për çdo unazë - nga spreadsheet-i i produkteve
 // Çdo produkt ka vetëm madhësitë që janë fizikisht në stok
 
 export const PRODUCT_SIZES: Record<string, string[]> = {

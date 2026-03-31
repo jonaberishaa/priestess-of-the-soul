@@ -68,7 +68,7 @@ export default function Header() {
       <CartDrawer />
       <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} />
       <header className="sticky top-0 z-50 bg-[#fffffc] border-b border-[#201616]/10">
-        <div className="max-w-[1600px] mx-auto px-8 h-[60px] flex items-center justify-between">
+        <div className="max-w-[1600px] mx-auto px-8 h-[76px] flex items-center justify-between">
 
           {/* Left nav - desktop */}
           <nav className="hidden md:flex items-center gap-7 flex-1">
@@ -104,7 +104,7 @@ export default function Header() {
                 alt="Priestess of the Soul"
                 width={120}
                 height={48}
-                className="object-contain h-10 w-auto"
+                className="object-contain h-16 w-auto"
                 priority
               />
             </Link>

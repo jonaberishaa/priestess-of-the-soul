@@ -263,7 +263,7 @@ export default function DyqanSlugPage({ params }: { params: { slug: string } }) 
             ) : (
               <div className="mb-10">
                 <a
-                  href={`https://wa.me/38349646439?text=${encodeURIComponent(`Përshëndetje! Jam e interesuar për: ${product.name} — A është disponueshëm?`)}`}
+                  href={`https://wa.me/38349646439?text=${encodeURIComponent(`Përshëndetje! Jam e interesuar për: ${product.name} - A është disponueshëm?`)}`}
                   target="_blank"
                   rel="noreferrer"
                   className="flex items-center justify-center gap-2 border border-[#25d366] text-[#25d366] px-6 py-3 text-xs tracking-[0.25em] uppercase hover:bg-[#25d366] hover:text-white transition-colors w-full"
