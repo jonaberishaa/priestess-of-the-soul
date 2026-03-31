@@ -271,12 +271,16 @@ export async function POST(req: NextRequest) {
 
     // Confirmation email to customer if they provided an email
     if (contact && contact.includes('@')) {
-      transporter.sendMail({
-        from: `"Priestess of the Soul" <${process.env.SMTP_USER}>`,
-        to: contact,
-        subject: `Konfirmimi i Porosisë #${orderId} - Priestess of the Soul`,
-        html: customerEmailHtml,
-      }).catch((err) => console.error('Customer email error:', err));
+      try {
+        await transporter.sendMail({
+          from: `"Priestess of the Soul" <${process.env.SMTP_USER}>`,
+          to: contact,
+          subject: `Konfirmimi i Porosisë #${orderId} - Priestess of the Soul`,
+          html: customerEmailHtml,
+        });
+      } catch (customerErr) {
+        console.error('Customer email failed:', customerErr);
+      }
     }
 
     return NextResponse.json({ success: true, orderId });
