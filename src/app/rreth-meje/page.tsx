@@ -1,4 +1,12 @@
+import type { Metadata } from 'next';
 import Header from '@/components/Header';
+
+export const metadata: Metadata = {
+  title: 'Rreth Nesh | Historia e Priestess of the Soul',
+  description:
+    'Priestess of the Soul - brand shqiptar i bizhuterive luksi. Çdo stoli e krijuar me dashuri, ar 18K të vërtetë dhe gurë natyralë të zgjedhur me kujdes.',
+  alternates: { canonical: 'https://www.priestessofthesoul.com/rreth-meje' },
+};
 import Footer from '@/components/Footer';
 import Newsletter from '@/components/Newsletter';
 import Image from 'next/image';

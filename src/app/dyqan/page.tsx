@@ -1,4 +1,18 @@
+import type { Metadata } from 'next';
 import Header from '@/components/Header';
+
+export const metadata: Metadata = {
+  title: 'Dyqani | Bizhuteri me Ar 18K dhe Gurë Natyralë',
+  description:
+    'Shfleto koleksionin tonë të plotë - unaza, vathë, qafore dhe byzylykë me ar 18K dhe gurë natyralë. Bizhuteri luksi me çmime të arsyeshme. Dërgim në Kosovë, Shqipëri, Maqedoni.',
+  keywords: ['dyqan bizhuteri Kosovë', 'unaza online', 'vathë ar', 'qafore gurë natyralë', 'byzylyk ar 18K'],
+  alternates: { canonical: 'https://www.priestessofthesoul.com/dyqan' },
+  openGraph: {
+    title: 'Dyqani | Priestess of the Soul',
+    description: 'Koleksioni i plotë i bizhuterive luksi me ar 18K dhe gurë natyralë.',
+    url: 'https://www.priestessofthesoul.com/dyqan',
+  },
+};
 import Footer from '@/components/Footer';
 import ShopGrid from '@/components/ShopGrid';
 import { products, getByType } from '@/data/products';
