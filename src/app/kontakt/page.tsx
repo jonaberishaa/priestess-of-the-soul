@@ -128,7 +128,7 @@ export default function ContactPage() {
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-6">
                 {([
-                  { key: 'name', label: 'Emri Juaj', type: 'text', placeholder: 'p.sh. Jona' },
+                  { key: 'name', label: 'Emri Juaj', type: 'text', placeholder: 'p.sh. Elena' },
                   { key: 'email', label: 'Adresa Email', type: 'email', placeholder: 'p.sh. email@gmail.com' },
                 ] as const).map(({ key, label, type, placeholder }) => (
                   <div key={key}>
