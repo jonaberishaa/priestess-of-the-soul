@@ -52,6 +52,7 @@ const leftNav = [
 ];
 
 const rightNav = [
+  { href: '/blog', label: 'Blog' },
   { href: '/rreth-meje', label: 'Rreth Meje' },
   { href: '/kontakt', label: 'Kontakt' },
 ];

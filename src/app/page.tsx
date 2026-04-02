@@ -123,7 +123,7 @@ export default function HomePage() {
               {[
                 { name: 'Albana K.', location: 'Prishtinë', rating: 5, text: 'Unaza arriti brenda 2 ditëve dhe ishte edhe më e bukur se në foto. Paketimi ishte si dhuratë luksi. E rekomandoj shumë!' },
                 { name: 'Fjolla B.', location: 'Shkup', rating: 5, text: 'Shërbimi i klientit ishte i shkëlqyer. Unaza ishte e dorës së parë, elegante dhe e punuar me shumë kujdes. Faleminderit!' },
-                { name: 'Valentina R.', location: 'Prizren', rating: 5, text: 'Koleksioni "Celestial Empress" është thjesht magjik. Do të kthehem patjetër për më shumë bizhuteri. Cilësi 10/10!' },
+                { name: 'Valentina R.', location: 'Prizren', rating: 5, text: 'Koleksioni "Rose & Stardust" është thjesht magjik. Do të kthehem patjetër për më shumë bizhuteri. Cilësi 10/10!' },
               ].map((review) => (
                 <div key={review.name} className="bg-[#f6f5e9] p-6 flex flex-col gap-3">
                   <div className="flex gap-0.5">
