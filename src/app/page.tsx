@@ -189,8 +189,8 @@ export default function HomePage() {
             </h2>
             <p className="text-[#201616]/60 leading-relaxed font-body text-sm mb-10">
               Çdo copë është krijuar si një amuletë shpirtërore - për ata që kërkojnë
-              të rilidhur me fuqinë e tyre të brendshme. Gurët natyralë mbajnë energji
-              andaj duhet t'i mbajmë për qëllime të ndryshme.
+              të rilidhur me fuqinë e tyre të brendshme. Gurët natyralë mbajnë energji,
+              prandaj i zgjedhim me qëllim - për qetësi, forcë, dashuri, apo mbrojtje.
             </p>
             <Link href="/dyqan" className="inline-block border border-[#201616] text-[#201616] px-10 py-3 text-xs tracking-[0.25em] uppercase hover:bg-[#201616] hover:text-[#fffef2] transition-colors">
               Shiko Koleksionin
