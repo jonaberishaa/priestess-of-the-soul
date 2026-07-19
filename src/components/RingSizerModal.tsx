@@ -43,6 +43,11 @@ function SizeChartTable() {
   );
 }
 
+// Holding a physical card up to the screen instead of flush against the glass
+// causes parallax, which makes people calibrate the card box a bit too small -
+// this nudges the resulting circle back up to compensate.
+const PARALLAX_CORRECTION = 1.1;
+
 function ScreenSizerTab() {
   const [calibrated, setCalibrated] = useState(false);
   const [cardWidthPx, setCardWidthPx] = useState(320);
@@ -50,7 +55,7 @@ function ScreenSizerTab() {
 
   const pxPerMm = cardWidthPx / CARD_WIDTH_MM;
   const activeSize = SIZE_CHART[sizeIndex];
-  const circlePx = parseFloat(activeSize.diameter) * pxPerMm;
+  const circlePx = parseFloat(activeSize.diameter) * pxPerMm * PARALLAX_CORRECTION;
 
   if (!calibrated) {
     return (
@@ -61,7 +66,7 @@ function ScreenSizerTab() {
 
         <div className="flex flex-col items-center gap-4 border border-[#201616]/10 p-6">
           <p className="text-xs text-[#201616]/60 font-body text-center">
-            Vendos kartën tënde mbi kutinë më poshtë dhe rregullo rrëshqitësin derisa buzët e kutisë të përputhen saktësisht me buzët e kartës.
+            Shtype kartën tënde <strong>drejt e mbi xhamin e ekranit</strong> (jo në ajër) dhe rregullo rrëshqitësin derisa buzët e kutisë të përputhen saktësisht me buzët e kartës.
           </p>
           <div
             className="border-2 border-dashed border-[#b31b1b] !rounded-lg flex-shrink-0"
