@@ -14,8 +14,8 @@ function getTimeLeft(deadline: Date) {
   return { days, hours, mins, secs };
 }
 
-function CountdownTimer() {
-  const [timeLeft, setTimeLeft] = useState<ReturnType<typeof getTimeLeft>>(null);
+export default function AnnouncementBar() {
+  const [timeLeft, setTimeLeft] = useState<ReturnType<typeof getTimeLeft> | undefined>(undefined);
 
   useEffect(() => {
     setTimeLeft(getTimeLeft(DEADLINE));
@@ -23,16 +23,8 @@ function CountdownTimer() {
     return () => clearInterval(id);
   }, []);
 
-  if (!timeLeft) return <span>25 Gusht</span>;
+  if (timeLeft === null) return null;
 
-  return (
-    <span className="font-mono">
-      {timeLeft.days}d {String(timeLeft.hours).padStart(2, '0')}h {String(timeLeft.mins).padStart(2, '0')}m {String(timeLeft.secs).padStart(2, '0')}s
-    </span>
-  );
-}
-
-export default function AnnouncementBar() {
   return (
     <div className="bg-[#b31b1b] text-[#fffef2] text-center py-2.5 px-4 text-xs tracking-widest uppercase flex items-center justify-center gap-3 flex-wrap">
       <span className="inline-block bg-[#fffef2] text-[#b31b1b] font-bold px-2 py-0.5 text-xs tracking-widest rounded-sm">
@@ -40,7 +32,14 @@ export default function AnnouncementBar() {
       </span>
       <span>Koleksioni tani me 20% zbritje · Dërgesa Falas</span>
       <span className="text-[#fffef2]/90 normal-case tracking-normal">
-        · Skadon: <CountdownTimer />
+        · Skadon:{' '}
+        {timeLeft ? (
+          <span className="font-mono">
+            {timeLeft.days}d {String(timeLeft.hours).padStart(2, '0')}h {String(timeLeft.mins).padStart(2, '0')}m {String(timeLeft.secs).padStart(2, '0')}s
+          </span>
+        ) : (
+          <span>25 Gusht</span>
+        )}
       </span>
       <span className="inline-block bg-[#fffef2] text-[#b31b1b] font-bold px-2 py-0.5 text-xs tracking-widest rounded-sm">
         −20%
