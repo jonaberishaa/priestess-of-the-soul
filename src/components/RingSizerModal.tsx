@@ -66,24 +66,23 @@ function ScreenSizerTab() {
           Për saktësi, kalibrojmë ekranin tënd me një kartë bankare (ATM, debit ose krediti - të gjitha kanë të njëjtën madhësi kudo në botë).
         </p>
 
-        <div className="flex flex-col items-center gap-4 border border-[#201616]/10 p-4 sm:p-6">
+        <div className="flex flex-col items-center gap-4 border border-[#201616]/10 -mx-4 sm:-mx-6 px-3 py-4 sm:py-6">
           <p className="text-xs text-[#201616]/60 font-body text-center">
             Shtype <strong>anën e ngushtë</strong> (të shkurtër) të kartës tënde drejt e mbi xhamin e ekranit, përgjatë kutisë më poshtë, dhe rregullo rrëshqitësin derisa gjatësia të përputhet saktësisht.
           </p>
-          {/* Breaks out of the modal's padding to use nearly the full screen
-              width - on dense phone screens the padded container runs out of
-              room before the slider does, capping the box below the real
-              card size even at max. */}
-          <div className="relative left-1/2 -translate-x-1/2 w-screen flex justify-center">
-            <div
-              className="border-2 border-dashed border-[#b31b1b] !rounded-md h-16 max-w-[94vw]"
-              style={{ width: edgePx }}
-            />
-          </div>
+          {/* -mx-4/-mx-6 above cancels the padding of both this card and the
+              modal content wrapper, so the box can use nearly the full modal
+              width instead of being squeezed by nested padding - on dense
+              phone screens that nested padding was eating enough room that
+              the slider maxed out before the box matched a real card. */}
+          <div
+            className="border-2 border-dashed border-[#b31b1b] !rounded-md h-16 max-w-full"
+            style={{ width: edgePx }}
+          />
           <input
             type="range"
             min={100}
-            max={600}
+            max={500}
             value={edgePx}
             onChange={(e) => setEdgePx(Number(e.target.value))}
             className="w-full accent-[#b31b1b]"
