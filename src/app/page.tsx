@@ -121,9 +121,9 @@ export default function HomePage() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
-                { name: 'Albana K.', location: 'Prishtinë', rating: 5, text: 'Unaza arriti brenda 2 ditëve dhe ishte edhe më e bukur se në foto. Paketimi ishte si dhuratë luksi. E rekomandoj shumë!' },
+                { name: 'Albana K.', location: 'Prishtinë', rating: 5, text: 'Unaza arriti brenda 2 ditëve dhe ishte edhe më e bukur se në foto. Paketimi ishte shumë special, sidomos mesazhi më gëzoi shumë. E rekomandoj shumë si dhuratë!' },
                 { name: 'Fjolla B.', location: 'Shkup', rating: 5, text: 'Shërbimi i klientit ishte i shkëlqyer. Unaza ishte e dorës së parë, elegante dhe e punuar me shumë kujdes. Faleminderit!' },
-                { name: 'Valentina R.', location: 'Prizren', rating: 5, text: 'Koleksioni "Rose & Stardust" është thjesht magjik. Do të kthehem patjetër për më shumë bizhuteri. Cilësi 10/10!' },
+                { name: 'Valentina R.', location: 'Prizren', rating: 5, text: 'Koleksioni "Rose & Stardust" është thjesht magjik. Do të kthehem patjetër për më shumë blerje. Cilësi 10/10!' },
               ].map((review) => (
                 <div key={review.name} className="bg-[#f6f5e9] p-6 flex flex-col gap-3">
                   <div className="flex gap-0.5">
