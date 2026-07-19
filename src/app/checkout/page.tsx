@@ -320,7 +320,7 @@ export default function CheckoutPage() {
                     )}
                     <div className="flex items-center gap-1.5 mt-1">
                       <span className="text-xs text-[#201616]/40 line-through font-body">{item.product.price}</span>
-                      <span className="text-[10px] text-[#201616]/50 font-body">33% OFF (−€{(parseFloat(item.product.price.replace('€','')) * 0.33 * item.quantity).toFixed(2).replace('.00','')})</span>
+                      <span className="text-[10px] text-[#201616]/50 font-body">20% OFF (−€{(parseFloat(item.product.price.replace('€','')) * 0.2 * item.quantity).toFixed(2).replace('.00','')})</span>
                     </div>
                   </div>
                   <div className="flex flex-col items-end gap-1">

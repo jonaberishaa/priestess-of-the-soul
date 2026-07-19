@@ -104,7 +104,7 @@ export async function POST(req: NextRequest) {
       <td style="padding:12px 16px; vertical-align:top; text-align:right;">
         <span style="color:#b31b1b;font-weight:bold;">${escapeHtml(item.salePrice)}</span><br/>
         <span style="font-size:12px;color:#999;text-decoration:line-through;">${escapeHtml(item.productPrice)}</span><br/>
-        <span style="font-size:11px;color:#888;">33% OFF</span>
+        <span style="font-size:11px;color:#888;">20% OFF</span>
       </td>
     </tr>
   `).join('');

@@ -56,7 +56,7 @@ export default function BestsellersPage() {
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                     sizes="(max-width: 768px) 50vw, 25vw"
                   />
-                  <span className="absolute top-2 left-2 bg-[#b31b1b] text-[#fffef2] text-[10px] font-bold tracking-widest uppercase px-2 py-1">−33%</span>
+                  <span className="absolute top-2 left-2 bg-[#b31b1b] text-[#fffef2] text-[10px] font-bold tracking-widest uppercase px-2 py-1">−20%</span>
                 </div>
                 <p className="text-xs uppercase tracking-widest text-stone mb-1">{p.type}</p>
                 <h3 className="font-heading text-lg text-brown mb-1 group-hover:text-burgundy transition-colors">{p.name}</h3>
