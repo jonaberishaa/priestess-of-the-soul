@@ -44,21 +44,30 @@ export default function AboutPage() {
 
             <div className="flex flex-col gap-6 text-stone leading-[1.9]">
               <p>
-                Priestess of the Soul lindi nga një ndjesi e thellë - nga dashuria për gjërat e bukura
-                në jetë. Sepse stolia e vërtetë nuk është vetëm ajo që sheh syri, por ajo që ndjek shpirti.
+                Unë jam Jona, dhe Priestess of the Soul lindi nga dashuria që kam pasur gjithmonë
+                për gjerat e bukura ne jete dhe nga një udhëtim shpirtëror që më ndryshoi mënyrën
+                si e shikoj jetën.
               </p>
               <p>
-                Çdo unazë, çdo qafore, çdo vathë në koleksionin tonë është krijuar me duart e artizanëve
-                të talentuar, me ar 18K të vërtetë dhe gurë natyralë të zgjedhur me dashuri e kujdes.
-                Asnjë copë nuk është si tjetra - sikurse asnjë prej nesh nuk është si tjetri.
+                Gjatë rrugëtimit tim shpirtëror, u lidha thellë me gurët natyralë. Zbulova se
+                çdo gur mban energji dhe historinë e vet - disa të qetësojnë, disa të japin forcë,
+                disa të kujtojnë kush je kur e ke harruar. Kjo lidhje ishte aq autentike dhe aq
+                e drejtpërdrejtë, sa e ndjeva që doja ta ndaja me gra të tjera.
+              </p>
+              <p>
+                Kështu lindi Priestess of the Soul - jo si thjesht një brand bizhuterish, por si
+                mënyra ime për të sjellë atë energji te ti. Çdo unazë, çdo qafore, çdo vathë
+                krijohet me ar 18K të vërtetë dhe gurë natyralë të zgjedhur me dashuri, nga duart
+                e artizanëve që i japin jetë çdo cope. Asnjë stoli nuk është si tjetra, sikurse
+                asnjë prej nesh nuk jemi te njejta.
               </p>
               <p>
                 Besoj se gratë e fuqishme meritojnë stoli që flasin për to kur ato heshtin.
-                Gurët natyralë mbajnë histori dhe energji - secili me kuptim të thellë e të veçantë.
-                Kur i mban pranë zemrës, të kujtojnë kush je me të vërtetë.
+                Kur mban një unazë me gur natyral pranë zemrës, le të kujton ate se kush je
+                vërtet, nën çdo rol që luan çdo ditë.
               </p>
               <p className="italic text-[#201616]/50">
-                "Ky brand është dashuri kthyer në krijim - dhe shpresoj ta ndješ atë sa herë që e vesh."
+                "Ky brand është dashuri e kthyer në krijim. Shpresoj ta ndjesh atë sa herë që e vesh."
               </p>
             </div>
 
