@@ -24,18 +24,18 @@ const GIFT_MESSAGES = [
 ];
 
 const SIZE_CHART = [
-  { eu: 'EU 10', us: 'US 5',    mm: '50mm', diameter: '15.9mm' },
-  { eu: 'EU 12', us: 'US 6',    mm: '52mm', diameter: '16.6mm' },
-  { eu: 'EU 14', us: 'US 6.5',  mm: '54mm', diameter: '17.2mm' },
-  { eu: 'EU 16', us: 'US 7.5',  mm: '56mm', diameter: '17.8mm' },
-  { eu: 'EU 17', us: 'US 8',    mm: '57mm', diameter: '18.2mm' },
-  { eu: 'EU 18', us: 'US 8.5',  mm: '58mm', diameter: '18.5mm' },
-  { eu: 'EU 20', us: 'US 9.5',  mm: '60mm', diameter: '19.1mm' },
-  { eu: 'EU 22', us: 'US 10.5', mm: '62mm', diameter: '19.7mm' },
+  { eu: 'EU 50', us: 'US 5',    mm: '50mm', diameter: '15.9mm' },
+  { eu: 'EU 52', us: 'US 6',    mm: '52mm', diameter: '16.6mm' },
+  { eu: 'EU 54', us: 'US 6.5',  mm: '54mm', diameter: '17.2mm' },
+  { eu: 'EU 56', us: 'US 7.5',  mm: '56mm', diameter: '17.8mm' },
+  { eu: 'EU 57', us: 'US 8',    mm: '57mm', diameter: '18.2mm' },
+  { eu: 'EU 58', us: 'US 8.5',  mm: '58mm', diameter: '18.5mm' },
+  { eu: 'EU 60', us: 'US 9.5',  mm: '60mm', diameter: '19.1mm' },
+  { eu: 'EU 62', us: 'US 10.5', mm: '62mm', diameter: '19.7mm' },
 ];
 
 function RingSizerModal({ onClose }: { onClose: () => void }) {
-  const [tab, setTab] = useState<'app' | 'spango' | 'unaze'>('app');
+  const [tab, setTab] = useState<'unaze' | 'spango' | 'app'>('unaze');
 
   return (
     <div
@@ -63,9 +63,9 @@ function RingSizerModal({ onClose }: { onClose: () => void }) {
         {/* Tabs */}
         <div className="flex border-b border-[#201616]/10">
           {([
-            { key: 'app',    icon: '📱', label: 'Me App' },
-            { key: 'spango', icon: '📏', label: 'Me Spango' },
             { key: 'unaze',  icon: '💍', label: 'Me Unazë' },
+            { key: 'spango', icon: '📏', label: 'Me Spango' },
+            { key: 'app',    icon: '📱', label: 'Me App' },
           ] as const).map((t) => (
             <button
               key={t.key}
