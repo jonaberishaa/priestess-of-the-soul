@@ -35,7 +35,7 @@ const SIZE_CHART = [
 ];
 
 function RingSizerModal({ onClose }: { onClose: () => void }) {
-  const [tab, setTab] = useState<'unaze' | 'spango' | 'app'>('unaze');
+  const [tab, setTab] = useState<'unaze' | 'spango'>('unaze');
 
   return (
     <div
@@ -65,7 +65,6 @@ function RingSizerModal({ onClose }: { onClose: () => void }) {
           {([
             { key: 'unaze',  icon: '💍', label: 'Me Unazë' },
             { key: 'spango', icon: '📏', label: 'Me Spango' },
-            { key: 'app',    icon: '📱', label: 'Me App' },
           ] as const).map((t) => (
             <button
               key={t.key}
@@ -84,78 +83,7 @@ function RingSizerModal({ onClose }: { onClose: () => void }) {
 
         <div className="px-6 py-6">
 
-          {/* TAB 1: App */}
-          {tab === 'app' && (
-            <div className="flex flex-col gap-5">
-              <p className="text-sm text-[#201616]/70 font-body leading-relaxed">
-                Shkarkoni një nga aplikacionet falas më poshtë dhe gjeni madhësinë tuaj saktësisht brenda 1 minutës.
-              </p>
-
-              {/* iOS */}
-              <div className="border border-[#201616]/10 p-4">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-2xl">🍎</span>
-                  <h3 className="font-heading text-lg text-[#201616]">iPhone (iOS)</h3>
-                </div>
-                <div className="bg-[#f5f0e8] px-4 py-3 mb-3">
-                  <p className="text-xs font-bold text-[#201616] tracking-wider uppercase mb-0.5">Ring Sizer - by Setworks</p>
-                  <p className="text-xs text-[#201616]/50 font-body">App Store · Falas</p>
-                </div>
-                <ol className="flex flex-col gap-2">
-                  {[
-                    'Hap App Store → kërko "Ring Sizer Setworks"',
-                    'Shkarko dhe hap aplikacionin',
-                    'Zgjidh "Measure Finger" nga ekrani kryesor',
-                    'Vendos gishtin (gishtin unazor - zakonisht gishti 4) mbi ekranin e telefonit',
-                    'Lëviz vizat e verdha derisa të përshtaten saktësisht me anët e gishtin',
-                    'Aplikacioni do të shfaqë madhësinë EU - shëno numrin dhe kthehu të porosisësh!',
-                  ].map((step, i) => (
-                    <li key={i} className="flex gap-3 items-start text-sm font-body text-[#201616]/80">
-                      <span className="w-5 h-5 rounded-full bg-[#201616] text-[#fffef2] text-[10px] flex items-center justify-center flex-shrink-0 mt-0.5">
-                        {i + 1}
-                      </span>
-                      {step}
-                    </li>
-                  ))}
-                </ol>
-              </div>
-
-              {/* Android */}
-              <div className="border border-[#201616]/10 p-4">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-2xl">🤖</span>
-                  <h3 className="font-heading text-lg text-[#201616]">Android</h3>
-                </div>
-                <div className="bg-[#f5f0e8] px-4 py-3 mb-3">
-                  <p className="text-xs font-bold text-[#201616] tracking-wider uppercase mb-0.5">Ring Sizer - by Setworks</p>
-                  <p className="text-xs text-[#201616]/50 font-body">Google Play · Falas</p>
-                </div>
-                <ol className="flex flex-col gap-2">
-                  {[
-                    'Hap Google Play Store → kërko "Ring Sizer Setworks"',
-                    'Shkarko dhe hap aplikacionin',
-                    'Shtyp "Measure Your Finger"',
-                    'Vendos gishtin tënd mbi ekran sipas udhëzimit',
-                    'Rregulloji skajet derisa të përshtaten saktë me gishtin',
-                    'Shëno madhësinë EU dhe kthehu të porosisësh!',
-                  ].map((step, i) => (
-                    <li key={i} className="flex gap-3 items-start text-sm font-body text-[#201616]/80">
-                      <span className="w-5 h-5 rounded-full bg-[#201616] text-[#fffef2] text-[10px] flex items-center justify-center flex-shrink-0 mt-0.5">
-                        {i + 1}
-                      </span>
-                      {step}
-                    </li>
-                  ))}
-                </ol>
-              </div>
-
-              <div className="bg-[#f5f0e8] px-4 py-3 text-xs font-body text-[#201616]/60 leading-relaxed">
-                💡 <strong className="text-[#201616]">Këshillë:</strong> Mat gishtin në mbrëmje - gishtat ënjten pak gjatë ditës nga nxehtësia, kështu madhësia do të jetë më e saktë.
-              </div>
-            </div>
-          )}
-
-          {/* TAB 2: Spango/Letër */}
+          {/* TAB: Spango/Letër */}
           {tab === 'spango' && (
             <div className="flex flex-col gap-5">
               <p className="text-sm text-[#201616]/70 font-body leading-relaxed">
@@ -218,7 +146,7 @@ function RingSizerModal({ onClose }: { onClose: () => void }) {
             </div>
           )}
 
-          {/* TAB 3: Unazë ekzistuese */}
+          {/* TAB: Unazë ekzistuese */}
           {tab === 'unaze' && (
             <div className="flex flex-col gap-5">
               <p className="text-sm text-[#201616]/70 font-body leading-relaxed">
