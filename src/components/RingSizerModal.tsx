@@ -230,7 +230,7 @@ export default function RingSizerModal({ onClose }: { onClose: () => void }) {
                 <input
                   type="range"
                   min={220}
-                  max={700}
+                  max={1400}
                   value={cardWidthPx}
                   onChange={(e) => setCardWidthPx(Number(e.target.value))}
                   className="w-full accent-[#b31b1b]"
