@@ -14,9 +14,11 @@ export const SIZE_CHART = [
 ];
 
 // Standard ID-1 bank card size (ATM/debit/credit) - same worldwide, used to
-// calibrate real-world mm against this specific screen's pixels.
-const CARD_WIDTH_MM = 85.6;
-const CARD_HEIGHT_MM = 53.98;
+// calibrate real-world mm against this specific screen's pixels. We calibrate
+// against the SHORT edge (53.98mm) rather than the full 85.6mm width, because
+// most phone screens are physically narrower than a card is long, so a
+// full-width card box can't even fit on screen to be matched accurately.
+const CARD_SHORT_EDGE_MM = 53.98;
 
 function SizeChartTable() {
   return (
@@ -44,16 +46,16 @@ function SizeChartTable() {
 }
 
 // Holding a physical card up to the screen instead of flush against the glass
-// causes parallax, which makes people calibrate the card box a bit too small -
-// this nudges the resulting circle back up to compensate.
-const PARALLAX_CORRECTION = 1.1;
+// causes parallax, which makes people calibrate the reference box a bit too
+// small - this nudges the resulting circle back up to compensate.
+const PARALLAX_CORRECTION = 1.05;
 
 function ScreenSizerTab() {
   const [calibrated, setCalibrated] = useState(false);
-  const [cardWidthPx, setCardWidthPx] = useState(320);
+  const [edgePx, setEdgePx] = useState(220);
   const [sizeIndex, setSizeIndex] = useState(2);
 
-  const pxPerMm = cardWidthPx / CARD_WIDTH_MM;
+  const pxPerMm = edgePx / CARD_SHORT_EDGE_MM;
   const activeSize = SIZE_CHART[sizeIndex];
   const circlePx = parseFloat(activeSize.diameter) * pxPerMm * PARALLAX_CORRECTION;
 
@@ -64,20 +66,20 @@ function ScreenSizerTab() {
           Për saktësi, kalibrojmë ekranin tënd me një kartë bankare (ATM, debit ose krediti - të gjitha kanë të njëjtën madhësi kudo në botë).
         </p>
 
-        <div className="flex flex-col items-center gap-4 border border-[#201616]/10 p-6">
+        <div className="flex flex-col items-center gap-4 border border-[#201616]/10 p-4 sm:p-6">
           <p className="text-xs text-[#201616]/60 font-body text-center">
-            Shtype kartën tënde <strong>drejt e mbi xhamin e ekranit</strong> (jo në ajër) dhe rregullo rrëshqitësin derisa buzët e kutisë të përputhen saktësisht me buzët e kartës.
+            Shtype <strong>anën e ngushtë</strong> (të shkurtër) të kartës tënde drejt e mbi xhamin e ekranit, përgjatë kutisë më poshtë, dhe rregullo rrëshqitësin derisa gjatësia të përputhet saktësisht.
           </p>
           <div
-            className="border-2 border-dashed border-[#b31b1b] !rounded-lg flex-shrink-0"
-            style={{ width: cardWidthPx, height: cardWidthPx * (CARD_HEIGHT_MM / CARD_WIDTH_MM) }}
+            className="border-2 border-dashed border-[#b31b1b] !rounded-md h-16 max-w-full"
+            style={{ width: edgePx }}
           />
           <input
             type="range"
-            min={220}
-            max={460}
-            value={cardWidthPx}
-            onChange={(e) => setCardWidthPx(Number(e.target.value))}
+            min={100}
+            max={420}
+            value={edgePx}
+            onChange={(e) => setEdgePx(Number(e.target.value))}
             className="w-full accent-[#b31b1b]"
           />
           <button
@@ -97,7 +99,7 @@ function ScreenSizerTab() {
         Vendos unazën tënde direkt mbi rrethin më poshtë (mbi ekran) dhe lëviz rrëshqitësin derisa buza e brendshme e unazës të përputhet saktësisht me rrethin.
       </p>
 
-      <div className="flex flex-col items-center gap-4 border border-[#201616]/10 p-6">
+      <div className="flex flex-col items-center gap-4 border border-[#201616]/10 p-4 sm:p-6">
         <div
           className="!rounded-full border-2 border-[#b31b1b] flex-shrink-0"
           style={{ width: circlePx, height: circlePx }}
@@ -135,7 +137,7 @@ export default function RingSizerModal({ onClose }: { onClose: () => void }) {
 
   return (
     <div
-      className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-[#201616]/60 backdrop-blur-sm"
+      className="fixed inset-0 z-[200] flex items-center justify-center p-2 sm:p-4 bg-[#201616]/60 backdrop-blur-sm"
       onClick={onClose}
     >
       <div
@@ -178,7 +180,7 @@ export default function RingSizerModal({ onClose }: { onClose: () => void }) {
           ))}
         </div>
 
-        <div className="px-6 py-6">
+        <div className="px-4 sm:px-6 py-6">
 
           {/* TAB: Spango/Letër */}
           {tab === 'spango' && (
