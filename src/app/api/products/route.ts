@@ -1,9 +1,11 @@
 import { NextResponse } from 'next/server';
 import { products } from '@/data/products';
-import { readJSON } from '@/lib/db';
+import { getInventory } from '@/lib/db';
+
+export const dynamic = 'force-dynamic';
 
 export async function GET() {
-  const inventory = readJSON<Record<string, number>>('inventory.json', {});
+  const inventory = await getInventory();
   const result = products.map((p) => ({
     ...p,
     stock: inventory[p.id] ?? 10,

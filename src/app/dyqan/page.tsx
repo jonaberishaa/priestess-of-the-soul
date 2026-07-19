@@ -16,16 +16,18 @@ export const metadata: Metadata = {
 import Footer from '@/components/Footer';
 import ShopGrid from '@/components/ShopGrid';
 import { products, getByType } from '@/data/products';
-import { readJSON } from '@/lib/db';
+import { getInventory } from '@/lib/db';
 import Link from 'next/link';
 
-export default function ShopPage({
+export const dynamic = 'force-dynamic';
+
+export default async function ShopPage({
   searchParams,
 }: {
   searchParams?: { kategori?: string };
 }) {
   const kategori = searchParams?.kategori;
-  const inventory = readJSON<Record<string, number>>('inventory.json', {});
+  const inventory = await getInventory();
 
   const filtered =
     kategori === 'unaza'   ? getByType('Unaza')  :

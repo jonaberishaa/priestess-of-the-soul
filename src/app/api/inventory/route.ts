@@ -1,18 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { readJSON, writeJSON } from '@/lib/db';
+import { getInventory, setStock } from '@/lib/db';
+import { requireAdmin } from '@/lib/auth';
 
-export async function GET() {
-  const inventory = readJSON<Record<string, number>>('inventory.json', {});
+export async function GET(req: NextRequest) {
+  if (!requireAdmin(req)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  const inventory = await getInventory();
   return NextResponse.json(inventory);
 }
 
 export async function POST(req: NextRequest) {
+  if (!requireAdmin(req)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   const { productId, stock } = await req.json();
   if (!productId || typeof stock !== 'number') {
     return NextResponse.json({ error: 'Missing productId or stock' }, { status: 400 });
   }
-  const inventory = readJSON<Record<string, number>>('inventory.json', {});
-  inventory[productId] = Math.max(0, stock);
-  writeJSON('inventory.json', inventory);
-  return NextResponse.json({ success: true, productId, stock: inventory[productId] });
+  await setStock(productId, stock);
+  return NextResponse.json({ success: true, productId, stock: Math.max(0, stock) });
 }
