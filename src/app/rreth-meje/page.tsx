@@ -44,27 +44,27 @@ export default function AboutPage() {
 
             <div className="flex flex-col gap-6 text-stone leading-[1.9]">
               <p>
-                Unë jam Jona, dhe Priestess of the Soul lindi nga dashuria që kam pasur gjithmonë
-                për gjerat e bukura ne jete dhe nga një udhëtim shpirtëror që më ndryshoi mënyrën
+                Unë jam Jona, dhe Priestess of the Soul lindi nga dashuria që kam për gjerat e
+                bukura në jetë, gjithashtu nga rrugëtimi im shpirtëror që më ndryshoi mënyrën
                 si e shikoj jetën.
               </p>
               <p>
                 Gjatë rrugëtimit tim shpirtëror, u lidha thellë me gurët natyralë. Zbulova se
                 çdo gur mban energji dhe historinë e vet - disa të qetësojnë, disa të japin forcë,
-                disa të kujtojnë kush je kur e ke harruar. Kjo lidhje ishte aq autentike dhe aq
-                e drejtpërdrejtë, sa e ndjeva që doja ta ndaja me gra të tjera.
+                disa të lidhin në intuitën, të kujtojnë kush je, etj. Kjo lidhje ishte aq autentike
+                dhe aq e drejtpërdrejtë, sa e ndjeva që doja ta ndaja me gra të tjera.
               </p>
               <p>
                 Kështu lindi Priestess of the Soul - jo si thjesht një brand bizhuterish, por si
-                mënyra ime për të sjellë atë energji te ti. Çdo unazë, çdo qafore, çdo vathë
-                krijohet me ar 18K të vërtetë dhe gurë natyralë të zgjedhur me dashuri, nga duart
-                e artizanëve që i japin jetë çdo cope. Asnjë stoli nuk është si tjetra, sikurse
-                asnjë prej nesh nuk jemi te njejta.
+                mënyra ime për të sjellë atë energji tek ju. Çdo unazë, çdo qafore, çdo vathë
+                është i punuar me dorë, me ar 18K të vërtetë dhe gurë natyralë të zgjedhur me
+                dashuri, nga artizanët që i japin jetë çdo cope. Asnjë stoli nuk është si tjetra -
+                të gjitha janë copë unike, sikurse asnjë prej nesh nuk jemi të njëjta.
               </p>
               <p>
                 Besoj se gratë e fuqishme meritojnë stoli që flasin për to kur ato heshtin.
-                Kur mban një unazë me gur natyral pranë zemrës, le të kujton ate se kush je
-                vërtet, nën çdo rol që luan çdo ditë.
+                Kur mban një unazë me gur natyral pranë zemrës, le të kujtojnë ate se kush je
+                vërtet.
               </p>
               <p className="italic text-[#201616]/50">
                 "Ky brand është dashuri e kthyer në krijim. Shpresoj ta ndjesh atë sa herë që e vesh."
