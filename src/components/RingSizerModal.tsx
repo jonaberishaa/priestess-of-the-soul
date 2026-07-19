@@ -68,17 +68,21 @@ function ScreenSizerTab() {
 
         <div className="flex flex-col items-center gap-4 border border-[#201616]/10 -mx-4 sm:-mx-6 px-3 py-4 sm:py-6">
           <p className="text-xs text-[#201616]/60 font-body text-center">
-            Shtype <strong>anën e ngushtë</strong> (të shkurtër) të kartës tënde drejt e mbi xhamin e ekranit, përgjatë kutisë më poshtë, dhe rregullo rrëshqitësin derisa gjatësia të përputhet saktësisht.
+            Vendos kartën tënde (horizontalisht) drejt e mbi xhamin e ekranit dhe rregullo rrëshqitësin derisa <strong>lartësia</strong> e kutisë të përputhet saktësisht me lartësinë e kartës. Anët e kutisë mund të dalin jashtë ekranit - kjo është normale, rëndësi ka vetëm lartësia.
           </p>
-          {/* -mx-4/-mx-6 above cancels the padding of both this card and the
-              modal content wrapper, so the box can use nearly the full modal
-              width instead of being squeezed by nested padding - on dense
-              phone screens that nested padding was eating enough room that
-              the slider maxed out before the box matched a real card. */}
-          <div
-            className="border-2 border-dashed border-[#b31b1b] !rounded-md h-16 max-w-full"
-            style={{ width: edgePx }}
-          />
+          {/* Rendered as a full card-shaped outline (correct 85.6x53.98mm
+              aspect ratio) so the comparison feels natural, but only the
+              HEIGHT (the short edge) drives the calibration math - that's
+              the dimension that reliably fits on any screen. The width is
+              allowed to overflow/clip on narrow phones since it doesn't
+              affect accuracy. -mx-4/-mx-6 cancels ancestor padding so the
+              box gets as much room as possible. */}
+          <div className="w-full overflow-hidden flex justify-center">
+            <div
+              className="border-2 border-dashed border-[#b31b1b] !rounded-md flex-shrink-0"
+              style={{ width: edgePx * (85.6 / CARD_SHORT_EDGE_MM), height: edgePx }}
+            />
+          </div>
           <input
             type="range"
             min={100}
