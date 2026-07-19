@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import AnnouncementBar from '@/components/AnnouncementBar';
+import RingSizeBanner from '@/components/RingSizeBanner';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ShopGrid from '@/components/ShopGrid';
@@ -99,6 +100,8 @@ export default async function ShopPage({
           <p className="text-xs tracking-[0.3em] uppercase text-gold mb-3">Koleksioni</p>
           <h1 className="font-heading text-5xl text-brown">{activeCategory ? activeCategory.label : 'Të gjitha Bizhuteritë'}</h1>
         </div>
+
+        <RingSizeBanner />
 
         <div className="max-w-content mx-auto px-6 py-12">
           {/* Category filters */}
