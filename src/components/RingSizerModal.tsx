@@ -43,6 +43,11 @@ function SizeChartTable() {
   );
 }
 
+// Holding a physical card up to the screen instead of flush against the glass
+// causes parallax, which makes people calibrate the card box a bit too small -
+// this nudges the resulting circle back up to compensate.
+const PARALLAX_CORRECTION = 1.05;
+
 function ScreenSizerTab() {
   const [calibrated, setCalibrated] = useState(false);
   const [cardWidthPx, setCardWidthPx] = useState(320);
@@ -50,7 +55,7 @@ function ScreenSizerTab() {
 
   const pxPerMm = cardWidthPx / CARD_WIDTH_MM;
   const activeSize = SIZE_CHART[sizeIndex];
-  const circlePx = parseFloat(activeSize.diameter) * pxPerMm;
+  const circlePx = parseFloat(activeSize.diameter) * pxPerMm * PARALLAX_CORRECTION;
 
   if (!calibrated) {
     return (
