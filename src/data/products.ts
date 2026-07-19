@@ -466,5 +466,5 @@ export const getByMeaning = (meaning: MeaningSlug) =>
 
 export function salePrice(price: string): string {
   const num = parseFloat(price.replace('€', ''));
-  return `€${Math.round(num * 0.8)}`;
+  return `€${Math.round(num * 0.67)}`;
 }
