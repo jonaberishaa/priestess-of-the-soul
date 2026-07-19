@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import AnnouncementBar from '@/components/AnnouncementBar';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ProductActions from '@/components/ProductActions';
@@ -104,6 +105,7 @@ export default async function DyqanSlugPage({ params }: { params: { slug: string
 
     return (
       <>
+        <AnnouncementBar />
         <Header />
         <main className="min-h-screen bg-cream">
           <div className="bg-cream-warm border-b border-stone-light/20 py-16 px-6 text-center">
@@ -151,6 +153,7 @@ export default async function DyqanSlugPage({ params }: { params: { slug: string
 
     return (
       <>
+        <AnnouncementBar />
         <Header />
         <main className="min-h-screen bg-cream">
           <div className="bg-cream-warm border-b border-stone-light/20 py-16 px-6 text-center">
@@ -253,6 +256,7 @@ export default async function DyqanSlugPage({ params }: { params: { slug: string
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
+      <AnnouncementBar />
       <Header />
       <main className="bg-cream min-h-screen">
         {/* Breadcrumb */}
