@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
+import AnnouncementBar from '@/components/AnnouncementBar';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ShopGrid from '@/components/ShopGrid';
 import { products, getByType } from '@/data/products';
 import { getInventory } from '@/lib/db';
+import Image from 'next/image';
 import Link from 'next/link';
 
 const CATEGORY_META: Record<string, { label: string; title: string; description: string }> = {
@@ -77,8 +79,21 @@ export default async function ShopPage({
 
   return (
     <>
+      <AnnouncementBar />
       <Header />
       <main className="min-h-screen bg-cream">
+        {/* Brand banner */}
+        <div className="relative w-full aspect-[1200/630] max-h-[420px] overflow-hidden">
+          <Image
+            src="/og-image.jpg"
+            alt="Priestess of the Soul - bizhuteri me ar 18K dhe gurë natyralë"
+            fill
+            className="object-cover"
+            sizes="100vw"
+            priority
+          />
+        </div>
+
         {/* Banner */}
         <div className="bg-cream-warm border-b border-stone-light/20 py-16 px-6 text-center">
           <p className="text-xs tracking-[0.3em] uppercase text-gold mb-3">Koleksioni</p>
