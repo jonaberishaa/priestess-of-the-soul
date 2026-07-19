@@ -58,7 +58,7 @@ function ProductCard({ product, inStock }: { product: (typeof products)[0]; inSt
           sizes="(max-width: 768px) 50vw, 25vw"
         />
         {inStock ? (
-          <span className="absolute top-2 left-2 bg-[#b31b1b] text-[#fffef2] text-[10px] font-bold tracking-widest uppercase px-2 py-1">−20%</span>
+          <span className="absolute top-2 left-2 bg-[#b31b1b] text-[#fffef2] text-[10px] font-bold tracking-widest uppercase px-2 py-1">−33%</span>
         ) : (
           <span className="absolute top-2 left-2 bg-[#201616]/70 text-[#fffef2] text-[10px] font-bold tracking-widest uppercase px-2 py-1">Pa Stok</span>
         )}
@@ -288,7 +288,7 @@ export default async function DyqanSlugPage({ params }: { params: { slug: string
                 <div className="flex items-center gap-3 mb-2">
                   <p className="text-3xl font-bold text-[#b31b1b]">{salePrice(product.price)}</p>
                   <p className="text-xl text-stone/50 line-through">{product.price}</p>
-                  <span className="bg-[#b31b1b] text-[#fffef2] text-[10px] font-bold tracking-widest uppercase px-2 py-1">−20%</span>
+                  <span className="bg-[#b31b1b] text-[#fffef2] text-[10px] font-bold tracking-widest uppercase px-2 py-1">−33%</span>
                 </div>
                 <p className="text-xs text-[#201616]/50 font-body mb-2">✦ Dërgesa Falas</p>
                 {stock <= 3 && (
