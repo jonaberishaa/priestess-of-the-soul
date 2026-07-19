@@ -70,14 +70,20 @@ function ScreenSizerTab() {
           <p className="text-xs text-[#201616]/60 font-body text-center">
             Shtype <strong>anën e ngushtë</strong> (të shkurtër) të kartës tënde drejt e mbi xhamin e ekranit, përgjatë kutisë më poshtë, dhe rregullo rrëshqitësin derisa gjatësia të përputhet saktësisht.
           </p>
-          <div
-            className="border-2 border-dashed border-[#b31b1b] !rounded-md h-16 max-w-full"
-            style={{ width: edgePx }}
-          />
+          {/* Breaks out of the modal's padding to use nearly the full screen
+              width - on dense phone screens the padded container runs out of
+              room before the slider does, capping the box below the real
+              card size even at max. */}
+          <div className="relative left-1/2 -translate-x-1/2 w-screen flex justify-center">
+            <div
+              className="border-2 border-dashed border-[#b31b1b] !rounded-md h-16 max-w-[94vw]"
+              style={{ width: edgePx }}
+            />
+          </div>
           <input
             type="range"
             min={100}
-            max={420}
+            max={600}
             value={edgePx}
             onChange={(e) => setEdgePx(Number(e.target.value))}
             className="w-full accent-[#b31b1b]"
