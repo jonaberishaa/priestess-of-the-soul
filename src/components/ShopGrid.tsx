@@ -107,7 +107,7 @@ function ProductCard({ product, inStock }: { product: Product; inStock: boolean 
             {/* Discount / Out of stock badge */}
             {inStock ? (
               <span className="absolute top-2 left-2 bg-[#b31b1b] text-[#fffef2] text-[10px] font-bold tracking-widest uppercase px-2 py-1">
-                −20%
+                −33%
               </span>
             ) : (
               <span className="absolute top-2 left-2 bg-[#201616]/70 text-[#fffef2] text-[10px] font-bold tracking-widest uppercase px-2 py-1">
