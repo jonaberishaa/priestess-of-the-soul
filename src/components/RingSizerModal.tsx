@@ -64,7 +64,7 @@ function ScreenSizerTab() {
             Vendos kartën tënde mbi kutinë më poshtë dhe rregullo rrëshqitësin derisa buzët e kutisë të përputhen saktësisht me buzët e kartës.
           </p>
           <div
-            className="border-2 border-dashed border-[#b31b1b] rounded-lg flex-shrink-0"
+            className="border-2 border-dashed border-[#b31b1b] !rounded-lg flex-shrink-0"
             style={{ width: cardWidthPx, height: cardWidthPx * (CARD_HEIGHT_MM / CARD_WIDTH_MM) }}
           />
           <input
@@ -94,7 +94,7 @@ function ScreenSizerTab() {
 
       <div className="flex flex-col items-center gap-4 border border-[#201616]/10 p-6">
         <div
-          className="rounded-full border-2 border-[#b31b1b] flex-shrink-0"
+          className="!rounded-full border-2 border-[#b31b1b] flex-shrink-0"
           style={{ width: circlePx, height: circlePx }}
         />
         <input
