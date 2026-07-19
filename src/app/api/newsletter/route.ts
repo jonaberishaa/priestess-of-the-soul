@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
+import { getTransporter, STORE_EMAIL } from '@/lib/mailer';
+import { escapeHtml } from '@/lib/escapeHtml';
 
 export async function POST(req: NextRequest) {
   const { email } = await req.json();
@@ -8,17 +9,14 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
-    });
+    const transporter = getTransporter();
 
     await transporter.sendMail({
       from: `"Priestess of the Soul" <${process.env.SMTP_USER}>`,
-      to: 'jonaberishaa@gmail.com',
+      to: STORE_EMAIL,
       subject: `📧 Abonues i Ri: ${email}`,
       html: `<p style="font-family:Georgia,serif;color:#201616;">
-        <strong>Abonues i ri:</strong> ${email}<br/><br/>
+        <strong>Abonues i ri:</strong> ${escapeHtml(email)}<br/><br/>
         Ky person u abonua në listën e njoftimeve të Priestess of the Soul.
       </p>`,
     });

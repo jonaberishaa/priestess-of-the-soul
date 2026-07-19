@@ -40,19 +40,19 @@ const STATUS_LABELS: Record<string, string> = {
   cancelled: 'Anuluar',
 };
 
-const ADMIN_USER = 'adminjona';
-const ADMIN_PASS = '1231038392';
-
 export default function AdminPage() {
   const [authed, setAuthed] = useState(false);
+  const [checkingSession, setCheckingSession] = useState(true);
   const [loginForm, setLoginForm] = useState({ username: '', password: '' });
   const [loginError, setLoginError] = useState(false);
+  const [loggingIn, setLoggingIn] = useState(false);
   const [tab, setTab] = useState<'orders' | 'inventory'>('orders');
   const [orders, setOrders] = useState<Order[]>([]);
   const [inventory, setInventory] = useState<Record<string, number>>({});
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
+  const loadData = () => {
+    setLoading(true);
     Promise.all([
       fetch('/api/orders').then((r) => r.json()),
       fetch('/api/inventory').then((r) => r.json()),
@@ -61,6 +61,16 @@ export default function AdminPage() {
       setInventory(inv);
       setLoading(false);
     });
+  };
+
+  useEffect(() => {
+    fetch('/api/admin/session')
+      .then((r) => r.json())
+      .then(({ authed: isAuthed }) => {
+        setAuthed(isAuthed);
+        setCheckingSession(false);
+        if (isAuthed) loadData();
+      });
   }, []);
 
   const updateStatus = async (orderId: string, status: string) => {
@@ -83,15 +93,36 @@ export default function AdminPage() {
     setInventory((prev) => ({ ...prev, [productId]: stock }));
   };
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (loginForm.username === ADMIN_USER && loginForm.password === ADMIN_PASS) {
-      setAuthed(true);
-      setLoginError(false);
-    } else {
+    setLoggingIn(true);
+    setLoginError(false);
+    try {
+      const res = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(loginForm),
+      });
+      if (res.ok) {
+        setAuthed(true);
+        loadData();
+      } else {
+        setLoginError(true);
+      }
+    } catch {
       setLoginError(true);
+    } finally {
+      setLoggingIn(false);
     }
   };
+
+  if (checkingSession) {
+    return (
+      <div className="min-h-screen bg-[#f5f5f5] flex items-center justify-center">
+        <p className="text-[#201616]/50 font-body">Duke ngarkuar...</p>
+      </div>
+    );
+  }
 
   if (!authed) {
     return (
@@ -125,8 +156,12 @@ export default function AdminPage() {
             {loginError && (
               <p className="text-[#b31b1b] text-xs font-body text-center">Të dhëna të gabuara. Provo përsëri.</p>
             )}
-            <button type="submit" className="bg-[#201616] text-[#fffef2] px-6 py-3 text-xs tracking-[0.25em] uppercase font-body hover:bg-[#b31b1b] transition-colors">
-              Hyr
+            <button
+              type="submit"
+              disabled={loggingIn}
+              className="bg-[#201616] text-[#fffef2] px-6 py-3 text-xs tracking-[0.25em] uppercase font-body hover:bg-[#b31b1b] transition-colors disabled:opacity-60"
+            >
+              {loggingIn ? 'Duke hyrë...' : 'Hyr'}
             </button>
           </form>
         </div>

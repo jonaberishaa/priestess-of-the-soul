@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-const DEADLINE = new Date('2026-04-20T23:59:59');
+const DEADLINE = new Date('2026-08-25T23:59:59');
 
 function getTimeLeft(deadline: Date) {
   const diff = deadline.getTime() - Date.now();
@@ -23,7 +23,7 @@ function CountdownTimer() {
     return () => clearInterval(id);
   }, []);
 
-  if (!timeLeft) return <span>20 Prill</span>;
+  if (!timeLeft) return <span>25 Gusht</span>;
 
   return (
     <span className="font-mono">

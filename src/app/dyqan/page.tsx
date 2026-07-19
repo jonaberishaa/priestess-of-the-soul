@@ -3,7 +3,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ShopGrid from '@/components/ShopGrid';
 import { products, getByType } from '@/data/products';
-import { readJSON } from '@/lib/db';
+import { getInventory } from '@/lib/db';
 import Link from 'next/link';
 
 const CATEGORY_META: Record<string, { label: string; title: string; description: string }> = {
@@ -48,14 +48,16 @@ export function generateMetadata({ searchParams }: { searchParams?: { kategori?:
   };
 }
 
-export default function ShopPage({
+export const dynamic = 'force-dynamic';
+
+export default async function ShopPage({
   searchParams,
 }: {
   searchParams?: { kategori?: string };
 }) {
   const kategori = searchParams?.kategori;
   const activeCategory = kategori ? CATEGORY_META[kategori] : undefined;
-  const inventory = readJSON<Record<string, number>>('inventory.json', {});
+  const inventory = await getInventory();
 
   const filtered =
     kategori === 'unaza'   ? getByType('Unaza')  :

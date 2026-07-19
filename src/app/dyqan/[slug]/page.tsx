@@ -12,7 +12,7 @@ import {
   type StoneSlug,
   type MeaningSlug,
 } from '@/data/products';
-import { readJSON } from '@/lib/db';
+import { getInventory } from '@/lib/db';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -90,9 +90,11 @@ function ProductCard({ product, inStock }: { product: (typeof products)[0]; inSt
   );
 }
 
-export default function DyqanSlugPage({ params }: { params: { slug: string } }) {
+export const dynamic = 'force-dynamic';
+
+export default async function DyqanSlugPage({ params }: { params: { slug: string } }) {
   const { slug } = params;
-  const inventory = readJSON<Record<string, number>>('inventory.json', {});
+  const inventory = await getInventory();
 
   // Stone category page
   if (stoneSlugs.includes(slug as StoneSlug)) {
