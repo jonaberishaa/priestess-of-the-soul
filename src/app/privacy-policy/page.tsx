@@ -1,6 +1,13 @@
+import type { Metadata } from 'next';
 import AnnouncementBar from '@/components/AnnouncementBar';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+
+export const metadata: Metadata = {
+  title: 'Politika e Privatësisë',
+  description: 'Si i mbledhim, përdorim dhe mbrojmë të dhënat tuaja personale kur bleni nga Priestess of the Soul.',
+  alternates: { canonical: 'https://www.priestessofthesoul.com/privacy-policy' },
+};
 
 export default function PrivacyPolicyPage() {
   return (

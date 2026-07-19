@@ -1,6 +1,13 @@
+import type { Metadata } from 'next';
 import AnnouncementBar from '@/components/AnnouncementBar';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+
+export const metadata: Metadata = {
+  title: 'Kushtet e Shërbimit',
+  description: 'Kushtet e shërbimit dhe përdorimit të dyqanit online Priestess of the Soul - porosi, pagesa dhe përgjegjësitë e klientit.',
+  alternates: { canonical: 'https://www.priestessofthesoul.com/terms-of-service' },
+};
 
 export default function TermsPage() {
   return (

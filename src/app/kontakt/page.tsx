@@ -1,5 +1,4 @@
 'use client';
-// Metadata exported separately since this is a client component - add to a parent server component if needed
 
 import { useState } from 'react';
 import AnnouncementBar from '@/components/AnnouncementBar';
