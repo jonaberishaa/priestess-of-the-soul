@@ -1,6 +1,13 @@
+import type { Metadata } from 'next';
 import AnnouncementBar from '@/components/AnnouncementBar';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+
+export const metadata: Metadata = {
+  title: 'Politika e Kthimeve',
+  description: 'Politika e kthimeve dhe ndërrimeve për porositë e Priestess of the Soul - kushtet dhe procesi i kthimit.',
+  alternates: { canonical: 'https://www.priestessofthesoul.com/refund-policy' },
+};
 
 export default function RefundPolicyPage() {
   return (

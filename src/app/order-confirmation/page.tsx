@@ -1,4 +1,10 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Konfirmimi i Porosisë',
+  robots: { index: false, follow: true },
+};
 
 export default function OrderConfirmationPage({
   searchParams,

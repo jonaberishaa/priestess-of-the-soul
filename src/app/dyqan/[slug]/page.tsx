@@ -213,8 +213,44 @@ export default function DyqanSlugPage({ params }: { params: { slug: string } }) 
     return [...byStoneMeaning, ...byStone, ...byMeaning, ...byType].slice(0, 4);
   })();
 
+  const canonicalUrl = `https://www.priestessofthesoul.com/dyqan/${product.id}`;
+  const productJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    image: [product.image],
+    description: product.description,
+    sku: product.id,
+    brand: { '@type': 'Brand', name: 'Priestess of the Soul' },
+    offers: {
+      '@type': 'Offer',
+      url: canonicalUrl,
+      priceCurrency: 'EUR',
+      price: parseFloat(salePrice(product.price).replace('€', '')),
+      availability: inStock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+      itemCondition: 'https://schema.org/NewCondition',
+    },
+  };
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Kreu', item: 'https://www.priestessofthesoul.com' },
+      { '@type': 'ListItem', position: 2, name: 'Dyqan', item: 'https://www.priestessofthesoul.com/dyqan' },
+      { '@type': 'ListItem', position: 3, name: product.name, item: canonicalUrl },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <Header />
       <main className="bg-cream min-h-screen">
         {/* Breadcrumb */}
