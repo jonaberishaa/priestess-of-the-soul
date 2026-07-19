@@ -1,8 +1,20 @@
+import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { products, salePrice } from '@/data/products';
 import Image from 'next/image';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Më të Shiturat | Bizhuteri me Ar 18K',
+  description: 'Bizhuteritë tona më të kërkuara - unaza, vathë dhe gerdane me ar 18K dhe gurë natyralë, të zgjedhura nga klientët tanë.',
+  alternates: { canonical: 'https://www.priestessofthesoul.com/dyqan/bestsellers' },
+  openGraph: {
+    title: 'Më të Shiturat | Priestess of the Soul',
+    description: 'Bizhuteritë tona më të kërkuara, të zgjedhura nga klientët tanë.',
+    url: 'https://www.priestessofthesoul.com/dyqan/bestsellers',
+  },
+};
 
 const bestsellerIds = [
   'celestial-empress',
