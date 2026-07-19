@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import AnnouncementBar from '@/components/AnnouncementBar';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ShopGrid from '@/components/ShopGrid';
@@ -77,6 +78,7 @@ export default async function ShopPage({
 
   return (
     <>
+      <AnnouncementBar />
       <Header />
       <main className="min-h-screen bg-cream">
         {/* Banner */}

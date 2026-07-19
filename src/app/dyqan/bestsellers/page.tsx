@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import AnnouncementBar from '@/components/AnnouncementBar';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { products, salePrice } from '@/data/products';
@@ -34,6 +35,7 @@ const bestsellers = bestsellerIds
 export default function BestsellersPage() {
   return (
     <>
+      <AnnouncementBar />
       <Header />
       <main className="min-h-screen bg-cream">
         <div className="bg-cream-warm border-b border-stone-light/20 py-16 px-6 text-center">
