@@ -13,6 +13,11 @@ export const SIZE_CHART = [
   { eu: 'EU 62', us: 'US 10.5', mm: '62mm', diameter: '19.7mm' },
 ];
 
+// Standard CSS reference pixel density (96dpi) - a screen-agnostic default
+// since there's no calibration step to measure the real device density.
+// This is an approximation; the diameter table below is the exact reference.
+const PX_PER_MM = 96 / 25.4;
+
 function SizeChartTable() {
   return (
     <table className="w-full text-xs font-body border-collapse">
@@ -39,7 +44,11 @@ function SizeChartTable() {
 }
 
 export default function RingSizerModal({ onClose }: { onClose: () => void }) {
-  const [tab, setTab] = useState<'unaze' | 'spango'>('unaze');
+  const [tab, setTab] = useState<'unaze' | 'spango' | 'ekran'>('unaze');
+  const [sizeIndex, setSizeIndex] = useState(2);
+
+  const activeSize = SIZE_CHART[sizeIndex];
+  const circlePx = parseFloat(activeSize.diameter) * PX_PER_MM;
 
   return (
     <div
@@ -69,6 +78,7 @@ export default function RingSizerModal({ onClose }: { onClose: () => void }) {
           {([
             { key: 'unaze',  icon: '💍', label: 'Me Unazë' },
             { key: 'spango', icon: '📏', label: 'Me Spango' },
+            { key: 'ekran',  icon: '🖥️', label: 'Në Ekran' },
           ] as const).map((t) => (
             <button
               key={t.key}
@@ -187,6 +197,43 @@ export default function RingSizerModal({ onClose }: { onClose: () => void }) {
 
               <div className="bg-[#f5f0e8] px-4 py-3 text-xs font-body text-[#201616]/60 leading-relaxed">
                 💡 <strong className="text-[#201616]">Kujdes:</strong> Mat diametrin e brendshëm të unazës - jo të jashtmin. Ndryshimi mund të jetë 1–2mm dhe ndikon në madhësinë finale.
+              </div>
+            </div>
+          )}
+
+          {/* TAB: Në ekran (interactive) */}
+          {tab === 'ekran' && (
+            <div className="flex flex-col gap-5">
+              <p className="text-sm text-[#201616]/70 font-body leading-relaxed">
+                Vendos unazën tënde direkt mbi rrethin më poshtë (mbi ekran) dhe lëviz rrëshqitësin derisa buza e brendshme e unazës të përputhet saktësisht me rrethin.
+              </p>
+
+              <div className="flex flex-col items-center gap-4 border border-[#201616]/10 p-4 sm:p-6">
+                <div
+                  className="!rounded-full border-2 border-[#b31b1b] flex-shrink-0"
+                  style={{ width: circlePx, height: circlePx }}
+                />
+                <input
+                  type="range"
+                  min={0}
+                  max={SIZE_CHART.length - 1}
+                  step={1}
+                  value={sizeIndex}
+                  onChange={(e) => setSizeIndex(Number(e.target.value))}
+                  className="w-full accent-[#b31b1b]"
+                />
+                <p className="text-sm font-body text-[#201616] text-center">
+                  Madhësia jote: <strong>{activeSize.eu}</strong> · {activeSize.us} · {activeSize.mm}
+                </p>
+              </div>
+
+              <div className="bg-[#f5f0e8] px-4 py-3 text-xs font-body text-[#201616]/60 leading-relaxed">
+                💡 <strong className="text-[#201616]">Kujdes:</strong> Madhësia e rrethit varet nga ekrani yt dhe mund të mos jetë 100% e saktë. Për saktësi maksimale, krahasoje edhe me tabelën më poshtë.
+              </div>
+
+              <div>
+                <p className="text-[10px] tracking-[0.3em] uppercase text-[#201616]/40 mb-2">Tabela e Madhësive</p>
+                <SizeChartTable />
               </div>
             </div>
           )}
