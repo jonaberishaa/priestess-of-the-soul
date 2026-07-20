@@ -13,16 +13,6 @@ export const SIZE_CHART = [
   { eu: 'EU 62', us: 'US 10.5', mm: '62mm', diameter: '19.7mm' },
 ];
 
-// Standard ID-1 bank card width (ATM/debit/credit) - same worldwide, used to
-// calibrate real-world mm against this specific screen's pixels.
-const CARD_WIDTH_MM = 85.6;
-
-// Small residual correction from real-world testing: a US 8 ring (EU 58,
-// 18.5mm) matched the on-screen circle at roughly EU 56.75 (~18.1mm) even
-// with accurate whole-popup calibration - manual slider matching alone
-// tends to undershoot slightly. Nudges the circle back up to compensate.
-const SIZE_CORRECTION = 1.02;
-
 function SizeChartTable() {
   return (
     <table className="w-full text-xs font-body border-collapse">
@@ -49,22 +39,7 @@ function SizeChartTable() {
 }
 
 export default function RingSizerModal({ onClose }: { onClose: () => void }) {
-  const [tab, setTab] = useState<'unaze' | 'spango' | 'ekran'>('unaze');
-  const [calibrated, setCalibrated] = useState(false);
-  const [cardWidthPx, setCardWidthPx] = useState(440);
-  const [sizeIndex, setSizeIndex] = useState(2);
-
-  const pxPerMm = cardWidthPx / CARD_WIDTH_MM;
-  const activeSize = SIZE_CHART[sizeIndex];
-  const circlePx = parseFloat(activeSize.diameter) * pxPerMm * SIZE_CORRECTION;
-
-  // While calibrating, the whole popup IS the reference card - resize it
-  // directly to match a real card instead of a separate box nested inside
-  // it, which kept running into padding/fit issues at different screen
-  // sizes. The popup naturally has to shrink to fit small phones and can
-  // grow for denser desktop/laptop screens, so this doubles as the
-  // calibration slider's range too.
-  const calibrating = tab === 'ekran' && !calibrated;
+  const [tab, setTab] = useState<'unaze' | 'spango'>('unaze');
 
   return (
     <div
@@ -72,8 +47,7 @@ export default function RingSizerModal({ onClose }: { onClose: () => void }) {
       onClick={onClose}
     >
       <div
-        className={`bg-[#fffffc] overflow-y-auto max-h-[92vh] shadow-2xl max-w-[96vw] ${calibrating ? '' : 'w-full max-w-lg'}`}
-        style={calibrating ? { width: cardWidthPx } : undefined}
+        className="bg-[#fffffc] w-full max-w-lg overflow-y-auto max-h-[92vh] shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
@@ -95,7 +69,6 @@ export default function RingSizerModal({ onClose }: { onClose: () => void }) {
           {([
             { key: 'unaze',  icon: '💍', label: 'Me Unazë' },
             { key: 'spango', icon: '📏', label: 'Me Spango' },
-            { key: 'ekran',  icon: '🖥️', label: 'Në Ekran' },
           ] as const).map((t) => (
             <button
               key={t.key}
@@ -214,72 +187,6 @@ export default function RingSizerModal({ onClose }: { onClose: () => void }) {
 
               <div className="bg-[#f5f0e8] px-4 py-3 text-xs font-body text-[#201616]/60 leading-relaxed">
                 💡 <strong className="text-[#201616]">Kujdes:</strong> Mat diametrin e brendshëm të unazës - jo të jashtmin. Ndryshimi mund të jetë 1–2mm dhe ndikon në madhësinë finale.
-              </div>
-            </div>
-          )}
-
-          {/* TAB: Në ekran (interactive) */}
-          {tab === 'ekran' && calibrating && (
-            <div className="flex flex-col gap-5">
-              <p className="text-sm text-[#201616]/70 font-body leading-relaxed">
-                Për saktësi, kalibrojmë ekranin tënd me një kartë bankare (ATM, debit ose krediti - të gjitha kanë të njëjtën madhësi kudo në botë).
-              </p>
-              <div className="border border-[#201616]/10 p-4 flex flex-col gap-4 items-center">
-                <p className="text-xs text-[#201616]/60 font-body text-center">
-                  Mbaje kartën tënde drejt e mbi xhamin e ekranit dhe krahasoje me <strong>gjerësinë e kësaj dritareje</strong> (gjithë kutia më sipër). Rregullo rrëshqitësin derisa gjerësia të përputhet saktësisht me kartën.
-                </p>
-                <input
-                  type="range"
-                  min={220}
-                  max={1400}
-                  value={cardWidthPx}
-                  onChange={(e) => setCardWidthPx(Number(e.target.value))}
-                  className="w-full accent-[#b31b1b]"
-                />
-                <button
-                  onClick={() => setCalibrated(true)}
-                  className="btn-primary text-center w-full"
-                >
-                  Konfirmo dhe Vazhdo →
-                </button>
-              </div>
-            </div>
-          )}
-
-          {tab === 'ekran' && !calibrating && (
-            <div className="flex flex-col gap-5">
-              <p className="text-sm text-[#201616]/70 font-body leading-relaxed">
-                Vendos unazën tënde direkt mbi rrethin më poshtë (mbi ekran) dhe lëviz rrëshqitësin derisa buza e brendshme e unazës të përputhet saktësisht me rrethin.
-              </p>
-
-              <div className="flex flex-col items-center gap-4 border border-[#201616]/10 p-4 sm:p-6">
-                <div
-                  className="!rounded-full border-2 border-[#b31b1b] flex-shrink-0"
-                  style={{ width: circlePx, height: circlePx }}
-                />
-                <input
-                  type="range"
-                  min={0}
-                  max={SIZE_CHART.length - 1}
-                  step={1}
-                  value={sizeIndex}
-                  onChange={(e) => setSizeIndex(Number(e.target.value))}
-                  className="w-full accent-[#b31b1b]"
-                />
-                <p className="text-sm font-body text-[#201616] text-center">
-                  Madhësia jote: <strong>{activeSize.eu}</strong> · {activeSize.us} · {activeSize.mm}
-                </p>
-                <button
-                  onClick={() => setCalibrated(false)}
-                  className="text-[10px] tracking-wider uppercase text-[#201616]/40 hover:text-[#201616] font-body underline"
-                >
-                  Rikalibro ekranin
-                </button>
-              </div>
-
-              <div>
-                <p className="text-[10px] tracking-[0.3em] uppercase text-[#201616]/40 mb-2">Krahaso me Tabelën e Plotë</p>
-                <SizeChartTable />
               </div>
             </div>
           )}
