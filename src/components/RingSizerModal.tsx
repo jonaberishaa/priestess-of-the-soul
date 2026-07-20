@@ -17,11 +17,6 @@ export const SIZE_CHART = [
 // calibrate real-world mm against this specific screen's pixels.
 const CARD_WIDTH_MM = 85.6;
 
-// Holding a physical card up to the screen instead of flush against the glass
-// causes parallax, which makes people calibrate a bit too small - this nudges
-// the resulting circle back up to compensate.
-const PARALLAX_CORRECTION = 1.05;
-
 function SizeChartTable() {
   return (
     <table className="w-full text-xs font-body border-collapse">
@@ -55,7 +50,7 @@ export default function RingSizerModal({ onClose }: { onClose: () => void }) {
 
   const pxPerMm = cardWidthPx / CARD_WIDTH_MM;
   const activeSize = SIZE_CHART[sizeIndex];
-  const circlePx = parseFloat(activeSize.diameter) * pxPerMm * PARALLAX_CORRECTION;
+  const circlePx = parseFloat(activeSize.diameter) * pxPerMm;
 
   // While calibrating, the whole popup IS the reference card - resize it
   // directly to match a real card instead of a separate box nested inside
