@@ -17,6 +17,12 @@ export const SIZE_CHART = [
 // calibrate real-world mm against this specific screen's pixels.
 const CARD_WIDTH_MM = 85.6;
 
+// Small residual correction from real-world testing: a US 8 ring (EU 58,
+// 18.5mm) matched the on-screen circle at roughly EU 56.75 (~18.1mm) even
+// with accurate whole-popup calibration - manual slider matching alone
+// tends to undershoot slightly. Nudges the circle back up to compensate.
+const SIZE_CORRECTION = 1.02;
+
 function SizeChartTable() {
   return (
     <table className="w-full text-xs font-body border-collapse">
@@ -50,7 +56,7 @@ export default function RingSizerModal({ onClose }: { onClose: () => void }) {
 
   const pxPerMm = cardWidthPx / CARD_WIDTH_MM;
   const activeSize = SIZE_CHART[sizeIndex];
-  const circlePx = parseFloat(activeSize.diameter) * pxPerMm;
+  const circlePx = parseFloat(activeSize.diameter) * pxPerMm * SIZE_CORRECTION;
 
   // While calibrating, the whole popup IS the reference card - resize it
   // directly to match a real card instead of a separate box nested inside
